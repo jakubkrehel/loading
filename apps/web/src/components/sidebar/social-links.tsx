@@ -1,6 +1,7 @@
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import type { ComponentType } from "react";
 import { NavItem } from "@/components/ui/nav-item";
+import { MarkdownIcon } from "@/icons/markdown-icon";
 import { NpmIcon } from "@/icons/npm-icon";
 
 export const SOCIAL_LINKS: {
@@ -17,6 +18,11 @@ export const SOCIAL_LINKS: {
     href: "https://www.npmjs.com/package/loading-dev",
     icon: NpmIcon,
     label: "npm",
+  },
+  {
+    href: "/llms.txt",
+    icon: MarkdownIcon,
+    label: "llms.txt",
   },
 ];
 
