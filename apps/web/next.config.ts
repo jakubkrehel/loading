@@ -9,8 +9,6 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ["motion"],
   },
-  // Both representations of a spinner page share one URL, so caches must key
-  // on Accept.
   headers: async () => [
     {
       headers: [{ key: "Vary", value: "Accept" }],
@@ -27,7 +25,6 @@ const nextConfig = {
   },
   pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"],
   reactCompiler: true,
-  // Agents that ask for Markdown get it at the page's own URL.
   rewrites: async () => ({
     afterFiles: [],
     beforeFiles: [
