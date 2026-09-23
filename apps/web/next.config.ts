@@ -19,6 +19,19 @@ const nextConfig = {
   },
   pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"],
   reactCompiler: true,
+  rewrites: async () => ({
+    afterFiles: [],
+    beforeFiles: [
+      {
+        destination: "/spinners/:slug/markdown",
+        has: [
+          { key: "accept", type: "header", value: "(.*)text/markdown(.*)" },
+        ],
+        source: "/spinners/:slug",
+      },
+    ],
+    fallback: [],
+  }),
   turbopack: {
     root: path.resolve(import.meta.dirname, "../.."),
   },
