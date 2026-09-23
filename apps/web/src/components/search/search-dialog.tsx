@@ -194,7 +194,7 @@ function EmptyRow({ onClearQuery }: { onClearQuery: () => void }) {
   }
 
   return (
-    <div className="p-1">
+    <Command.Group className="p-1" forceMount>
       <Command.Item
         className={cn(ITEM_CLASSNAME, "justify-between")}
         forceMount
@@ -209,6 +209,6 @@ function EmptyRow({ onClearQuery }: { onClearQuery: () => void }) {
           Clear search
         </span>
       </Command.Item>
-    </div>
+    </Command.Group>
   );
 }
