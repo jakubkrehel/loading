@@ -9,12 +9,6 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ["motion"],
   },
-  headers: async () => [
-    {
-      headers: [{ key: "Vary", value: "Accept" }],
-      source: "/spinners/:slug",
-    },
-  ],
   images: {
     remotePatterns: [
       {
