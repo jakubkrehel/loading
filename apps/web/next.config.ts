@@ -9,6 +9,14 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ["motion"],
   },
+  // Both representations of a spinner page share one URL, so caches must key
+  // on Accept.
+  headers: async () => [
+    {
+      headers: [{ key: "Vary", value: "Accept" }],
+      source: "/spinners/:slug",
+    },
+  ],
   images: {
     remotePatterns: [
       {
@@ -19,6 +27,20 @@ const nextConfig = {
   },
   pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"],
   reactCompiler: true,
+  // Agents that ask for Markdown get it at the page's own URL.
+  rewrites: async () => ({
+    afterFiles: [],
+    beforeFiles: [
+      {
+        destination: "/spinners/:slug/markdown",
+        has: [
+          { key: "accept", type: "header", value: "(.*)text/markdown(.*)" },
+        ],
+        source: "/spinners/:slug",
+      },
+    ],
+    fallback: [],
+  }),
   turbopack: {
     root: path.resolve(import.meta.dirname, "../.."),
   },
