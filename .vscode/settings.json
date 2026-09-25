@@ -1,0 +1,29 @@
+// Tailwind v4 config lives in CSS (@theme, @utility, @custom-variant,
+// @plugin). The built-in CSS server flags those as unknown at-rules, so
+// stylesheets go to the Tailwind extension, which knows them.
+{
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  "js/ts.tsdk.path": "node_modules/typescript/lib",
+  "editor.defaultFormatter": "biomejs.biome",
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "[mdx]": {
+    "editor.defaultFormatter": null,
+    "editor.formatOnPaste": false,
+    "editor.formatOnSave": false
+  },
+  "editor.codeActionsOnSave": {
+    "source.action.noDuplicateClasses.biome": "explicit",
+    "source.action.useSortedAttributes.biome": "explicit",
+    "source.action.useSortedInterfaceMembers.biome": "explicit",
+    "source.action.useSortedKeys.biome": "explicit",
+    "source.action.useSortedPackageJson.biome": "explicit",
+    "source.action.useSortedProperties.biome": "explicit",
+    "source.action.useSortedTypeFields.biome": "explicit",
+    "source.fixAll.biome": "explicit",
+    "source.organizeImports.biome": "explicit",
+    "source.fixAll.oxc": "explicit"
+  }
+}

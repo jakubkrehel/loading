@@ -24,7 +24,7 @@ export function SpinnerStyle({
 }
 
 export function cssVars(
-  vars: CSSProperties & { [variable: `--ld-${string}`]: number | string }
+  vars: CSSProperties & Record<`--ld-${string}`, number | string>
 ): CSSProperties {
   return vars;
 }

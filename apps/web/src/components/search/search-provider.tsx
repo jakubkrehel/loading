@@ -1,6 +1,12 @@
 "use client";
 
-import { type ReactNode, useEffect, useRef, useState } from "react";
+import {
+  type ReactNode,
+  useEffect,
+  useEffectEvent,
+  useRef,
+  useState,
+} from "react";
 import { SearchContext } from "@/components/search/search-context";
 import { SearchDialog } from "@/components/search/search-dialog";
 import { useGoToShortcut } from "@/lib/use-go-to-shortcut";
@@ -16,20 +22,21 @@ export function SearchProvider({ children }: { children: ReactNode }) {
     setOpen(true);
   };
 
-  useEffect(() => {
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "k" && (event.metaKey || event.ctrlKey)) {
-        event.preventDefault();
-        if (open) {
-          setOpen(false);
-        } else {
-          openSearch();
-        }
+  const onKeyDown = useEffectEvent((event: KeyboardEvent) => {
+    if (event.key === "k" && (event.metaKey || event.ctrlKey)) {
+      event.preventDefault();
+      if (open) {
+        setOpen(false);
+      } else {
+        openSearch();
       }
-    };
+    }
+  });
+
+  useEffect(() => {
     document.addEventListener("keydown", onKeyDown);
     return () => document.removeEventListener("keydown", onKeyDown);
-  }, [open, openSearch]);
+  }, []);
 
   useGoToShortcut(!open);
 

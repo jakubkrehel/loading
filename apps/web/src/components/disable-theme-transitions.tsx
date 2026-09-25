@@ -14,7 +14,7 @@ export function DisableThemeTransitions() {
       );
       document.head.append(style);
 
-      const _flushReflow = document.body.offsetHeight;
+      void document.body.offsetHeight;
 
       requestAnimationFrame(() => {
         requestAnimationFrame(() => style.remove());

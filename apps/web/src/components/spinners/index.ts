@@ -251,7 +251,7 @@ const UNLISTED = ["compass", "radar"] as const satisfies readonly SpinnerName[];
 
 type Placed = (typeof CATALOG)[number]["slug"] | (typeof UNLISTED)[number];
 
-const _everySpinnerPlaced: Record<Exclude<SpinnerName, Placed>, never> = {};
+({}) satisfies Record<Exclude<SpinnerName, Placed>, never>;
 
 export const SPINNER_ITEMS: SpinnerItem[] = CATALOG;
 

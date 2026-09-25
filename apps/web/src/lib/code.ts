@@ -31,10 +31,7 @@ type ComponentNames = { [S in SpinnerName]: PascalCase<S> };
 
 export type ComponentName = ComponentNames[SpinnerName];
 
-const _everyComponentExported: Record<
-  Exclude<ComponentName, keyof typeof Library>,
-  never
-> = {};
+({}) satisfies Record<Exclude<ComponentName, keyof typeof Library>, never>;
 
 export function pascalCase(slug: string): string {
   return slug
