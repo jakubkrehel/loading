@@ -87,7 +87,7 @@ export default function RootLayout({
               </a>
               <MobileNav />
               <Sidebar />
-              <div className="flex min-h-dvh gap-12 px-5 py-10 sm:px-6 md:py-20 md:pl-[calc(var(--sidebar-width)_+_1rem)]">
+              <div className="flex min-h-dvh gap-12 px-5 py-10 sm:px-6 md:py-20 md:pl-[calc(var(--sidebar-width)+1rem)]">
                 <main
                   className="mx-auto w-full max-w-160 focus-visible:outline-hidden"
                   id="content"

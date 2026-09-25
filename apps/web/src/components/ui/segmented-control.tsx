@@ -35,7 +35,7 @@ export function SegmentedControl<Value extends string | number>({
           <label
             className={cn(
               "relative flex h-8 pointer-coarse:h-10 min-w-0 flex-1 cursor-pointer items-center justify-center rounded-lg font-medium text-sm transition-colors duration-200 ease-out",
-              "has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-content has-[:focus-visible]:outline-offset-2",
+              "has-focus-visible:outline-2 has-focus-visible:outline-content has-focus-visible:outline-offset-2",
               isActive
                 ? "text-content"
                 : "text-content-subtle hover-hover:hover:text-content"

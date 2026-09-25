@@ -6,7 +6,7 @@ import { Text } from "@/components/ui/text";
 import { cn } from "@/lib/utils";
 
 const FOCUS_RING =
-  "has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-content has-[:focus-visible]:outline-offset-2";
+  "has-focus-visible:outline-2 has-focus-visible:outline-content has-focus-visible:outline-offset-2";
 
 const TICKS = Array.from({ length: 9 }, (_, index) => index);
 
