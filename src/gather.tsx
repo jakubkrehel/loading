@@ -62,13 +62,6 @@ const css = `
     transform: rotate(90deg);
   }
 }
-
-@media (prefers-reduced-motion: reduce) {
-  .ld-gather-group,
-  .ld-gather-block {
-    animation: none;
-  }
-}
 `;
 
 export function Gather(props: SpinnerProps) {

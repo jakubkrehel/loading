@@ -11,6 +11,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { PREVIEW_SECTION_ID } from "@/lib/constants";
+import { customizationProps } from "@/lib/customization";
 import { cn } from "@/lib/utils";
 import { CustomizePanel } from "./customize-panel";
 import { useCustomization } from "./spinner-customization";
@@ -74,9 +75,9 @@ function CustomizeDrawer({
 
 export function SpinnerPreview() {
   const [customizeOpen, setCustomizeOpen] = useState(true);
-  const { item, state } = useCustomization();
+  const { customization, item, paused, togglePaused } = useCustomization();
   const Spinner = SPINNERS[item.slug];
-  const playLabel = state.paused ? "Play animation" : "Pause animation";
+  const playLabel = paused ? "Play animation" : "Pause animation";
 
   return (
     <section
@@ -85,8 +86,11 @@ export function SpinnerPreview() {
     >
       <div className="flex min-h-64 min-w-0 flex-1 flex-col items-center px-4 pt-13 pb-2">
         <div className="flex min-h-0 w-full flex-1 items-center justify-center">
-          <div style={{ opacity: `${state.opacity}%` }}>
-            <Spinner {...state.spinnerProps} />
+          <div style={{ opacity: `${customization.opacity}%` }}>
+            <Spinner
+              {...customizationProps(item, customization)}
+              playState={paused ? "paused" : undefined}
+            />
           </div>
         </div>
         <Tooltip>
@@ -94,14 +98,14 @@ export function SpinnerPreview() {
             render={
               <IconButton
                 aria-label={playLabel}
-                aria-pressed={state.paused}
-                onClick={state.togglePaused}
+                aria-pressed={paused}
+                onClick={togglePaused}
                 size="sm"
                 type="button"
                 variant="ghost"
               >
                 <AnimatedIcon
-                  active={state.paused}
+                  active={paused}
                   activeIcon={
                     <PlayIcon className="size-4.5 will-change-transform" />
                   }
@@ -120,7 +124,7 @@ export function SpinnerPreview() {
         open={customizeOpen}
       />
       <CustomizeDrawer open={customizeOpen}>
-        <CustomizePanel className="max-sm:mt-1" item={item} state={state} />
+        <CustomizePanel className="max-sm:mt-1" />
       </CustomizeDrawer>
     </section>
   );

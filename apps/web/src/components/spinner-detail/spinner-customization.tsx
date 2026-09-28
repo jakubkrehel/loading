@@ -1,102 +1,20 @@
 "use client";
 
-import { SPINNER_MOTION, type SpinnerProps } from "loading-dev";
 import { createContext, type ReactNode, useContext, useState } from "react";
 import type { SpinnerItem, SpinnerOptions } from "@/components/spinners";
-import type { ElementProps } from "@/lib/code";
-import { DEFAULT_PREVIEW_SIZE } from "./preview-sizes";
+import { type Customization, initialCustomization } from "@/lib/customization";
 
-const FULLY_OPAQUE = 100;
-
-export interface SpinnerCustomizationState {
-  color: string | null;
-  opacity: number;
-  options: SpinnerOptions;
+interface CustomizationContextValue {
+  customization: Customization;
+  item: SpinnerItem;
   paused: boolean;
   reset: () => void;
-  setColor: (color: string) => void;
-  setOpacity: (percent: number) => void;
   setOption: <K extends keyof SpinnerOptions>(
     prop: K,
     value: NonNullable<SpinnerOptions[K]>
   ) => void;
-  setSize: (size: number) => void;
-  setSpeedMs: (speedMs: number) => void;
-  size: number;
-  speedMs: number;
-  spinnerProps: SpinnerProps & SpinnerOptions;
   togglePaused: () => void;
-}
-
-function useCustomizationState(item: SpinnerItem): SpinnerCustomizationState {
-  const defaultDuration = SPINNER_MOTION[item.slug];
-  const [paused, setPaused] = useState(false);
-  const [size, setSize] = useState(DEFAULT_PREVIEW_SIZE);
-  const [color, setColor] = useState<string | null>(null);
-  const [speedMs, setSpeedMs] = useState<number>(defaultDuration);
-  const [opacity, setOpacity] = useState(FULLY_OPAQUE);
-  const [options, setOptions] = useState<SpinnerOptions>({});
-
-  const spinnerProps: SpinnerProps & SpinnerOptions = {
-    ...options,
-    color: color ?? undefined,
-    duration: speedMs,
-    playState: paused ? "paused" : "running",
-    size,
-  };
-
-  return {
-    color,
-    opacity,
-    options,
-    paused,
-    reset: () => {
-      setSize(DEFAULT_PREVIEW_SIZE);
-      setColor(null);
-      setSpeedMs(defaultDuration);
-      setOpacity(FULLY_OPAQUE);
-      setOptions({});
-    },
-    setColor,
-    setOpacity,
-    setOption: (prop, value) =>
-      setOptions((previous) => ({ ...previous, [prop]: value })),
-    setSize,
-    setSpeedMs,
-    size,
-    speedMs,
-    spinnerProps,
-    togglePaused: () => setPaused((value) => !value),
-  };
-}
-
-export function snippetProps(
-  item: SpinnerItem,
-  state: SpinnerCustomizationState
-): ElementProps {
-  const props: ElementProps = { size: state.size };
-
-  if (state.color) {
-    props.color = state.color;
-  }
-
-  if (state.speedMs !== SPINNER_MOTION[item.slug]) {
-    props.duration = state.speedMs;
-  }
-
-  for (const option of item.options ?? []) {
-    const value = state.options[option.prop];
-    if (value !== undefined && value !== option.defaultValue) {
-      Object.assign(props, { [option.prop]: value });
-    }
-  }
-
-  return props;
-}
-
-interface CustomizationContextValue {
-  item: SpinnerItem;
-  state: SpinnerCustomizationState;
+  update: (patch: Partial<Customization>) => void;
 }
 
 const CustomizationContext = createContext<CustomizationContextValue | null>(
@@ -110,9 +28,28 @@ export function CustomizationProvider({
   children: ReactNode;
   item: SpinnerItem;
 }) {
-  const state = useCustomizationState(item);
+  const [customization, setCustomization] = useState(() =>
+    initialCustomization(item)
+  );
+  const [paused, setPaused] = useState(false);
+
+  const value: CustomizationContextValue = {
+    customization,
+    item,
+    paused,
+    reset: () => setCustomization(initialCustomization(item)),
+    setOption: (prop, option) =>
+      setCustomization((previous) => ({
+        ...previous,
+        options: { ...previous.options, [prop]: option },
+      })),
+    togglePaused: () => setPaused((previous) => !previous),
+    update: (patch) =>
+      setCustomization((previous) => ({ ...previous, ...patch })),
+  };
+
   return (
-    <CustomizationContext.Provider value={{ item, state }}>
+    <CustomizationContext.Provider value={value}>
       {children}
     </CustomizationContext.Provider>
   );

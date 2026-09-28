@@ -31,12 +31,6 @@ const css = `
     transform: rotate(90deg);
   }
 }
-
-@media (prefers-reduced-motion: reduce) {
-  .ld-morph-shape {
-    animation: none;
-  }
-}
 `;
 
 export function Morph(props: SpinnerProps) {

@@ -53,7 +53,6 @@ const css = `
 @media (prefers-reduced-motion: reduce) {
   .ld-eclipse-dot {
     translate: calc(var(${STEP_VAR}) * 150% - 75%) 0;
-    animation: none;
   }
 }
 `;

@@ -1,5 +1,6 @@
+import { fadeCss } from "./fade";
 import { SpinnerStyle, spinnerRoot, step } from "./frame";
-import { animation, SIZE, stagger } from "./motion";
+import { SIZE } from "./motion";
 import type { SpinnerProps } from "./types";
 
 const BLOCK = "M0 0h1v1H0zM2 0h1v1H2zM0 2h1v1H0zM2 2h1v1H2z";
@@ -21,26 +22,7 @@ const css = `
   height: ${SIZE};
 }
 
-.ld-loading-segment {
-  ${animation("loading", "ld-loading-fade", "linear")}
-  animation-delay: ${stagger("loading", SEGMENTS.length)};
-}
-
-@keyframes ld-loading-fade {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0.2;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .ld-loading-segment {
-    opacity: 0.6;
-    animation: none;
-  }
-}
+${fadeCss("loading", "segment", SEGMENTS.length, { dim: 0.2, rest: 0.6 })}
 `;
 
 export function Loading(props: SpinnerProps) {

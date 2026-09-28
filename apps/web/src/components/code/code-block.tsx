@@ -1,40 +1,34 @@
-import { createHighlighter } from "shiki";
-import { CODE_THEME_NAMES, CODE_THEMES, themed } from "@/lib/code-theme";
-import { CodeFrame, CodeLine } from "./code-frame";
+import { type CodeLine, codeText } from "@/lib/code";
+import type { SnippetPalette } from "@/lib/code-theme";
+import { CodeFrame, CodeFrameLine } from "./code-frame";
 
-const highlighter = createHighlighter({
-  langs: ["tsx"],
-  themes: [CODE_THEMES.light, CODE_THEMES.dark],
-});
-
-export async function CodeBlock({ code }: { code: string }) {
-  const { tokens } = (await highlighter).codeToTokens(code, {
-    defaultColor: false,
-    lang: "tsx",
-    themes: CODE_THEME_NAMES,
-  });
-
+export function CodeBlock({
+  lines,
+  palette,
+}: {
+  lines: CodeLine[];
+  palette: SnippetPalette;
+}) {
   return (
-    <CodeFrame text={code}>
-      {tokens.map((line, index) => (
-        <CodeLine
-          key={`${index}:${line.map(({ content }) => content).join("")}`}
-        >
-          {line.length === 0
-            ? " "
-            : line.map(({ content, htmlStyle, offset }) => {
-                const {
-                  "--shiki-dark": dark = "inherit",
-                  "--shiki-light": light = "inherit",
-                } = htmlStyle ?? {};
-                return (
-                  <span key={offset} style={themed(light, dark)}>
-                    {content}
-                  </span>
-                );
-              })}
-        </CodeLine>
-      ))}
+    <CodeFrame text={codeText(lines)}>
+      {lines.map((line, index) => {
+        let offset = 0;
+        return (
+          <CodeFrameLine key={`${index}:${codeText([line])}`}>
+            {line.length === 0
+              ? " "
+              : line.map((token) => {
+                  const start = offset;
+                  offset += token.text.length;
+                  return (
+                    <span key={start} style={palette[token.kind]}>
+                      {token.text}
+                    </span>
+                  );
+                })}
+          </CodeFrameLine>
+        );
+      })}
     </CodeFrame>
   );
 }

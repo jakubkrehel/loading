@@ -40,11 +40,5 @@ export function rotationCss(name: SpinnerName, turn = ROTATE): string {
 @keyframes ld-${name}-rotate {
   ${turn}
 }
-
-@media (prefers-reduced-motion: reduce) {
-  .ld-${name}-spin {
-    animation: none;
-  }
-}
 `;
 }

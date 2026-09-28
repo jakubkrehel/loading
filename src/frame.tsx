@@ -18,7 +18,14 @@ export function SpinnerStyle({
 }) {
   return (
     <style href={`ld-${name}`} precedence="loading-dev">
-      {children}
+      {`${children}
+@media (prefers-reduced-motion: reduce) {
+  .ld-${name},
+  .ld-${name} * {
+    animation: none;
+  }
+}
+`}
     </style>
   );
 }

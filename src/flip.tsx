@@ -29,12 +29,6 @@ const css = `
     transform: rotateX(-180deg) rotateY(-180deg);
   }
 }
-
-@media (prefers-reduced-motion: reduce) {
-  .ld-flip-face {
-    animation: none;
-  }
-}
 `;
 
 export function Flip(props: SpinnerProps) {

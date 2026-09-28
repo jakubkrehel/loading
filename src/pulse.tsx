@@ -27,7 +27,6 @@ const css = `
 @media (prefers-reduced-motion: reduce) {
   .ld-pulse-ring {
     opacity: 0.2;
-    animation: none;
   }
 }
 `;

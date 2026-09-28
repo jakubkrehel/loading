@@ -26,12 +26,6 @@ const css = `
     transform: rotate(360deg);
   }
 }
-
-@media (prefers-reduced-motion: reduce) {
-  .ld-cascade-arc {
-    animation: none;
-  }
-}
 `;
 
 export function Cascade({ cap, ...rest }: CascadeProps) {

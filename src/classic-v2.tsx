@@ -1,5 +1,6 @@
+import { fadeCss } from "./fade";
 import { SpinnerStyle, spinnerRoot, step } from "./frame";
-import { animation, SIZE, stagger } from "./motion";
+import { SIZE } from "./motion";
 import type { SpinnerProps } from "./types";
 
 const TICKS = [
@@ -19,26 +20,7 @@ const css = `
   height: ${SIZE};
 }
 
-.ld-classic-v2-tick {
-  ${animation("classic-v2", "ld-classic-v2-fade", "linear")}
-  animation-delay: ${stagger("classic-v2", TICKS.length)};
-}
-
-@keyframes ld-classic-v2-fade {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0.4;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .ld-classic-v2-tick {
-    opacity: 0.5;
-    animation: none;
-  }
-}
+${fadeCss("classic-v2", "tick", TICKS.length, { dim: 0.4, rest: 0.5 })}
 `;
 
 export function ClassicV2(props: SpinnerProps) {

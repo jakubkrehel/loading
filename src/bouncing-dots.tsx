@@ -29,12 +29,6 @@ const css = `
     transform: translateY(-72%);
   }
 }
-
-@media (prefers-reduced-motion: reduce) {
-  .ld-bouncing-dots-dot {
-    animation: none;
-  }
-}
 `;
 
 export function BouncingDots(props: SpinnerProps) {

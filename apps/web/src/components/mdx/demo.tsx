@@ -1,8 +1,9 @@
 import { SPINNERS, type SpinnerName } from "loading-dev";
 import { CodeBlock } from "@/components/code/code-block";
 import { CodePanel } from "@/components/mdx/code-panel";
-import { codeText } from "@/lib/code";
-import { DEMO_ROW, demoElements, demoLines } from "@/lib/demos";
+import { DEMO_ROW } from "@/lib/code";
+import { SNIPPET_PALETTE } from "@/lib/code-theme";
+import { demoElements, demoLines } from "@/lib/demos";
 
 export function Demo({ name, slug }: { name: string; slug: SpinnerName }) {
   const Spinner = SPINNERS[slug];
@@ -16,7 +17,7 @@ export function Demo({ name, slug }: { name: string; slug: SpinnerName }) {
           ))}
         </div>
       </div>
-      <CodeBlock code={codeText(demoLines(slug, name))} />
+      <CodeBlock lines={demoLines(slug, name)} palette={SNIPPET_PALETTE} />
     </CodePanel>
   );
 }

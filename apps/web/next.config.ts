@@ -2,7 +2,6 @@ import path from "node:path";
 import { withInterfere } from "@interfere/next/config";
 import createMDX from "@next/mdx";
 import type { NextConfig } from "next";
-import { CODE_THEMES } from "./src/lib/code-theme";
 import { BLOB_BASE } from "./src/lib/constants";
 
 const nextConfig = {
@@ -39,17 +38,7 @@ const nextConfig = {
 
 const withMDX = createMDX({
   options: {
-    rehypePlugins: [
-      [
-        "rehype-pretty-code",
-        {
-          grid: true,
-          keepBackground: false,
-          theme: CODE_THEMES,
-        },
-      ],
-      "rehype-slug",
-    ],
+    rehypePlugins: ["rehype-slug"],
     remarkPlugins: [["remark-smartypants", { dashes: false }]],
   },
 });

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useEffectEvent, useRef } from "react";
 
 const BREAKPOINTS = [
   "(min-width: 640px)",
@@ -9,14 +9,9 @@ const BREAKPOINTS = [
 ];
 
 export function useBreakpointChange(onChange: () => void) {
-  const latest = useRef(onChange);
+  const handle = useEffectEvent(onChange);
 
   useEffect(() => {
-    latest.current = onChange;
-  });
-
-  useEffect(() => {
-    const handle = () => latest.current();
     const lists = BREAKPOINTS.map((query) => window.matchMedia(query));
     for (const list of lists) {
       list.addEventListener("change", handle);

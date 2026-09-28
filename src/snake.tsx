@@ -36,7 +36,6 @@ ${rotationCss("snake")}
 @media (prefers-reduced-motion: reduce) {
   .ld-snake-dash {
     stroke-dasharray: 18 100;
-    animation: none;
   }
 }
 `;

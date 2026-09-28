@@ -1,6 +1,7 @@
 "use client";
 
 import { ChevronDownIcon, CopyIcon } from "@radix-ui/react-icons";
+import { markdownHref } from "@/components/spinners";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -34,7 +35,7 @@ export function CopyPageButton({
   slug: string;
 }) {
   const { copy, status } = useCopy();
-  const markdownPath = `/spinners/${slug}/markdown`;
+  const markdownPath = markdownHref(slug);
   const markdownUrl = `${DOMAIN}${markdownPath}`;
 
   return (

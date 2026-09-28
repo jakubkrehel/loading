@@ -60,7 +60,6 @@ const css = `
 @media (prefers-reduced-motion: reduce) {
   .ld-slide-dot {
     transform: var(--ld-slide-rest);
-    animation: none;
   }
 }
 `;

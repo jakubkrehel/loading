@@ -49,7 +49,6 @@ const css = `
 @media (prefers-reduced-motion: reduce) {
   .ld-leap-wrapper {
     transform: translateX(calc(var(${STEP_VAR}) * var(--ld-leap-gap)));
-    animation: none;
   }
 }
 `;

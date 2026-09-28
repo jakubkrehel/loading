@@ -47,7 +47,6 @@ const css = `
 @media (prefers-reduced-motion: reduce) {
   .ld-wave-bar {
     height: calc((0.4 + var(${STEP_VAR}) * 0.15) * 100%);
-    animation: none;
   }
 }
 `;

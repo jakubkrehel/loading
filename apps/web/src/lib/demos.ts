@@ -8,8 +8,6 @@ import {
   pascalCase,
 } from "@/lib/code";
 
-export const DEMO_ROW = "flex items-center gap-6";
-
 const DEMO_SIZE = 32;
 
 const SHARED_DEMOS: Record<string, (slug: SpinnerName) => ElementProps[]> = {
@@ -39,7 +37,6 @@ export function demoLines(slug: SpinnerName, demo: string): CodeLine[] {
   return exampleLines(
     componentName(slug),
     pascalCase(demo),
-    demoElements(slug, demo),
-    DEMO_ROW
+    demoElements(slug, demo)
   );
 }
