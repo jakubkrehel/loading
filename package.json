@@ -43,15 +43,15 @@
     "typecheck": "tsc --noEmit && pnpm build && pnpm --filter web typecheck"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.5.13",
-    "@types/node": "^24.13.3",
-    "@types/react": "^19",
-    "@types/react-dom": "^19.2.4",
+    "@biomejs/biome": "^2.5.14",
+    "@types/node": "^24.19.0",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
     "oxlint": "1.85.0",
     "react": "19.2.6",
     "react-dom": "19.2.6",
-    "tsup": "^8.5.0",
-    "typescript": "^5",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3",
     "ultracite": "7.12.0",
     "vitest": "^4.1.11"
   },
