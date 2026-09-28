@@ -1,24 +1,17 @@
 "use client";
 
 import { ResetIcon } from "@radix-ui/react-icons";
-import type { SpinnerItem } from "@/components/spinners";
 import { Button } from "@/components/ui/button";
 import { SegmentedControl } from "@/components/ui/segmented-control";
 import { cn } from "@/lib/utils";
 import { ColorPickerRow } from "./color-picker-row";
 import { SIZES } from "./preview-sizes";
 import { SliderRow } from "./slider-row";
-import type { SpinnerCustomizationState } from "./spinner-customization";
+import { useCustomization } from "./spinner-customization";
 
-export function CustomizePanel({
-  className,
-  item,
-  state,
-}: {
-  className?: string;
-  item: SpinnerItem;
-  state: SpinnerCustomizationState;
-}) {
+export function CustomizePanel({ className }: { className?: string }) {
+  const { customization, item, reset, setOption, update } = useCustomization();
+
   return (
     <div
       className={cn(
@@ -28,24 +21,24 @@ export function CustomizePanel({
     >
       <SegmentedControl
         label="Size"
-        onValueChange={state.setSize}
+        onValueChange={(size) => update({ size })}
         options={SIZES}
-        value={state.size}
+        value={customization.size}
       />
       {item.options?.map((option) => (
         <SegmentedControl
           key={option.prop}
           label={option.label}
-          onValueChange={(value) => state.setOption(option.prop, value)}
+          onValueChange={(value) => setOption(option.prop, value)}
           options={option.values}
-          value={state.options[option.prop] ?? option.defaultValue}
+          value={customization.options[option.prop] ?? option.defaultValue}
         />
       ))}
       <ColorPickerRow
-        color={state.color}
-        onChange={state.setColor}
-        onOpacityChange={state.setOpacity}
-        opacity={state.opacity}
+        color={customization.color}
+        onChange={(color) => update({ color })}
+        onOpacityChange={(opacity) => update({ opacity })}
+        opacity={customization.opacity}
       />
       <SliderRow
         format={(value) => `${value}ms`}
@@ -53,21 +46,21 @@ export function CustomizePanel({
         label="Speed"
         max={item.speed.max}
         min={item.speed.min}
-        onChange={state.setSpeedMs}
+        onChange={(speedMs) => update({ speedMs })}
         step={10}
-        value={state.speedMs}
+        value={customization.speedMs}
       />
       <SliderRow
         format={(value) => `${value}%`}
         label="Opacity"
         max={100}
         min={0}
-        onChange={state.setOpacity}
+        onChange={(opacity) => update({ opacity })}
         step={1}
-        value={state.opacity}
+        value={customization.opacity}
       />
       <div className="mt-auto flex justify-center">
-        <Button onClick={state.reset} type="button" variant="ghost">
+        <Button onClick={reset} type="button" variant="ghost">
           <ResetIcon className="size-4 shrink-0" />
           Reset
         </Button>

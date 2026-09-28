@@ -19,6 +19,8 @@ export type CodeLine = CodeToken[];
 
 export type ElementProps = Partial<SpinnerProps & SpinnerOptions>;
 
+export const DEMO_ROW = "flex items-center gap-6";
+
 const PRINT_WIDTH = 80;
 
 const INDENT = "  ";
@@ -107,8 +109,7 @@ function returned(name: ComponentName, props: ElementProps): CodeLine[] {
 
 function returnedRow(
   name: ComponentName,
-  elements: ElementProps[],
-  className: string
+  elements: ElementProps[]
 ): CodeLine[] {
   return [
     indent(1, [token("keyword", "return"), token("plain", " (")]),
@@ -116,7 +117,7 @@ function returnedRow(
       token("plain", "<"),
       token("tag", "div"),
       token("plain", " "),
-      ...attribute("className", className),
+      ...attribute("className", DEMO_ROW),
       token("plain", ">"),
     ]),
     ...elements.map((props) => indent(3, element(name, props))),
@@ -141,14 +142,11 @@ function merge(line: CodeLine): CodeLine {
 export function exampleLines(
   name: ComponentName,
   suffix: string,
-  elements: ElementProps[],
-  rowClassName: string
+  elements: ElementProps[]
 ): CodeLine[] {
   const [only, ...more] = elements;
   const body =
-    more.length === 0
-      ? returned(name, only)
-      : returnedRow(name, elements, rowClassName);
+    more.length === 0 ? returned(name, only) : returnedRow(name, elements);
 
   return [
     [
@@ -179,7 +177,7 @@ export function snippetLines(
   name: ComponentName,
   props: ElementProps
 ): CodeLine[] {
-  return exampleLines(name, "Demo", [props], "");
+  return exampleLines(name, "Demo", [props]);
 }
 
 export function codeText(lines: CodeLine[]): string {

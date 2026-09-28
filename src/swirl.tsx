@@ -1,5 +1,6 @@
+import { fadeCss } from "./fade";
 import { SpinnerStyle, spinnerRoot, step } from "./frame";
-import { animation, SIZE, stagger } from "./motion";
+import { SIZE } from "./motion";
 import type { SpinnerProps } from "./types";
 
 const RING = [0, 1, 2, 7, null, 3, 6, 5, 4];
@@ -21,25 +22,8 @@ const css = `
 .ld-swirl-cell {
   background: currentColor;
   border-radius: calc(${SIZE} * 0.0625);
-  ${animation("swirl", "ld-swirl-fade", "linear")}
-  animation-delay: ${stagger("swirl", PLACES)};
 }
-
-@keyframes ld-swirl-fade {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0.2;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .ld-swirl-cell {
-    opacity: 0.6;
-    animation: none;
-  }
-}
+${fadeCss("swirl", "cell", PLACES, { dim: 0.2, rest: 0.6 })}
 `;
 
 export function Swirl(props: SpinnerProps) {

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useEffectEvent, useState } from "react";
 
 const MIN_PRESS_MS = 200;
 
@@ -11,15 +11,10 @@ export function useKeysPressed<const K extends readonly string[]>(
   const [pressed, setPressed] = useState<Partial<Record<K[number], boolean>>>(
     {}
   );
-  const keyList = keys.join("|");
-  const enabledRef = useRef(enabled);
+  const isEnabled = useEffectEvent(() => enabled);
 
   useEffect(() => {
-    enabledRef.current = enabled;
-  }, [enabled]);
-
-  useEffect(() => {
-    const watched = new Set(keyList.split("|"));
+    const watched = new Set<string>(keys);
     const downAt: Record<string, number> = {};
     const timers: Record<string, number> = {};
 
@@ -52,7 +47,7 @@ export function useKeysPressed<const K extends readonly string[]>(
     };
 
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (!enabledRef.current) {
+      if (!isEnabled()) {
         return;
       }
       const key = watchedKey(event);
@@ -86,7 +81,7 @@ export function useKeysPressed<const K extends readonly string[]>(
       window.removeEventListener("keyup", handleKeyUp, true);
       window.removeEventListener("blur", releaseAll);
     };
-  }, [keyList]);
+  }, [keys]);
 
   return pressed;
 }

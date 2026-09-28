@@ -1,5 +1,4 @@
 import type { CSSProperties } from "react";
-import type { ThemeRegistrationAny } from "shiki";
 import type { TokenKind } from "@/lib/code";
 import loadingDark from "./themes/loading-dev-dark-color-theme.json";
 import loadingLight from "./themes/loading-dev-light-color-theme.json";
@@ -16,24 +15,12 @@ const DARK: TokenColors = loadingDark;
 
 const LIGHT: TokenColors = loadingLight;
 
-export const CODE_THEMES = {
-  dark: loadingDark as ThemeRegistrationAny,
-  light: loadingLight as ThemeRegistrationAny,
-};
-
-export const CODE_THEME_NAMES = {
-  dark: loadingDark.name,
-  light: loadingLight.name,
-};
-
-export type ThemedStyle = CSSProperties & {
+type ThemedStyle = CSSProperties & {
   "--shiki-dark": string;
   "--shiki-light": string;
 };
 
-export function themed(light: string, dark: string): ThemedStyle {
-  return { "--shiki-dark": dark, "--shiki-light": light };
-}
+export type SnippetPalette = Record<TokenKind, ThemedStyle>;
 
 const SCOPES: Record<TokenKind, string> = {
   identifier: "variable",
@@ -57,10 +44,13 @@ function foreground(theme: TokenColors, scope: string): string {
 
 function palette(kind: TokenKind): ThemedStyle {
   const scope = SCOPES[kind];
-  return themed(foreground(LIGHT, scope), foreground(DARK, scope));
+  return {
+    "--shiki-dark": foreground(DARK, scope),
+    "--shiki-light": foreground(LIGHT, scope),
+  };
 }
 
-export const SNIPPET_PALETTE: Record<TokenKind, ThemedStyle> = {
+export const SNIPPET_PALETTE: SnippetPalette = {
   identifier: palette("identifier"),
   keyword: palette("keyword"),
   number: palette("number"),

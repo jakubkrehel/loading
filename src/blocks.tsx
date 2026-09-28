@@ -69,7 +69,6 @@ ${Object.entries(SWEEPS)
 @media (prefers-reduced-motion: reduce) {
   .ld-blocks-cell {
     transform: scale(0.8);
-    animation: none;
   }
 }
 `;

@@ -41,11 +41,19 @@ export interface SpinnerItem {
   speed: SpeedRange;
 }
 
+export function spinnerHref(slug: string): string {
+  return `/spinners/${slug}`;
+}
+
+export function markdownHref(slug: string): string {
+  return `${spinnerHref(slug)}/markdown`;
+}
+
 export function entry<S extends SpinnerName>(
   definition: Omit<SpinnerItem, "href" | "slug" | "options"> & {
     slug: S;
     options?: readonly SpinnerOptionsByName[NoInfer<S>][];
   }
 ): SpinnerItem & { slug: S } {
-  return { ...definition, href: `/spinners/${definition.slug}` };
+  return { ...definition, href: spinnerHref(definition.slug) };
 }

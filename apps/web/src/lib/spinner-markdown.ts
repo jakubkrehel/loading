@@ -1,5 +1,4 @@
 import GithubSlugger from "github-slugger";
-import { DEFAULT_PREVIEW_SIZE } from "@/components/spinner-detail/preview-sizes";
 import { getSpinner } from "@/components/spinners";
 import {
   type CodeLine,
@@ -8,6 +7,7 @@ import {
   snippetLines,
 } from "@/lib/code";
 import { readContent } from "@/lib/content";
+import { customizationProps, initialCustomization } from "@/lib/customization";
 import { demoLines } from "@/lib/demos";
 
 export interface DocumentHeading {
@@ -58,7 +58,10 @@ export async function getSpinnerDocument(
   );
 
   const snippet = fence(
-    snippetLines(componentName(item.slug), { size: DEFAULT_PREVIEW_SIZE })
+    snippetLines(
+      componentName(item.slug),
+      customizationProps(item, initialCustomization(item))
+    )
   );
 
   return {

@@ -48,7 +48,6 @@ const css = `
   .ld-ripple-ring {
     opacity: 0.4;
     transform: scale(calc((var(${STEP_VAR}) + 1) / ${RINGS.length}));
-    animation: none;
   }
 }
 `;

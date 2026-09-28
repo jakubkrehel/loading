@@ -1,4 +1,4 @@
-import { SPINNER_ITEMS } from "@/components/spinners";
+import { markdownHref, SPINNER_ITEMS } from "@/components/spinners";
 import { componentName } from "@/lib/code";
 import { DOMAIN, SITE_DESCRIPTION, SITE_NAME } from "@/lib/constants";
 
@@ -21,7 +21,7 @@ The library exposes \`playState\` and you can customize any indicator with your 
 The spinners respect reduced motion out of the box and require React 19 or later.`;
 
 function spinnerLine(item: (typeof SPINNER_ITEMS)[number]): string {
-  return `- [${item.name}](${DOMAIN}${item.href}/markdown): ${item.description} Import as \`${componentName(item.slug)}\`.`;
+  return `- [${item.name}](${DOMAIN}${markdownHref(item.slug)}): ${item.description} Import as \`${componentName(item.slug)}\`.`;
 }
 
 export function GET() {

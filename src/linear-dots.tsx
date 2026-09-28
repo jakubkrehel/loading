@@ -36,7 +36,6 @@ const css = `
 @media (prefers-reduced-motion: reduce) {
   .ld-linear-dots-dot {
     opacity: 0.75;
-    animation: none;
   }
 }
 `;

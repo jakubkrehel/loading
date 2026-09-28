@@ -77,8 +77,10 @@ names and ordering are site copy and stay out of the published package.
 
 What the controls beside a preview change: size, colour, speed, opacity, and
 playback. Owned by `CustomizationProvider`, which wraps the preview and the
-opening snippet; `SpinnerPreview` reads it and passes the controls to its
-`CustomizePanel` child.
+opening snippet. The state is one `Customization` value in
+`lib/customization.ts`, which also derives the props a consumer would write
+from it; the preview, the snippet and the markdown route all use that one
+derivation.
 
 The opening snippet follows the customization: it shows the props a consumer
 would write to get what the preview shows, and nothing still at its default.

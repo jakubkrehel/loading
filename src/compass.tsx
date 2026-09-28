@@ -18,12 +18,6 @@ const css = `
     transform: rotate(90deg);
   }
 }
-
-@media (prefers-reduced-motion: reduce) {
-  .ld-compass-ticks {
-    animation: none;
-  }
-}
 `;
 
 export function Compass(props: SpinnerProps) {

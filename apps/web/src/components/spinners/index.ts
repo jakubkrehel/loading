@@ -10,7 +10,7 @@ import {
 } from "loading-dev";
 import { entry, type OptionOf, type SpinnerItem } from "./catalog";
 
-export type { SpinnerItem, SpinnerOptions } from "./catalog";
+export { markdownHref, type SpinnerItem, type SpinnerOptions } from "./catalog";
 
 export interface SpinnerParams {
   slug: string;

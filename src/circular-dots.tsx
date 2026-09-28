@@ -1,5 +1,6 @@
+import { fadeCss } from "./fade";
 import { SpinnerStyle, spinnerRoot, step } from "./frame";
-import { animation, SIZE, stagger } from "./motion";
+import { SIZE } from "./motion";
 import type { SpinnerProps } from "./types";
 
 const DOTS = [
@@ -19,26 +20,7 @@ const css = `
   height: ${SIZE};
 }
 
-.ld-circular-dots-dot {
-  ${animation("circular-dots", "ld-circular-dots-fade", "linear")}
-  animation-delay: ${stagger("circular-dots", DOTS.length)};
-}
-
-@keyframes ld-circular-dots-fade {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0.2;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .ld-circular-dots-dot {
-    opacity: 0.6;
-    animation: none;
-  }
-}
+${fadeCss("circular-dots", "dot", DOTS.length, { dim: 0.2, rest: 0.6 })}
 `;
 
 export function CircularDots(props: SpinnerProps) {

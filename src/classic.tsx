@@ -1,5 +1,6 @@
+import { fadeCss } from "./fade";
 import { SpinnerStyle, spinnerRoot, step } from "./frame";
-import { animation, SIZE, STEP_VAR, stagger } from "./motion";
+import { SIZE, STEP_VAR } from "./motion";
 import type { SpinnerProps } from "./types";
 
 const BARS = Array.from({ length: 12 }, (_, index) => index);
@@ -27,25 +28,9 @@ const css = `
   background: currentColor;
   border-radius: 6px;
   transform: rotate(calc(var(${STEP_VAR}) * 30deg)) translate(146%);
-  ${animation("classic", "ld-classic-spin", "linear")}
-  animation-delay: ${stagger("classic", BARS.length)};
 }
 
-@keyframes ld-classic-spin {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0.15;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .ld-classic-bar {
-    opacity: 0.5;
-    animation: none;
-  }
-}
+${fadeCss("classic", "bar", BARS.length, { dim: 0.15, rest: 0.5 })}
 `;
 
 export function Classic(props: SpinnerProps) {
