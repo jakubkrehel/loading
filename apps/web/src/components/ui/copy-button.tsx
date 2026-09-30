@@ -1,6 +1,7 @@
 "use client";
 
 import { CheckCircledIcon, CopyIcon } from "@radix-ui/react-icons";
+import { track } from "@vercel/analytics";
 import { AnimatedIcon } from "@/components/ui/animated-icon";
 import { COPY_FAILED_MESSAGE, useCopy } from "@/lib/use-copy";
 import { cn } from "@/lib/utils";
@@ -11,11 +12,18 @@ const labels = {
   idle: "Copy to clipboard",
 } as const;
 
+export interface CopyEvent {
+  name: string;
+  properties?: Record<string, boolean | number | string>;
+}
+
 export function CopyButton({
   className,
+  event,
   text,
 }: {
   className?: string;
+  event?: CopyEvent;
   text: string;
 }) {
   const { copy, status } = useCopy();
@@ -28,7 +36,12 @@ export function CopyButton({
         "group grid size-7 shrink-0 place-items-center rounded-md transition-[scale,background-color] duration-200 ease-out hover-hover:hover:bg-background-hovered active:scale-[0.97]",
         className
       )}
-      onClick={() => copy(text)}
+      onClick={() => {
+        copy(text);
+        if (event) {
+          track(event.name, event.properties);
+        }
+      }}
       type="button"
     >
       <AnimatedIcon

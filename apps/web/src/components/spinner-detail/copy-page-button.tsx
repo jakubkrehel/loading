@@ -1,6 +1,7 @@
 "use client";
 
 import { ChevronDownIcon, CopyIcon } from "@radix-ui/react-icons";
+import { track } from "@vercel/analytics";
 import { markdownHref } from "@/components/spinners";
 import {
   DropdownMenu,
@@ -54,11 +55,19 @@ export function CopyPageButton({
         </DropdownMenuTrigger>
 
         <DropdownMenuContent align="start" className="w-(--anchor-width)">
-          <DropdownMenuItem onClick={() => copy(markdown)}>
+          <DropdownMenuItem
+            onClick={() => {
+              copy(markdown);
+              track("Page Exported", { spinner: slug, target: "clipboard" });
+            }}
+          >
             <CopyIcon />
             Copy to clipboard
           </DropdownMenuItem>
           <DropdownMenuItem
+            onClick={() =>
+              track("Page Exported", { spinner: slug, target: "markdown" })
+            }
             render={<a href={markdownPath} rel="noreferrer" target="_blank" />}
           >
             <MarkdownIcon />
@@ -68,6 +77,9 @@ export function CopyPageButton({
           <DropdownMenuSeparator />
 
           <DropdownMenuItem
+            onClick={() =>
+              track("Page Exported", { spinner: slug, target: "chatgpt" })
+            }
             render={
               <a
                 href={`https://chatgpt.com/?hints=search&q=${assistantPrompt(markdownUrl)}`}
@@ -80,6 +92,9 @@ export function CopyPageButton({
             Open in ChatGPT
           </DropdownMenuItem>
           <DropdownMenuItem
+            onClick={() =>
+              track("Page Exported", { spinner: slug, target: "claude" })
+            }
             render={
               <a
                 href={`https://claude.ai/new?q=${assistantPrompt(markdownUrl)}`}

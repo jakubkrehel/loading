@@ -17,7 +17,11 @@ export function Demo({ name, slug }: { name: string; slug: SpinnerName }) {
           ))}
         </div>
       </div>
-      <CodeBlock lines={demoLines(slug, name)} palette={SNIPPET_PALETTE} />
+      <CodeBlock
+        event={{ name: "Demo Copied", properties: { spinner: slug } }}
+        lines={demoLines(slug, name)}
+        palette={SNIPPET_PALETTE}
+      />
     </CodePanel>
   );
 }

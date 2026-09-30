@@ -19,7 +19,11 @@ export function InstallCommand({ command }: { command: string }) {
         {manager} {action}{" "}
         <span className="text-orange">{packages.join(" ")}</span>
       </Text>
-      <CopyButton className="size-10 rounded-xl" text={command} />
+      <CopyButton
+        className="size-10 rounded-xl"
+        event={{ name: "Install Copied" }}
+        text={command}
+      />
     </div>
   );
 }
