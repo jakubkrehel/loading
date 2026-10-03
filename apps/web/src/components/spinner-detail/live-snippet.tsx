@@ -11,7 +11,9 @@ export function LiveSnippet({ palette }: { palette: SnippetPalette }) {
   const { customization, item } = useCustomization();
   const props = customizationProps(item, customization);
   const customized =
-    props.size !== DEFAULT_PREVIEW_SIZE || Object.keys(props).length > 1;
+    customization.opacity !== 100 ||
+    props.size !== DEFAULT_PREVIEW_SIZE ||
+    Object.keys(props).length > 1;
 
   return (
     <CodeBlock
@@ -19,7 +21,11 @@ export function LiveSnippet({ palette }: { palette: SnippetPalette }) {
         name: "Snippet Copied",
         properties: { customized, spinner: item.slug },
       }}
-      lines={snippetLines(componentName(item.slug), props)}
+      lines={snippetLines(
+        componentName(item.slug),
+        props,
+        customization.opacity
+      )}
       palette={palette}
     />
   );

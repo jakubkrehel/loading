@@ -84,7 +84,8 @@ derivation.
 
 The opening snippet follows the customization: it shows the props a consumer
 would write to get what the preview shows, and nothing still at its default.
-Opacity is a preview-only control and stays out of it. The snippet is rendered
+Non-default opacity wraps the spinner in a div with an inline opacity style,
+matching the preview. The snippet is rendered
 from tokens, each coloured the way the site's code theme colours that kind of
 token, so no highlighter ships to the browser.
 
