@@ -139,15 +139,11 @@ function merge(line: CodeLine): CodeLine {
   return merged;
 }
 
-export function exampleLines(
+function functionLines(
   name: ComponentName,
   suffix: string,
-  elements: ElementProps[]
+  body: CodeLine[]
 ): CodeLine[] {
-  const [only, ...more] = elements;
-  const body =
-    more.length === 0 ? returned(name, only) : returnedRow(name, elements);
-
   return [
     [
       token("keyword", "import"),
@@ -173,11 +169,44 @@ export function exampleLines(
   ].map(merge);
 }
 
+export function exampleLines(
+  name: ComponentName,
+  suffix: string,
+  elements: ElementProps[]
+): CodeLine[] {
+  const [only, ...more] = elements;
+  const body =
+    more.length === 0 ? returned(name, only) : returnedRow(name, elements);
+  return functionLines(name, suffix, body);
+}
+
 export function snippetLines(
   name: ComponentName,
-  props: ElementProps
+  props: ElementProps,
+  opacity = 100
 ): CodeLine[] {
-  return exampleLines(name, "Demo", [props]);
+  if (opacity === 100) {
+    return exampleLines(name, "Demo", [props]);
+  }
+
+  return functionLines(name, "Demo", [
+    indent(1, [token("keyword", "return"), token("plain", " (")]),
+    indent(2, [
+      token("plain", "<"),
+      token("tag", "div"),
+      token("plain", " "),
+      token("identifier", "style"),
+      token("keyword", "="),
+      token("plain", "{{ "),
+      token("identifier", "opacity"),
+      token("plain", ": "),
+      token("number", `${opacity / 100}`),
+      token("plain", " }}>"),
+    ]),
+    indent(3, element(name, props)),
+    indent(2, [token("plain", "</"), token("tag", "div"), token("plain", ">")]),
+    indent(1, [token("plain", ");")]),
+  ]);
 }
 
 export function codeText(lines: CodeLine[]): string {
