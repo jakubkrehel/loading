@@ -1,9 +1,9 @@
-import { AsideShell } from "@/components/aside/aside-shell";
+import { AsideShell } from "@/components/site/aside-shell";
 import { CopyPageButton } from "@/components/spinner-detail/copy-page-button";
-import { Toc, type TocItem } from "@/components/spinner-detail/toc";
-import { type SpinnerParams, spinnerParams } from "@/components/spinners";
+import { Toc } from "@/components/spinner-detail/toc";
+import { type SpinnerParams, spinnerParams } from "@/lib/catalog";
 import { PREVIEW_SECTION_ID } from "@/lib/constants";
-import { getSpinnerDocument } from "@/lib/spinner-markdown";
+import { getSpinnerDocument, type TocItem } from "@/lib/spinner-markdown";
 
 const PREVIEW_ITEM: TocItem = { id: PREVIEW_SECTION_ID, label: "Preview" };
 

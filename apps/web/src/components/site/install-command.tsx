@@ -6,15 +6,13 @@ export function InstallCommand({ command }: { command: string }) {
 
   return (
     <div className="flex h-12 w-full items-center gap-2 rounded-2xl border border-border bg-background-subtle pr-1 pl-4">
-      <Text
-        as="span"
-        className="font-paper-mono text-[13px] text-content-subtle"
-      >
+      <Text as="span" className="font-paper-mono text-content-subtle" size="sm">
         $
       </Text>
       <Text
         as="span"
-        className="min-w-px flex-1 font-paper-mono text-[13px] text-content-subtle"
+        className="min-w-px flex-1 font-paper-mono text-content-subtle"
+        size="sm"
       >
         {manager} {action}{" "}
         <span className="text-orange">{packages.join(" ")}</span>

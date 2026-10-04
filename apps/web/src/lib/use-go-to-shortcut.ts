@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import { GO_TO_KEY, TOP_LEVEL_NAV } from "@/components/sidebar/nav-items";
+import { GO_TO_KEY, TOP_LEVEL_NAV } from "@/lib/navigation";
 
 const SEQUENCE_TIMEOUT_MS = 1000;
 

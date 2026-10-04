@@ -1,6 +1,6 @@
 import type * as Library from "loading-dev";
 import type { SpinnerName, SpinnerProps } from "loading-dev";
-import type { SpinnerOptions } from "@/components/spinners";
+import type { SpinnerOptions } from "@/lib/catalog";
 
 export type TokenKind =
   | "identifier"

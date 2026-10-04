@@ -3,6 +3,9 @@ import type { ElementType, ReactNode } from "react";
 import { Text } from "@/components/ui/text";
 import { cn } from "@/lib/utils";
 
+export const NAV_ROW =
+  "relative flex w-full items-center rounded-lg px-3 after:absolute after:inset-x-0 after:-inset-y-px after:content-['']";
+
 type NavItemKind = "external" | "route";
 
 const kinds: Record<
@@ -33,10 +36,11 @@ export function NavItem({
       aria-current={active ? "page" : undefined}
       as={Component}
       className={cn(
-        "relative flex h-8 w-full items-center gap-2 rounded-lg px-3 after:absolute after:inset-x-0 after:-inset-y-px after:content-['']",
+        NAV_ROW,
+        "h-8 gap-2",
         active
           ? "bg-background text-content"
-          : "text-content-subtle hover:bg-background hover:text-content"
+          : "text-content-subtle hover-hover:hover:bg-background hover-hover:hover:text-content"
       )}
       href={href}
       size="sm"

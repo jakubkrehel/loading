@@ -2,8 +2,10 @@
 
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import { useSearchContext } from "@/components/search/search-context";
+import { FIELD_BUTTON } from "@/components/ui/button-styles";
 import { Kbd } from "@/components/ui/kbd";
 import { useKeysPressed } from "@/lib/use-keys-pressed";
+import { cn } from "@/lib/utils";
 
 const SHORTCUT_KEYS = ["meta", "k"] as const;
 
@@ -26,7 +28,10 @@ export function SidebarSearch() {
   return (
     <button
       aria-keyshortcuts="Meta+K"
-      className="flex h-8 w-full items-center gap-2 rounded-lg border border-border pr-1.5 pl-2 text-left transition-colors duration-200 ease-out hover-hover:hover:bg-background"
+      className={cn(
+        FIELD_BUTTON,
+        "pr-1.5 pl-2 hover-hover:hover:bg-background"
+      )}
       onClick={openSearch}
       type="button"
     >

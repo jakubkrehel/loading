@@ -1,30 +1,5 @@
-import { GitHubLogoIcon } from "@radix-ui/react-icons";
-import type { ComponentType } from "react";
 import { NavItem } from "@/components/ui/nav-item";
-import { MarkdownIcon } from "@/icons/markdown-icon";
-import { NpmIcon } from "@/icons/npm-icon";
-
-export const SOCIAL_LINKS: {
-  href: string;
-  icon: ComponentType<{ className?: string }>;
-  label: string;
-}[] = [
-  {
-    href: "https://github.com/jakubkrehel/loading",
-    icon: GitHubLogoIcon,
-    label: "GitHub",
-  },
-  {
-    href: "https://www.npmjs.com/package/loading-dev",
-    icon: NpmIcon,
-    label: "npm",
-  },
-  {
-    href: "/llms.txt",
-    icon: MarkdownIcon,
-    label: "llms.txt",
-  },
-];
+import { SOCIAL_LINKS } from "@/lib/navigation";
 
 export function SocialLinks() {
   return (

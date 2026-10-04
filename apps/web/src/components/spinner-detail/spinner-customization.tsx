@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, type ReactNode, useContext, useState } from "react";
-import type { SpinnerItem, SpinnerOptions } from "@/components/spinners";
+import type { SpinnerItem, SpinnerOptions } from "@/lib/catalog";
 import { type Customization, initialCustomization } from "@/lib/customization";
 
 interface CustomizationContextValue {

@@ -1,7 +1,14 @@
 import { SPINNER_MOTION } from "loading-dev";
-import { DEFAULT_PREVIEW_SIZE } from "@/components/spinner-detail/preview-sizes";
-import type { SpinnerItem, SpinnerOptions } from "@/components/spinners";
+import type { SpinnerItem, SpinnerOptions } from "@/lib/catalog";
 import type { ElementProps } from "@/lib/code";
+
+export const SIZES = [
+  { label: "Small", value: 24 },
+  { label: "Medium", value: 48 },
+  { label: "Large", value: 96 },
+];
+
+export const DEFAULT_PREVIEW_SIZE = 48;
 
 export interface Customization {
   color: string | null;

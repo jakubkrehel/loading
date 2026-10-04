@@ -1,4 +1,4 @@
-import { markdownHref, SPINNER_ITEMS } from "@/components/spinners";
+import { markdownHref, SPINNER_ITEMS } from "@/lib/catalog";
 import { componentName } from "@/lib/code";
 import { DOMAIN, SITE_DESCRIPTION, SITE_NAME } from "@/lib/constants";
 

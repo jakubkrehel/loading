@@ -2,6 +2,7 @@
 
 import { m } from "motion/react";
 import { useId } from "react";
+import { CONTROL_SURFACE } from "@/components/ui/control";
 import { cn } from "@/lib/utils";
 
 const INDICATOR_TRANSITION = {
@@ -26,7 +27,7 @@ export function SegmentedControl<Value extends string | number>({
   return (
     <fieldset
       aria-label={label}
-      className="flex h-8 pointer-coarse:h-10 w-full items-center rounded-lg bg-background"
+      className={cn(CONTROL_SURFACE, "flex w-full items-center")}
     >
       {options.map((option) => {
         const isActive = option.value === value;

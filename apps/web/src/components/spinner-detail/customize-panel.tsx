@@ -3,10 +3,10 @@
 import { ResetIcon } from "@radix-ui/react-icons";
 import { Button } from "@/components/ui/button";
 import { SegmentedControl } from "@/components/ui/segmented-control";
+import { SliderRow } from "@/components/ui/slider-row";
+import { SIZES } from "@/lib/customization";
 import { cn } from "@/lib/utils";
 import { ColorPickerRow } from "./color-picker-row";
-import { SIZES } from "./preview-sizes";
-import { SliderRow } from "./slider-row";
 import { useCustomization } from "./spinner-customization";
 
 export function CustomizePanel({ className }: { className?: string }) {

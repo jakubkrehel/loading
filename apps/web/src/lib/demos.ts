@@ -1,5 +1,5 @@
 import { SPINNER_MOTION, type SpinnerName } from "loading-dev";
-import { getSpinner } from "@/components/spinners";
+import { getSpinner } from "@/lib/catalog";
 import {
   type CodeLine,
   componentName,

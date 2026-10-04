@@ -8,9 +8,9 @@ import {
   type EasingProps,
   type SpinnerName,
 } from "loading-dev";
-import { entry, type OptionOf, type SpinnerItem } from "./catalog";
+import { entry, type OptionOf, type SpinnerItem } from "./types";
 
-export { markdownHref, type SpinnerItem, type SpinnerOptions } from "./catalog";
+export { markdownHref, type SpinnerItem, type SpinnerOptions } from "./types";
 
 export interface SpinnerParams {
   slug: string;

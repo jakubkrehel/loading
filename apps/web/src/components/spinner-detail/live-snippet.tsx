@@ -3,10 +3,10 @@
 import { CodeBlock } from "@/components/code/code-block";
 import { componentName, snippetLines } from "@/lib/code";
 import type { SnippetPalette } from "@/lib/code-theme";
-import { customizationProps } from "@/lib/customization";
-import { DEFAULT_PREVIEW_SIZE } from "./preview-sizes";
+import { customizationProps, DEFAULT_PREVIEW_SIZE } from "@/lib/customization";
 import { useCustomization } from "./spinner-customization";
 
+// The palette comes from a server component so the theme JSON stays out of the client bundle.
 export function LiveSnippet({ palette }: { palette: SnippetPalette }) {
   const { customization, item } = useCustomization();
   const props = customizationProps(item, customization);

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { cn } from "@/lib/utils";
-import { interVariable, paperMono } from "../../fonts";
+import { RootDocument } from "@/components/site/root-document";
 import "@/styles/globals.css";
 
 export const metadata: Metadata = {
@@ -11,16 +10,6 @@ export const metadata: Metadata = {
 
 export default function GalleryLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
-      <body
-        className={cn(
-          interVariable.variable,
-          paperMono.variable,
-          "bg-background-subtle font-sans text-content antialiased"
-        )}
-      >
-        {children}
-      </body>
-    </html>
+    <RootDocument className="bg-background-subtle">{children}</RootDocument>
   );
 }

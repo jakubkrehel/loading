@@ -1,7 +1,7 @@
 import { ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
-import type { SpinnerItem } from "@/components/spinners";
 import { Text } from "@/components/ui/text";
+import type { SpinnerItem } from "@/lib/catalog";
 import { cn } from "@/lib/utils";
 
 const directions = {
@@ -36,11 +36,11 @@ function PrevNextLink({
       )}
       href={item.href}
     >
-      <Icon className="size-4 shrink-0 text-content-subtle transition-colors duration-200 ease-out group-hover:text-content" />
+      <Icon className="size-4 shrink-0 text-content-subtle transition-colors duration-200 ease-out hover-hover:group-hover:text-content" />
       <span className={cn("flex min-w-0 flex-col", text)}>
         <Text
           as="span"
-          className="text-content-subtle transition-colors duration-200 ease-out group-hover:text-content"
+          className="text-content-subtle transition-colors duration-200 ease-out hover-hover:group-hover:text-content"
           size="sm"
         >
           {label}

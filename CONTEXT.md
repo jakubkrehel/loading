@@ -40,7 +40,7 @@ the speed control from it rather than restating the number.
 
 ## Catalog
 
-`CATALOG` in `apps/web/src/components/spinners/index.ts` — the showcase's list
+`CATALOG` in `apps/web/src/lib/catalog/index.ts` — the showcase's list
 of spinners and everything the site knows about each one that the library does
 not: display name, description, its `href`, and the speed slider's range. It is exported
 as `SPINNER_ITEMS`. Preview customization reads the default duration directly

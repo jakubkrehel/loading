@@ -2,7 +2,11 @@
 
 import { Slider } from "@base-ui/react/slider";
 import { useEffect, useRef, useState } from "react";
-import { Text } from "@/components/ui/text";
+import {
+  CONTROL_SURFACE,
+  ControlLabel,
+  ControlValue,
+} from "@/components/ui/control";
 import { cn } from "@/lib/utils";
 
 const FOCUS_RING =
@@ -74,7 +78,10 @@ export function SliderRow({
       value={position(value)}
     >
       <Slider.Control
-        className="relative h-8 pointer-coarse:h-10 w-full cursor-ew-resize touch-pan-y overflow-hidden rounded-lg bg-background"
+        className={cn(
+          CONTROL_SURFACE,
+          "relative w-full cursor-ew-resize touch-pan-y overflow-hidden"
+        )}
         ref={trackRef}
       >
         <span
@@ -106,21 +113,14 @@ export function SliderRow({
           className="pointer-events-none absolute inset-y-0 left-2 z-20 flex items-center"
           ref={labelRef}
         >
-          <Text
-            as="span"
-            className="select-none text-content-subtle transition-colors duration-150 hover-hover:group-hover:text-content group-data-dragging:text-content"
-            size="sm"
-            weight="medium"
-          >
-            {label}
-          </Text>
+          <ControlLabel>{label}</ControlLabel>
         </span>
-        <span
-          className="pointer-events-none absolute inset-y-0 right-2 z-20 flex select-none items-center font-paper-mono text-[12px] text-content-subtle transition-colors duration-200 ease-out hover-hover:group-hover:text-content group-data-dragging:text-content"
+        <ControlValue
+          className="pointer-events-none absolute inset-y-0 right-2 z-20 flex items-center"
           ref={valueRef}
         >
           {format(value)}
-        </span>
+        </ControlValue>
       </Slider.Control>
     </Slider.Root>
   );

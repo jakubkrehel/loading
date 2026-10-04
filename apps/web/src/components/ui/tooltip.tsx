@@ -1,6 +1,7 @@
 "use client";
 
 import { Tooltip as TooltipPrimitive } from "@base-ui/react/tooltip";
+import { POPUP_ANIMATION } from "@/components/ui/popup-styles";
 import { cn } from "@/lib/utils";
 
 const Tooltip = TooltipPrimitive.Root;
@@ -24,9 +25,9 @@ function TooltipContent({
       >
         <TooltipPrimitive.Popup
           className={cn(
-            "origin-(--transform-origin) rounded-lg bg-popover px-2.5 py-1.5 text-popover-content text-sm shadow-popover outline-hidden transition-[scale,opacity] duration-200 ease-out",
-            "data-starting-style:scale-95 data-starting-style:opacity-0",
-            "data-ending-style:scale-95 data-ending-style:opacity-0 data-ending-style:duration-150",
+            "origin-(--transform-origin) rounded-lg bg-popover px-2.5 py-1.5 text-popover-content text-sm shadow-popover outline-hidden",
+            POPUP_ANIMATION,
+            "data-ending-style:duration-150",
             "data-instant:duration-0",
             className
           )}

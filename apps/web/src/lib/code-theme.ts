@@ -16,8 +16,8 @@ const DARK: TokenColors = loadingDark;
 const LIGHT: TokenColors = loadingLight;
 
 type ThemedStyle = CSSProperties & {
-  "--shiki-dark": string;
-  "--shiki-light": string;
+  "--code-dark": string;
+  "--code-light": string;
 };
 
 export type SnippetPalette = Record<TokenKind, ThemedStyle>;
@@ -45,8 +45,8 @@ function foreground(theme: TokenColors, scope: string): string {
 function palette(kind: TokenKind): ThemedStyle {
   const scope = SCOPES[kind];
   return {
-    "--shiki-dark": foreground(DARK, scope),
-    "--shiki-light": foreground(LIGHT, scope),
+    "--code-dark": foreground(DARK, scope),
+    "--code-light": foreground(LIGHT, scope),
   };
 }
 

@@ -1,5 +1,5 @@
 import GithubSlugger from "github-slugger";
-import { getSpinner } from "@/components/spinners";
+import { getSpinner } from "@/lib/catalog";
 import {
   type CodeLine,
   codeText,
@@ -10,13 +10,13 @@ import { readContent } from "@/lib/content";
 import { customizationProps, initialCustomization } from "@/lib/customization";
 import { demoLines } from "@/lib/demos";
 
-export interface DocumentHeading {
+export interface TocItem {
   id: string;
   label: string;
 }
 
 export interface SpinnerDocument {
-  headings: DocumentHeading[];
+  headings: TocItem[];
   markdown: string;
 }
 
@@ -42,7 +42,7 @@ export async function getSpinnerDocument(
   ]);
 
   const slugger = new GithubSlugger();
-  const headings: DocumentHeading[] = [];
+  const headings: TocItem[] = [];
   const sections = sources.map((source) =>
     source.replace(TOKEN, (match, label: string | undefined, demo: string) => {
       if (label === undefined) {

@@ -1,6 +1,7 @@
 "use client";
 
 import { Popover as PopoverPrimitive } from "@base-ui/react/popover";
+import { POPUP_ANIMATION } from "@/components/ui/popup-styles";
 import { useCloseOnBreakpointChange } from "@/lib/use-breakpoint-change";
 import { cn } from "@/lib/utils";
 
@@ -10,20 +11,10 @@ function Popover({
   const actionsRef =
     useCloseOnBreakpointChange<PopoverPrimitive.Root.Actions>();
 
-  return (
-    <PopoverPrimitive.Root
-      data-slot="popover"
-      {...props}
-      actionsRef={actionsRef}
-    />
-  );
+  return <PopoverPrimitive.Root {...props} actionsRef={actionsRef} />;
 }
 
-function PopoverTrigger({
-  ...props
-}: React.ComponentProps<typeof PopoverPrimitive.Trigger>) {
-  return <PopoverPrimitive.Trigger data-slot="popover-trigger" {...props} />;
-}
+const PopoverTrigger = PopoverPrimitive.Trigger;
 
 function PopoverContent({
   align = "center",
@@ -43,12 +34,10 @@ function PopoverContent({
       >
         <PopoverPrimitive.Popup
           className={cn(
-            "origin-(--transform-origin) rounded-xl border border-border bg-popover text-popover-content shadow-custom outline-hidden transition-[scale,opacity] duration-200 ease-out",
-            "data-starting-style:scale-95 data-starting-style:opacity-0",
-            "data-ending-style:scale-95 data-ending-style:opacity-0",
+            "origin-(--transform-origin) rounded-xl border border-border bg-popover text-popover-content shadow-popover outline-hidden",
+            POPUP_ANIMATION,
             className
           )}
-          data-slot="popover-content"
           {...props}
         />
       </PopoverPrimitive.Positioner>
