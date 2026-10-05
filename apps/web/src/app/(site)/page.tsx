@@ -1,6 +1,6 @@
-import { Credits } from "@/components/site/credits";
-import { InstallCommand } from "@/components/site/install-command";
-import { SpinnerCard } from "@/components/site/spinner-card";
+import { InstallCommand } from "@/components/home/install-command";
+import { SpinnerCard } from "@/components/home/spinner-card";
+import { Credits } from "@/components/sidebar/credits";
 import { PageHeader } from "@/components/ui/page-header";
 import { SPINNER_ITEMS } from "@/lib/catalog";
 import { SITE_DESCRIPTION } from "@/lib/constants";

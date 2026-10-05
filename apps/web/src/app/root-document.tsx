@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
-import { interVariable, paperMono } from "@/app/fonts";
 import { cn } from "@/lib/utils";
+import { interVariable, paperMono } from "./fonts";
 
 export function RootDocument({
   children,

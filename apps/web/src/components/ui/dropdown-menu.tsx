@@ -2,7 +2,6 @@
 
 import { Menu } from "@base-ui/react/menu";
 import type React from "react";
-import { POPUP_ANIMATION } from "@/components/ui/popup-styles";
 import { useCloseOnBreakpointChange } from "@/lib/use-breakpoint-change";
 import { cn } from "@/lib/utils";
 
@@ -28,8 +27,7 @@ function DropdownMenuContent({
       <Menu.Positioner align={align} className="z-50" sideOffset={sideOffset}>
         <Menu.Popup
           className={cn(
-            "max-h-(--available-height) min-w-32 origin-(--transform-origin) overflow-y-auto overflow-x-hidden rounded-xl border border-border bg-popover p-1 text-popover-content shadow-popover outline-hidden",
-            POPUP_ANIMATION,
+            "max-h-(--available-height) min-w-32 origin-(--transform-origin) overflow-y-auto overflow-x-hidden rounded-xl border border-border bg-popover p-1 text-popover-content shadow-popover outline-hidden popup-transition",
             className
           )}
           {...props}

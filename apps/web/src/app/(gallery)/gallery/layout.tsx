@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { RootDocument } from "@/components/site/root-document";
+import { RootDocument } from "@/app/root-document";
 import "@/styles/globals.css";
 
 export const metadata: Metadata = {

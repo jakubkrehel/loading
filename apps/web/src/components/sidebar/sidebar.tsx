@@ -1,8 +1,8 @@
 import { ScrollArea } from "@base-ui/react/scroll-area";
+import { Credits } from "@/components/sidebar/credits";
 import { NavSections } from "@/components/sidebar/nav-sections";
 import { SidebarSearch } from "@/components/sidebar/sidebar-search";
 import { SocialLinks } from "@/components/sidebar/social-links";
-import { Credits } from "@/components/site/credits";
 import { Logo } from "@/components/ui/logo";
 import { ScrollAreaScrollbar } from "@/components/ui/scroll-area";
 

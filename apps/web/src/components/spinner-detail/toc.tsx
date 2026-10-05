@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { NAV_ROW } from "@/components/ui/nav-item";
 import { Text } from "@/components/ui/text";
 import { PROSE_SECTION_ID } from "@/lib/constants";
-import type { TocItem } from "@/lib/spinner-markdown";
+import type { DocumentHeading } from "@/lib/spinner-markdown";
 import { cn } from "@/lib/utils";
 
 const ROW_HEIGHT_REM = 2;
@@ -51,7 +51,7 @@ function TocLink({
   visible,
 }: {
   current: boolean;
-  item: TocItem;
+  item: DocumentHeading;
   visible: boolean;
 }) {
   return (
@@ -75,7 +75,7 @@ function TocLink({
   );
 }
 
-export function Toc({ items }: { items: TocItem[] }) {
+export function Toc({ items }: { items: DocumentHeading[] }) {
   const [visible, setVisible] = useState<number[]>([]);
 
   useEffect(() => {

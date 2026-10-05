@@ -2,12 +2,12 @@ import { InterfereProvider } from "@interfere/next/provider";
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
+import { RootDocument } from "@/app/root-document";
 import { DisableThemeTransitions } from "@/components/disable-theme-transitions";
 import { MotionProvider } from "@/components/motion-provider";
 import { SearchProvider } from "@/components/search/search-provider";
 import { MobileNav } from "@/components/sidebar/mobile-nav";
 import { Sidebar } from "@/components/sidebar/sidebar";
-import { RootDocument } from "@/components/site/root-document";
 import {
   DOMAIN,
   OG_IMAGE,

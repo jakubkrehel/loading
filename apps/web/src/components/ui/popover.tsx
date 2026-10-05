@@ -1,7 +1,6 @@
 "use client";
 
 import { Popover as PopoverPrimitive } from "@base-ui/react/popover";
-import { POPUP_ANIMATION } from "@/components/ui/popup-styles";
 import { useCloseOnBreakpointChange } from "@/lib/use-breakpoint-change";
 import { cn } from "@/lib/utils";
 
@@ -34,8 +33,7 @@ function PopoverContent({
       >
         <PopoverPrimitive.Popup
           className={cn(
-            "origin-(--transform-origin) rounded-xl border border-border bg-popover text-popover-content shadow-popover outline-hidden",
-            POPUP_ANIMATION,
+            "origin-(--transform-origin) rounded-xl border border-border bg-popover text-popover-content shadow-popover outline-hidden popup-transition",
             className
           )}
           {...props}

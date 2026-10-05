@@ -7,7 +7,6 @@ import { Command, useCommandState } from "cmdk";
 import { usePathname, useRouter } from "next/navigation";
 import { type RefObject, useRef, useState } from "react";
 import { Kbd } from "@/components/ui/kbd";
-import { POPUP_ANIMATION } from "@/components/ui/popup-styles";
 import { ScrollAreaScrollbar } from "@/components/ui/scroll-area";
 import {
   GO_TO_KEY,
@@ -84,8 +83,7 @@ export function SearchDialog({
           className={cn(
             "fixed top-[18%] left-1/2 z-50 w-[calc(100vw-2.5rem)] max-w-180 -translate-x-1/2",
             "overflow-clip rounded-2xl bg-modal outline-hidden",
-            "shadow-custom",
-            POPUP_ANIMATION
+            "popup-transition shadow-custom"
           )}
           finalFocus={() => {
             if (closeActionRef.current.reason === "navigate") {

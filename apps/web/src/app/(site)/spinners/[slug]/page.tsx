@@ -15,7 +15,6 @@ import {
   type SpinnerParams,
   spinnerParams,
 } from "@/lib/catalog";
-import { SNIPPET_PALETTE } from "@/lib/code-theme";
 import { PROSE_SECTION_ID, SITE_DESCRIPTION } from "@/lib/constants";
 import type { MDXModule } from "@/lib/mdx";
 
@@ -70,7 +69,7 @@ export default async function SpinnerPage({
         <CodePanel>
           <CustomizationProvider item={item} key={slug}>
             <SpinnerPreview />
-            <LiveSnippet palette={SNIPPET_PALETTE} />
+            <LiveSnippet />
           </CustomizationProvider>
         </CodePanel>
         <div className="flex flex-col [&>figure]:mt-6" id={PROSE_SECTION_ID}>

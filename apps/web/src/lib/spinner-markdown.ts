@@ -1,29 +1,24 @@
 import GithubSlugger from "github-slugger";
 import { getSpinner } from "@/lib/catalog";
-import {
-  type CodeLine,
-  codeText,
-  componentName,
-  snippetLines,
-} from "@/lib/code";
+import { componentName, snippetCode } from "@/lib/code";
 import { readContent } from "@/lib/content";
 import { customizationProps, initialCustomization } from "@/lib/customization";
-import { demoLines } from "@/lib/demos";
+import { demoCode } from "@/lib/demos";
 
-export interface TocItem {
+export interface DocumentHeading {
   id: string;
   label: string;
 }
 
 export interface SpinnerDocument {
-  headings: TocItem[];
+  headings: DocumentHeading[];
   markdown: string;
 }
 
 const TOKEN = /^##\s+(.+?)\s*$|<Demo\s+name="([^"]+)"\s*\/>/gm;
 
-function fence(lines: CodeLine[]): string {
-  return `\`\`\`tsx\n${codeText(lines)}\n\`\`\``;
+function fence(code: string): string {
+  return `\`\`\`tsx\n${code}\n\`\`\``;
 }
 
 export async function getSpinnerDocument(
@@ -42,11 +37,11 @@ export async function getSpinnerDocument(
   ]);
 
   const slugger = new GithubSlugger();
-  const headings: TocItem[] = [];
+  const headings: DocumentHeading[] = [];
   const sections = sources.map((source) =>
     source.replace(TOKEN, (match, label: string | undefined, demo: string) => {
       if (label === undefined) {
-        return fence(demoLines(item.slug, demo));
+        return fence(demoCode(item.slug, demo));
       }
       const id = slugger.slug(label);
       if (headings.some((heading) => heading.id === id)) {
@@ -58,7 +53,7 @@ export async function getSpinnerDocument(
   );
 
   const snippet = fence(
-    snippetLines(
+    snippetCode(
       componentName(item.slug),
       customizationProps(item, initialCustomization(item))
     )

@@ -2,7 +2,7 @@
   .code-inline {
     padding: 2px 0.25rem;
     font-family: var(--font-paper-mono);
-    font-size: 13px;
+    font-size: var(--text-sm);
     background-color: var(--color-background);
     border: 1px solid var(--color-border);
     border-radius: 0.375rem;
@@ -20,16 +20,6 @@
     text-align: left;
     content: counter(line);
     counter-increment: line;
-  }
-
-  pre > code [data-line] > span {
-    color: var(--code-light);
-  }
-
-  @media (prefers-color-scheme: dark) {
-    pre > code [data-line] > span {
-      color: var(--code-dark);
-    }
   }
 }
 
