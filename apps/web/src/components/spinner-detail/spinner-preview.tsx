@@ -1,8 +1,8 @@
 "use client";
 
 import { ChevronLeftIcon, PauseIcon, PlayIcon } from "@radix-ui/react-icons";
-import { SPINNERS } from "loading-dev";
-import { type ReactNode, useState } from "react";
+import { SPINNER_MOTION, SPINNERS } from "loading-dev";
+import { type ReactNode, useEffect, useRef, useState } from "react";
 import { AnimatedIcon } from "@/components/ui/animated-icon";
 import { IconButton } from "@/components/ui/icon-button";
 import {
@@ -78,6 +78,19 @@ export function SpinnerPreview() {
   const { customization, item, paused, togglePaused } = useCustomization();
   const Spinner = SPINNERS[item.slug];
   const playLabel = paused ? "Play animation" : "Pause animation";
+  const stage = useRef<HTMLDivElement>(null);
+  const { duration: _duration, ...props } = customizationProps(
+    item,
+    customization
+  );
+  const rate = SPINNER_MOTION[item.slug] / customization.speedMs;
+
+  useEffect(() => {
+    for (const animation of stage.current?.getAnimations({ subtree: true }) ??
+      []) {
+      animation.updatePlaybackRate(rate);
+    }
+  });
 
   return (
     <section
@@ -86,11 +99,8 @@ export function SpinnerPreview() {
     >
       <div className="flex min-h-64 min-w-0 flex-1 flex-col items-center px-4 pt-13 pb-2">
         <div className="flex min-h-0 w-full flex-1 items-center justify-center">
-          <div style={{ opacity: `${customization.opacity}%` }}>
-            <Spinner
-              {...customizationProps(item, customization)}
-              playState={paused ? "paused" : undefined}
-            />
+          <div ref={stage} style={{ opacity: `${customization.opacity}%` }}>
+            <Spinner {...props} playState={paused ? "paused" : undefined} />
           </div>
         </div>
         <Tooltip>
