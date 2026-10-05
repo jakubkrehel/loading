@@ -10,7 +10,7 @@ export function Sidebar() {
   return (
     <aside className="fixed inset-y-0 left-0 z-40 hidden w-(--sidebar-width) flex-col gap-6 border-border border-r bg-background-subtle md:flex">
       <div className="px-6 pt-6 pb-2">
-        <Logo className="[&>svg]:transition-transform [&>svg]:duration-200 [&>svg]:ease-out hover-hover:hover:[&>svg]:rotate-45 motion-reduce:[&>svg]:transition-none" />
+        <Logo playOnHover />
       </div>
       <div className="px-4">
         <SidebarSearch />

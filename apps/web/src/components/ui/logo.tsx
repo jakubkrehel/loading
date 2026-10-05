@@ -1,3 +1,4 @@
+import { Loading } from "loading-dev";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
@@ -36,17 +37,37 @@ export function LogoMark({ className }: { className?: string }) {
   );
 }
 
-export function Logo({ className }: { className?: string }) {
+export function Logo({
+  className,
+  playOnHover = false,
+}: {
+  className?: string;
+  playOnHover?: boolean;
+}) {
   return (
     <Link
       aria-label="Home"
       className={cn(
-        "block size-7.5 shrink-0 rounded-sm text-orange",
+        "group grid size-7.5 shrink-0 rounded-sm text-orange *:col-start-1 *:row-start-1",
         className
       )}
       href="/"
     >
-      <LogoMark />
+      <LogoMark
+        className={cn(
+          playOnHover &&
+            "transition-opacity duration-200 ease-out motion-safe:hover-hover:group-hover:opacity-0 motion-safe:hover-hover:group-hover:duration-0"
+        )}
+      />
+      {/* Hidden until hover, so each hover restarts the animation from the top.
+          Entering swaps instantly; leaving crossfades back to the mark, with
+          the discrete transition keeping the spinner displayed while it fades. */}
+      {playOnHover && (
+        <Loading
+          className="hidden opacity-0 transition-[display,opacity] transition-discrete duration-200 ease-out motion-safe:hover-hover:group-hover:block motion-safe:hover-hover:group-hover:opacity-100 motion-safe:hover-hover:group-hover:duration-0"
+          size={30}
+        />
+      )}
     </Link>
   );
 }
