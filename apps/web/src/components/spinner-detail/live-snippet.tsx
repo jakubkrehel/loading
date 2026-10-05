@@ -1,13 +1,11 @@
 "use client";
 
 import { CodeBlock } from "@/components/code/code-block";
-import { componentName, snippetLines } from "@/lib/code";
-import type { SnippetPalette } from "@/lib/code-theme";
-import { customizationProps } from "@/lib/customization";
-import { DEFAULT_PREVIEW_SIZE } from "./preview-sizes";
+import { componentName, snippetCode } from "@/lib/code";
+import { customizationProps, DEFAULT_PREVIEW_SIZE } from "@/lib/customization";
 import { useCustomization } from "./spinner-customization";
 
-export function LiveSnippet({ palette }: { palette: SnippetPalette }) {
+export function LiveSnippet() {
   const { customization, item } = useCustomization();
   const props = customizationProps(item, customization);
   const customized =
@@ -17,16 +15,11 @@ export function LiveSnippet({ palette }: { palette: SnippetPalette }) {
 
   return (
     <CodeBlock
+      code={snippetCode(componentName(item.slug), props, customization.opacity)}
       event={{
         name: "Snippet Copied",
         properties: { customized, spinner: item.slug },
       }}
-      lines={snippetLines(
-        componentName(item.slug),
-        props,
-        customization.opacity
-      )}
-      palette={palette}
     />
   );
 }

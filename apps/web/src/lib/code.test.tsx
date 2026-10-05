@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { codeText, snippetLines } from "./code";
+import { snippetCode } from "./code";
 
 describe("customized snippets", () => {
   it("keeps full-opacity snippets free of a wrapper", () => {
@@ -8,14 +8,14 @@ describe("customized snippets", () => {
 export function ArcDemo() {
   return <Arc size={48} />;
 }`;
-    expect(codeText(snippetLines("Arc", { size: 48 }))).toBe(expected);
-    expect(codeText(snippetLines("Arc", { size: 48 }, 100))).toBe(expected);
+    expect(snippetCode("Arc", { size: 48 })).toBe(expected);
+    expect(snippetCode("Arc", { size: 48 }, 100)).toBe(expected);
   });
 
   it.each([0, 1, 50, 99])(
     "preserves %i percent opacity in the copied code",
     (opacity) => {
-      expect(codeText(snippetLines("Arc", { size: 48 }, opacity))).toBe(
+      expect(snippetCode("Arc", { size: 48 }, opacity)).toBe(
         `import { Arc } from "loading-dev";
 
 export function ArcDemo() {
@@ -30,12 +30,10 @@ export function ArcDemo() {
   );
 
   it("retains other customizations inside the opacity wrapper", () => {
-    const code = codeText(
-      snippetLines(
-        "Arc",
-        { cap: "flat", color: "#ff0000", duration: 1200, size: 96 },
-        50
-      )
+    const code = snippetCode(
+      "Arc",
+      { cap: "flat", color: "#ff0000", duration: 1200, size: 96 },
+      50
     );
     expect(code).toContain("<div style={{ opacity: 0.5 }}>");
     expect(code).toContain(

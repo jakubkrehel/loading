@@ -6,21 +6,22 @@ import { CrossCircledIcon, MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import { Command, useCommandState } from "cmdk";
 import { usePathname, useRouter } from "next/navigation";
 import { type RefObject, useRef, useState } from "react";
+import { Kbd } from "@/components/ui/kbd";
+import { ScrollAreaScrollbar } from "@/components/ui/scroll-area";
 import {
   GO_TO_KEY,
-  type NavItem,
+  type NavLink,
   SPINNER_NAV,
   TOP_LEVEL_NAV,
-} from "@/components/sidebar/nav-items";
-import { Kbd } from "@/components/ui/kbd";
+} from "@/lib/navigation";
 import { cn } from "@/lib/utils";
 import { SearchFooter } from "./search-footer";
 
 const ITEM_CLASSNAME =
-  "group flex cursor-pointer select-none items-center gap-1 rounded-xl p-2 text-[13px] text-content leading-5 data-[selected=true]:bg-background-hovered";
+  "group flex cursor-pointer select-none items-center gap-1 rounded-xl p-2 text-content text-sm data-[selected=true]:bg-background-hovered";
 
 const GROUP_CLASSNAME =
-  "p-1 **:[[cmdk-group-items]]:flex **:[[cmdk-group-items]]:flex-col **:[[cmdk-group-items]]:gap-0.5 **:[[cmdk-group-heading]]:px-3 **:[[cmdk-group-heading]]:py-2 **:[[cmdk-group-heading]]:text-[13px] **:[[cmdk-group-heading]]:text-content-subtle **:[[cmdk-group-heading]]:leading-5";
+  "p-1 **:[[cmdk-group-items]]:flex **:[[cmdk-group-items]]:flex-col **:[[cmdk-group-items]]:gap-0.5 **:[[cmdk-group-heading]]:px-3 **:[[cmdk-group-heading]]:py-2 **:[[cmdk-group-heading]]:text-content-subtle **:[[cmdk-group-heading]]:text-sm";
 
 type CloseAction =
   | { reason: "dismiss" }
@@ -82,9 +83,7 @@ export function SearchDialog({
           className={cn(
             "fixed top-[18%] left-1/2 z-50 w-[calc(100vw-2.5rem)] max-w-180 -translate-x-1/2",
             "overflow-clip rounded-2xl bg-modal outline-hidden",
-            "shadow-custom transition-[transform,scale,opacity] duration-200 ease-out",
-            "data-starting-style:scale-95 data-starting-style:opacity-0",
-            "data-ending-style:scale-95 data-ending-style:opacity-0"
+            "popup-transition shadow-custom"
           )}
           finalFocus={() => {
             if (closeActionRef.current.reason === "navigate") {
@@ -106,7 +105,7 @@ export function SearchDialog({
                 <MagnifyingGlassIcon className="size-4 shrink-0 text-content-subtle" />
                 <div className="h-full min-w-0 flex-1">
                   <Command.Input
-                    className="h-full w-[calc(100%/0.8125)] origin-left scale-[0.8125] bg-transparent text-[16px] text-content leading-[calc(1.125/0.8125)] outline-none placeholder:text-content-subtle placeholder:opacity-50 sm:w-full sm:scale-100 sm:text-[13px]"
+                    className="h-full w-[calc(100%/0.8125)] origin-left scale-[0.8125] bg-transparent text-[16px] text-content leading-[calc(1.125/0.8125)] outline-none placeholder:text-content-subtle placeholder:opacity-50 sm:w-full sm:scale-100 sm:text-sm"
                     onValueChange={setQuery}
                     placeholder="Search"
                     ref={inputRef}
@@ -142,12 +141,7 @@ export function SearchDialog({
                   ))}
                 </Command.Group>
               </ScrollArea.Viewport>
-              <ScrollArea.Scrollbar
-                className="my-1 me-px w-1.5 opacity-0 transition-opacity duration-100 ease-out data-hovering:opacity-100 data-scrolling:opacity-100"
-                orientation="vertical"
-              >
-                <ScrollArea.Thumb className="w-full rounded-full bg-content-subtle/40" />
-              </ScrollArea.Scrollbar>
+              <ScrollAreaScrollbar />
             </ScrollArea.Root>
 
             <SearchFooter />
@@ -163,7 +157,7 @@ function NavRow({
   row,
 }: {
   onNavigate: (href: string) => void;
-  row: NavItem;
+  row: NavLink;
 }) {
   return (
     <Command.Item
@@ -178,7 +172,7 @@ function NavRow({
       {row.shortcut && (
         <span className="flex flex-none items-center gap-1">
           <Kbd>{GO_TO_KEY}</Kbd>
-          <span className="text-[11px] text-content-subtle">then</span>
+          <span className="text-2xs text-content-subtle">then</span>
           <Kbd>{row.shortcut}</Kbd>
         </span>
       )}

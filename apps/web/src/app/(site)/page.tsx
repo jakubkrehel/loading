@@ -1,8 +1,8 @@
-import { InstallCommand } from "@/components/install-command/install-command";
-import { SidebarFooter } from "@/components/sidebar/sidebar-footer";
-import { SpinnerCard } from "@/components/spinner-card/spinner-card";
-import { SPINNER_ITEMS } from "@/components/spinners";
+import { InstallCommand } from "@/components/home/install-command";
+import { SpinnerCard } from "@/components/home/spinner-card";
+import { Credits } from "@/components/sidebar/credits";
 import { PageHeader } from "@/components/ui/page-header";
+import { SPINNER_ITEMS } from "@/lib/catalog";
 import { SITE_DESCRIPTION } from "@/lib/constants";
 
 export default function Home() {
@@ -25,7 +25,7 @@ export default function Home() {
           <SpinnerCard item={item} key={item.slug} />
         ))}
       </div>
-      <SidebarFooter className="px-0 pb-0 md:hidden" />
+      <Credits className="px-0 pb-0 md:hidden" />
     </div>
   );
 }

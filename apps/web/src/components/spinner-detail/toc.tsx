@@ -2,14 +2,11 @@
 
 import { m } from "motion/react";
 import { useEffect, useState } from "react";
+import { NAV_ROW } from "@/components/ui/nav-item";
 import { Text } from "@/components/ui/text";
 import { PROSE_SECTION_ID } from "@/lib/constants";
+import type { DocumentHeading } from "@/lib/spinner-markdown";
 import { cn } from "@/lib/utils";
-
-export interface TocItem {
-  id: string;
-  label: string;
-}
 
 const ROW_HEIGHT_REM = 2;
 const ROW_GAP_REM = 0.125;
@@ -54,7 +51,7 @@ function TocLink({
   visible,
 }: {
   current: boolean;
-  item: TocItem;
+  item: DocumentHeading;
   visible: boolean;
 }) {
   return (
@@ -62,8 +59,11 @@ function TocLink({
       aria-current={current ? "location" : undefined}
       as="a"
       className={cn(
-        "relative flex w-full items-center rounded-lg px-3 transition-colors duration-200 ease-out after:absolute after:inset-x-0 after:-inset-y-px after:content-['']",
-        visible ? "text-content" : "text-content-subtle hover:text-content"
+        NAV_ROW,
+        "transition-colors duration-200 ease-out",
+        visible
+          ? "text-content"
+          : "text-content-subtle hover-hover:hover:text-content"
       )}
       href={`#${item.id}`}
       size="sm"
@@ -75,7 +75,7 @@ function TocLink({
   );
 }
 
-export function Toc({ items }: { items: TocItem[] }) {
+export function Toc({ items }: { items: DocumentHeading[] }) {
   const [visible, setVisible] = useState<number[]>([]);
 
   useEffect(() => {

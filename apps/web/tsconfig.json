@@ -8,6 +8,7 @@
       "@/*": ["./src/*"]
     },
     "strict": true,
+    "types": ["mdx", "node"],
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,

@@ -3,6 +3,11 @@
 import { useRef } from "react";
 import { HexColorInput, HexColorPicker } from "react-colorful";
 import {
+  CONTROL_SURFACE,
+  ControlLabel,
+  ControlValue,
+} from "@/components/ui/control";
+import {
   Popover,
   PopoverContent,
   PopoverTrigger,
@@ -15,7 +20,7 @@ import { PercentInput } from "./percent-input";
 const FIELD =
   "flex h-8 pointer-coarse:h-10 items-center gap-2 rounded-lg bg-popover-hovered px-2 has-[input:focus-visible]:outline-2 has-[input:focus-visible]:outline-popover-content has-[input:focus-visible]:outline-offset-0";
 const FIELD_INPUT =
-  "min-w-0 flex-1 bg-transparent font-paper-mono text-[12px] text-popover-content outline-none";
+  "min-w-0 flex-1 bg-transparent font-paper-mono text-popover-content text-xs outline-none";
 
 export function ColorPickerRow({
   color,
@@ -34,19 +39,15 @@ export function ColorPickerRow({
 
   return (
     <Popover>
-      <PopoverTrigger className="group flex h-8 pointer-coarse:h-10 w-full shrink-0 items-center justify-between rounded-lg bg-background px-2 transition-colors duration-200 ease-out data-popup-open:inset-ring data-popup-open:inset-ring-border data-popup-open:bg-background-hovered">
-        <Text
-          as="span"
-          className="select-none text-content-subtle transition-colors duration-150 hover-hover:group-hover:text-content group-data-popup-open:text-content"
-          size="sm"
-          weight="medium"
-        >
-          Color
-        </Text>
+      <PopoverTrigger
+        className={cn(
+          CONTROL_SURFACE,
+          "group flex w-full shrink-0 items-center justify-between px-2 transition-colors duration-200 ease-out data-popup-open:inset-ring data-popup-open:inset-ring-border data-popup-open:bg-background-hovered"
+        )}
+      >
+        <ControlLabel>Color</ControlLabel>
         <span className="flex items-center gap-2">
-          <span className="font-paper-mono text-[12px] text-content-subtle uppercase transition-colors duration-150 hover-hover:group-hover:text-content group-data-popup-open:text-content">
-            {pickerColor}
-          </span>
+          <ControlValue className="uppercase">{pickerColor}</ControlValue>
           <span
             aria-hidden="true"
             className="size-4 rounded-sm border border-border bg-current text-content"
@@ -59,7 +60,7 @@ export function ColorPickerRow({
         <PopoverContent
           align="end"
           aria-label="Choose a color"
-          className="flex flex-col gap-2 rounded-2xl p-2 shadow-popover"
+          className="flex flex-col gap-2 rounded-2xl p-2"
         >
           <HexColorPicker
             className="color-picker"

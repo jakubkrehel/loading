@@ -3,6 +3,7 @@ import type {
   ElementType,
   ReactElement,
 } from "react";
+import { type FontWeight, fontWeightClasses } from "@/components/ui/text";
 import { cn } from "@/lib/utils";
 
 const headingSizeClasses = {
@@ -14,20 +15,12 @@ const headingSizeClasses = {
   6: "text-base",
 } as const;
 
-const headingWeightClasses = {
-  medium: "font-medium",
-  regular: "font-normal",
-  semibold: "font-semibold",
-  semimedium: "font-semimedium",
-} as const;
-
 type HeadingSize = keyof typeof headingSizeClasses;
-type HeadingWeight = keyof typeof headingWeightClasses;
 
 interface HeadingOwnProps {
   className?: string;
   size: HeadingSize;
-  weight?: HeadingWeight;
+  weight?: FontWeight;
 }
 
 export type HeadingProps<E extends ElementType = "h1"> = HeadingOwnProps & {
@@ -47,7 +40,7 @@ export function Heading<E extends ElementType = "h1">({
     <Component
       className={cn(
         headingSizeClasses[size],
-        headingWeightClasses[weight],
+        fontWeightClasses[weight],
         className
       )}
       data-heading=""

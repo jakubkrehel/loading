@@ -2,8 +2,7 @@ import { SPINNERS, type SpinnerName } from "loading-dev";
 import { CodeBlock } from "@/components/code/code-block";
 import { CodePanel } from "@/components/mdx/code-panel";
 import { DEMO_ROW } from "@/lib/code";
-import { SNIPPET_PALETTE } from "@/lib/code-theme";
-import { demoElements, demoLines } from "@/lib/demos";
+import { demoCode, demoElements } from "@/lib/demos";
 
 export function Demo({ name, slug }: { name: string; slug: SpinnerName }) {
   const Spinner = SPINNERS[slug];
@@ -18,9 +17,8 @@ export function Demo({ name, slug }: { name: string; slug: SpinnerName }) {
         </div>
       </div>
       <CodeBlock
+        code={demoCode(slug, name)}
         event={{ name: "Demo Copied", properties: { spinner: slug } }}
-        lines={demoLines(slug, name)}
-        palette={SNIPPET_PALETTE}
       />
     </CodePanel>
   );

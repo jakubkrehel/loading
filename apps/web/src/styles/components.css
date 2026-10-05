@@ -1,4 +1,13 @@
 @layer components {
+  .code-inline {
+    padding: 2px 0.25rem;
+    font-family: var(--font-paper-mono);
+    font-size: var(--text-sm);
+    background-color: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: 0.375rem;
+  }
+
   pre > code {
     counter-reset: line;
   }

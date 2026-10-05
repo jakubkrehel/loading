@@ -7,15 +7,14 @@ import { LiveSnippet } from "@/components/spinner-detail/live-snippet";
 import { PrevNext } from "@/components/spinner-detail/prev-next";
 import { CustomizationProvider } from "@/components/spinner-detail/spinner-customization";
 import { SpinnerPreview } from "@/components/spinner-detail/spinner-preview";
+import { PageHeader } from "@/components/ui/page-header";
+import Shared from "@/content/spinners/_shared.mdx";
 import {
   getAdjacentSpinners,
   getSpinner,
   type SpinnerParams,
   spinnerParams,
-} from "@/components/spinners";
-import { PageHeader } from "@/components/ui/page-header";
-import Shared from "@/content/spinners/_shared.mdx";
-import { SNIPPET_PALETTE } from "@/lib/code-theme";
+} from "@/lib/catalog";
 import { PROSE_SECTION_ID, SITE_DESCRIPTION } from "@/lib/constants";
 import type { MDXModule } from "@/lib/mdx";
 
@@ -70,7 +69,7 @@ export default async function SpinnerPage({
         <CodePanel>
           <CustomizationProvider item={item} key={slug}>
             <SpinnerPreview />
-            <LiveSnippet palette={SNIPPET_PALETTE} />
+            <LiveSnippet />
           </CustomizationProvider>
         </CodePanel>
         <div className="flex flex-col [&>figure]:mt-6" id={PROSE_SECTION_ID}>

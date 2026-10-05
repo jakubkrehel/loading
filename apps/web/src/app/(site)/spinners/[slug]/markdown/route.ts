@@ -1,4 +1,4 @@
-import { type SpinnerParams, spinnerParams } from "@/components/spinners";
+import { type SpinnerParams, spinnerParams } from "@/lib/catalog";
 import { getSpinnerDocument } from "@/lib/spinner-markdown";
 
 export const generateStaticParams = spinnerParams;

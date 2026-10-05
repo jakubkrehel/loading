@@ -2,7 +2,8 @@
 
 import { ChevronDownIcon, CopyIcon } from "@radix-ui/react-icons";
 import { track } from "@vercel/analytics";
-import { markdownHref } from "@/components/spinners";
+import { FIELD_BUTTON } from "@/components/ui/button-styles";
+import { CopyAnnouncement } from "@/components/ui/copy-announcement";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,8 +15,10 @@ import { Text } from "@/components/ui/text";
 import { ClaudeIcon } from "@/icons/claude-icon";
 import { MarkdownIcon } from "@/icons/markdown-icon";
 import { OpenaiIcon } from "@/icons/openai-icon";
+import { markdownHref } from "@/lib/catalog";
 import { DOMAIN } from "@/lib/constants";
 import { COPY_FAILED_MESSAGE, useCopy } from "@/lib/use-copy";
+import { cn } from "@/lib/utils";
 
 const messages = {
   copied: "Page copied as Markdown",
@@ -42,7 +45,12 @@ export function CopyPageButton({
   return (
     <div className="flex flex-col gap-1.5">
       <DropdownMenu>
-        <DropdownMenuTrigger className="group flex h-8 w-full cursor-pointer items-center gap-2 rounded-lg border border-border bg-background px-3 transition-colors duration-200 hover-hover:hover:bg-modal-hovered">
+        <DropdownMenuTrigger
+          className={cn(
+            FIELD_BUTTON,
+            "bg-background px-3 hover-hover:hover:bg-modal-hovered"
+          )}
+        >
           <Text
             as="span"
             className="flex-1 text-left text-content"
@@ -114,9 +122,7 @@ export function CopyPageButton({
           {messages.failed}
         </Text>
       )}
-      <Text as="span" className="sr-only" role="status" size="sm">
-        {status === "idle" ? "" : messages[status]}
-      </Text>
+      <CopyAnnouncement messages={messages} status={status} />
     </div>
   );
 }

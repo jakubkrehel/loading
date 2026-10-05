@@ -1,10 +1,9 @@
 import { SPINNER_MOTION, type SpinnerName } from "loading-dev";
-import { getSpinner } from "@/components/spinners";
+import { getSpinner } from "@/lib/catalog";
 import {
-  type CodeLine,
   componentName,
   type ElementProps,
-  exampleLines,
+  exampleCode,
   pascalCase,
 } from "@/lib/code";
 
@@ -33,8 +32,8 @@ export function demoElements(slug: SpinnerName, demo: string): ElementProps[] {
   }));
 }
 
-export function demoLines(slug: SpinnerName, demo: string): CodeLine[] {
-  return exampleLines(
+export function demoCode(slug: SpinnerName, demo: string): string {
+  return exampleCode(
     componentName(slug),
     pascalCase(demo),
     demoElements(slug, demo)

@@ -15,14 +15,14 @@ function Nametag({
 }) {
   return (
     <a
-      className="group whitespace-nowrap transition-colors hover:text-content"
+      className="group whitespace-nowrap transition-colors hover-hover:hover:text-content"
       href={href}
       rel="noreferrer"
       target="_blank"
     >
       <Image
         alt=""
-        className="mr-1 mb-0.5 inline-block size-4 rounded-full opacity-50 transition-opacity group-hover:opacity-100"
+        className="mr-1 mb-0.5 inline-block size-4 rounded-full opacity-50 transition-opacity hover-hover:group-hover:opacity-100"
         height={16}
         src={avatar}
         width={16}
@@ -32,7 +32,7 @@ function Nametag({
   );
 }
 
-export function SidebarFooter({ className }: { className?: string }) {
+export function Credits({ className }: { className?: string }) {
   return (
     <div className={cn("flex flex-col gap-6 px-4 pb-4", className)}>
       <Separator className="h-px bg-border" />

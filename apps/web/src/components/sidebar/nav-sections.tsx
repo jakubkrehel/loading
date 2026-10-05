@@ -1,14 +1,10 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import {
-  type NavItem as NavItemData,
-  SPINNER_NAV,
-  TOP_LEVEL_NAV,
-} from "@/components/sidebar/nav-items";
 import { NavItem } from "@/components/ui/nav-item";
+import { type NavLink, SPINNER_NAV, TOP_LEVEL_NAV } from "@/lib/navigation";
 
-const GROUPS: NavItemData[][] = [TOP_LEVEL_NAV, SPINNER_NAV];
+const GROUPS: NavLink[][] = [TOP_LEVEL_NAV, SPINNER_NAV];
 
 export function NavSections() {
   const pathname = usePathname();

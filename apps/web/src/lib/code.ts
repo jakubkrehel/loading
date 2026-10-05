@@ -1,21 +1,6 @@
 import type * as Library from "loading-dev";
 import type { SpinnerName, SpinnerProps } from "loading-dev";
-import type { SpinnerOptions } from "@/components/spinners";
-
-export type TokenKind =
-  | "identifier"
-  | "keyword"
-  | "number"
-  | "plain"
-  | "string"
-  | "tag";
-
-export interface CodeToken {
-  kind: TokenKind;
-  text: string;
-}
-
-export type CodeLine = CodeToken[];
+import type { SpinnerOptions } from "@/lib/catalog";
 
 export type ElementProps = Partial<SpinnerProps & SpinnerOptions>;
 
@@ -46,27 +31,17 @@ export function componentName(slug: SpinnerName): ComponentName {
   return pascalCase(slug) as ComponentName;
 }
 
-function token(kind: TokenKind, text: string): CodeToken {
-  return { kind, text };
+function indent(level: number, line: string): string {
+  return `${INDENT.repeat(level)}${line}`;
 }
 
-function indent(level: number, line: CodeLine): CodeLine {
-  return [token("plain", INDENT.repeat(level)), ...line];
-}
-
-function attribute(name: string, value: number | string): CodeLine {
-  const head = [token("identifier", name), token("keyword", "=")];
+function attribute(name: string, value: number | string): string {
   return typeof value === "string"
-    ? [...head, token("string", `"${value}"`)]
-    : [
-        ...head,
-        token("plain", "{"),
-        token("number", `${value}`),
-        token("plain", "}"),
-      ];
+    ? `${name}="${value}"`
+    : `${name}={${value}}`;
 }
 
-function attributes(props: ElementProps): CodeLine[] {
+function attributes(props: ElementProps): string[] {
   return Object.entries(props)
     .filter(
       (entry): entry is [string, number | string] => entry[1] !== undefined
@@ -75,140 +50,75 @@ function attributes(props: ElementProps): CodeLine[] {
     .map(([name, value]) => attribute(name, value));
 }
 
-function element(name: string, props: ElementProps): CodeLine {
-  return [
-    token("plain", "<"),
-    token("tag", name),
-    ...attributes(props).flatMap((line) => [token("plain", " "), ...line]),
-    token("plain", " />"),
-  ];
+function element(name: string, props: ElementProps): string {
+  return `<${[name, ...attributes(props)].join(" ")} />`;
 }
 
-function width(line: CodeLine): number {
-  return line.reduce((total, { text }) => total + text.length, 0);
-}
-
-function returned(name: ComponentName, props: ElementProps): CodeLine[] {
-  const compact = indent(1, [
-    token("keyword", "return"),
-    token("plain", " "),
-    ...element(name, props),
-    token("plain", ";"),
-  ]);
-  if (width(compact) <= PRINT_WIDTH) {
+function returned(name: ComponentName, props: ElementProps): string[] {
+  const compact = indent(1, `return ${element(name, props)};`);
+  if (compact.length <= PRINT_WIDTH) {
     return [compact];
   }
   return [
-    indent(1, [token("keyword", "return"), token("plain", " (")]),
-    indent(2, [token("plain", "<"), token("tag", name)]),
+    indent(1, "return ("),
+    indent(2, `<${name}`),
     ...attributes(props).map((line) => indent(3, line)),
-    indent(2, [token("plain", "/>")]),
-    indent(1, [token("plain", ");")]),
+    indent(2, "/>"),
+    indent(1, ");"),
   ];
 }
 
-function returnedRow(
-  name: ComponentName,
-  elements: ElementProps[]
-): CodeLine[] {
+function returnedDiv(divAttribute: string, children: string[]): string[] {
   return [
-    indent(1, [token("keyword", "return"), token("plain", " (")]),
-    indent(2, [
-      token("plain", "<"),
-      token("tag", "div"),
-      token("plain", " "),
-      ...attribute("className", DEMO_ROW),
-      token("plain", ">"),
-    ]),
-    ...elements.map((props) => indent(3, element(name, props))),
-    indent(2, [token("plain", "</"), token("tag", "div"), token("plain", ">")]),
-    indent(1, [token("plain", ");")]),
+    indent(1, "return ("),
+    indent(2, `<div ${divAttribute}>`),
+    ...children.map((child) => indent(3, child)),
+    indent(2, "</div>"),
+    indent(1, ");"),
   ];
 }
 
-function merge(line: CodeLine): CodeLine {
-  const merged: CodeLine = [];
-  for (const current of line) {
-    const last = merged.at(-1);
-    if (last?.kind === current.kind) {
-      last.text += current.text;
-    } else {
-      merged.push({ ...current });
-    }
-  }
-  return merged;
-}
-
-function functionLines(
+function component(
   name: ComponentName,
   suffix: string,
-  body: CodeLine[]
-): CodeLine[] {
+  body: string[]
+): string {
   return [
-    [
-      token("keyword", "import"),
-      token("plain", " { "),
-      token("identifier", name),
-      token("plain", " } "),
-      token("keyword", "from"),
-      token("plain", " "),
-      token("string", '"loading-dev"'),
-      token("plain", ";"),
-    ],
-    [],
-    [
-      token("keyword", "export"),
-      token("plain", " "),
-      token("keyword", "function"),
-      token("plain", " "),
-      token("identifier", `${name}${suffix}`),
-      token("plain", "() {"),
-    ],
+    `import { ${name} } from "loading-dev";`,
+    "",
+    `export function ${name}${suffix}() {`,
     ...body,
-    [token("plain", "}")],
-  ].map(merge);
+    "}",
+  ].join("\n");
 }
 
-export function exampleLines(
+export function exampleCode(
   name: ComponentName,
   suffix: string,
   elements: ElementProps[]
-): CodeLine[] {
+): string {
   const [only, ...more] = elements;
   const body =
-    more.length === 0 ? returned(name, only) : returnedRow(name, elements);
-  return functionLines(name, suffix, body);
+    more.length === 0
+      ? returned(name, only)
+      : returnedDiv(
+          attribute("className", DEMO_ROW),
+          elements.map((props) => element(name, props))
+        );
+  return component(name, suffix, body);
 }
 
-export function snippetLines(
+export function snippetCode(
   name: ComponentName,
   props: ElementProps,
   opacity = 100
-): CodeLine[] {
+): string {
   if (opacity === 100) {
-    return exampleLines(name, "Demo", [props]);
+    return exampleCode(name, "Demo", [props]);
   }
-
-  return functionLines(name, "Demo", [
-    indent(1, [token("keyword", "return"), token("plain", " (")]),
-    indent(2, [
-      token("plain", "<"),
-      token("tag", "div"),
-      token("plain", " "),
-      token("identifier", "style"),
-      token("keyword", "="),
-      token("plain", "{{ "),
-      token("identifier", "opacity"),
-      token("plain", ": "),
-      token("number", `${opacity / 100}`),
-      token("plain", " }}>"),
-    ]),
-    indent(3, element(name, props)),
-    indent(2, [token("plain", "</"), token("tag", "div"), token("plain", ">")]),
-    indent(1, [token("plain", ");")]),
-  ]);
-}
-
-export function codeText(lines: CodeLine[]): string {
-  return lines.map((line) => line.map(({ text }) => text).join("")).join("\n");
+  return component(
+    name,
+    "Demo",
+    returnedDiv(`style={{ opacity: ${opacity / 100} }}`, [element(name, props)])
+  );
 }

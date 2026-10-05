@@ -40,7 +40,7 @@ the speed control from it rather than restating the number.
 
 ## Catalog
 
-`CATALOG` in `apps/web/src/components/spinners/index.ts` — the showcase's list
+`CATALOG` in `apps/web/src/lib/catalog/index.ts` — the showcase's list
 of spinners and everything the site knows about each one that the library does
 not: display name, description, its `href`, and the speed slider's range. It is exported
 as `SPINNER_ITEMS`. Preview customization reads the default duration directly
@@ -85,9 +85,9 @@ derivation.
 The opening snippet follows the customization: it shows the props a consumer
 would write to get what the preview shows, and nothing still at its default.
 Non-default opacity wraps the spinner in a div with an inline opacity style,
-matching the preview. The snippet is rendered
-from tokens, each coloured the way the site's code theme colours that kind of
-token, so no highlighter ships to the browser.
+matching the preview. The snippet is generated as
+code text and highlighted with Shiki in the browser, so it re-highlights as the
+customization changes.
 
 Option state contains only explicit overrides. Unchanged options are omitted
 from the preview props, so the library owns their default behavior.

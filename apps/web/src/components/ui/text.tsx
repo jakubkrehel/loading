@@ -12,7 +12,7 @@ const textSizeClasses = {
   xl: "text-xl",
 } as const;
 
-const textWeightClasses = {
+export const fontWeightClasses = {
   medium: "font-medium",
   regular: "font-normal",
   semibold: "font-semibold",
@@ -20,13 +20,13 @@ const textWeightClasses = {
 } as const;
 
 type TextSize = keyof typeof textSizeClasses;
-type TextWeight = keyof typeof textWeightClasses;
+export type FontWeight = keyof typeof fontWeightClasses;
 
 interface TextOwnProps {
   className?: string;
   size?: TextSize;
   truncate?: boolean;
-  weight?: TextWeight;
+  weight?: FontWeight;
 }
 
 export type TextProps<E extends ElementType = "p"> = TextOwnProps & {
@@ -47,7 +47,7 @@ export function Text<E extends ElementType = "p">({
     <Component
       className={cn(
         textSizeClasses[size],
-        textWeightClasses[weight],
+        fontWeightClasses[weight],
         truncate && "truncate",
         className
       )}
