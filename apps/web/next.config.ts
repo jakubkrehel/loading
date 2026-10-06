@@ -4,10 +4,38 @@ import createMDX from "@next/mdx";
 import type { NextConfig } from "next";
 import { BLOB_BASE } from "./src/lib/constants";
 
+const MARKDOWN_ACCEPT = {
+  key: "accept",
+  type: "header",
+  value: "(.*)text/markdown(.*)",
+} as const;
+
 const nextConfig = {
   experimental: {
     optimizePackageImports: ["motion"],
   },
+  headers: async () => [
+    {
+      headers: [
+        {
+          key: "Link",
+          value:
+            '</markdown>; rel="alternate"; type="text/markdown", </llms.txt>; rel="describedby"; type="text/plain"',
+        },
+      ],
+      source: "/",
+    },
+    {
+      headers: [
+        {
+          key: "Link",
+          value:
+            '</spinners/:slug/markdown>; rel="alternate"; type="text/markdown"',
+        },
+      ],
+      source: "/spinners/:slug",
+    },
+  ],
   images: {
     remotePatterns: [
       {
@@ -22,10 +50,13 @@ const nextConfig = {
     afterFiles: [],
     beforeFiles: [
       {
+        destination: "/markdown",
+        has: [MARKDOWN_ACCEPT],
+        source: "/",
+      },
+      {
         destination: "/spinners/:slug/markdown",
-        has: [
-          { key: "accept", type: "header", value: "(.*)text/markdown(.*)" },
-        ],
+        has: [MARKDOWN_ACCEPT],
         source: "/spinners/:slug",
       },
     ],
