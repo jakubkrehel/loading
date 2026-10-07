@@ -5,6 +5,11 @@ updates:
     directory: /
     schedule:
       interval: weekly
+    # TypeScript 7 crashes the tsup build: rollup-plugin-dts reads
+    # `useCaseSensitiveFileNames` off an undefined object.
+    ignore:
+      - dependency-name: typescript
+        update-types: ["version-update:semver-major"]
 
   - package-ecosystem: github-actions
     directory: /
