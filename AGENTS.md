@@ -21,8 +21,8 @@ Behavioural rules, not code conventions. They come from recurring corrections in
 
 All commands run from the repo root (`pnpm@11.8.0` workspace):
 
-- `pnpm dev` — runs `tsup --watch` for the library and `next dev` for the site in parallel (`dev:lib` and `dev:web` run each alone)
-- `pnpm build` — builds the library with tsup; `pnpm build:web` builds the site, which builds `loading-dev` first (`pnpm --filter loading-dev build && next build`)
+- `pnpm dev` — runs `tsdown --watch` for the library and `next dev` for the site in parallel (`dev:lib` and `dev:web` run each alone)
+- `pnpm build` — builds the library with tsdown; `pnpm build:web` builds the site, which builds `loading-dev` first (`pnpm --filter loading-dev build && next build`)
 - `pnpm lint` — Oxlint for JavaScript and TypeScript; `pnpm check` also enforces Biome formatting, assists and CSS/JSON rules.
 - `pnpm fix` — Oxlint safe fixes followed by Biome formatting and assists; `pnpm format` formats only.
 - `pnpm format` — Biome format
@@ -38,7 +38,7 @@ Lint warnings and unused Oxlint suppressions fail checks. Use narrow `oxlint-dis
 
 pnpm workspace with the library at the root and one app beside it:
 
-- **root** (`src/`, `tests/`) — the published npm package `loading-dev` ("Spinners. No more, no less."). React spinner components, ESM-only, built with tsup, React 19+ as a peer dependency. The root `package.json` is the package's manifest and also carries the workspace scripts and lint/test tooling; `files` limits the tarball to `dist`.
+- **root** (`src/`, `tests/`) — the published npm package `loading-dev` ("Spinners. No more, no less."). React spinner components, ESM-only, built with tsdown, React 19+ as a peer dependency. The root `package.json` is the package's manifest and also carries the workspace scripts and lint/test tooling; `files` limits the tarball to `dist`.
 - **`apps/web`** — Next.js 16 (App Router, Turbopack, React Compiler enabled) showcase/docs site that consumes `loading-dev` via `workspace:*`.
 
 Plus one directory that is **not** a workspace member:
