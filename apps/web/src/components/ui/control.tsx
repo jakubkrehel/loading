@@ -19,7 +19,7 @@ export function ControlLabel({ children }: { children: string }) {
 export function ControlValue({ className, ...props }: ComponentProps<"span">) {
   return (
     <span
-      className={cn("font-paper-mono text-xs", CONTROL_TEXT, className)}
+      className={cn("font-mono text-xs", CONTROL_TEXT, className)}
       {...props}
     />
   );

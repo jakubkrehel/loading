@@ -73,7 +73,7 @@ Each spinner is one self-contained `.tsx` file:
 - React Compiler handles memoization — do not add `useCallback`/`useMemo` for that purpose (Oxlint leaves compiler-owned memoization to React).
 - Class merging uses `cn` from `src/lib/utils.ts`, built with the `cn` package's `createCn` so it knows the custom `semimedium` weight. `clsx` and `tailwind-merge` are not imported anywhere.
 - Every code sample on the site is generated as a string from data in `src/lib/code.ts` and rendered by `CodeBlock`, which highlights it with Shiki through `highlight()` in `src/lib/highlight.ts`: a synchronous highlighter with the JavaScript regex engine, the `tsx` grammar and the two theme files in `src/lib/themes`, colouring each token with `light-dark()`. The same call runs on the server for demos and in the browser for the live snippet. No code sample is a fence: the MDX content has none, so there is no fence pipeline. `src/components/mdx/` follows the pattern shared with `~/Developer/jakub.kr` and `~/Developer/interfaces` — check those repos before adding web UI here.
-- Fonts are local woff2 files in `src/app/fonts/`, wired through `src/app/fonts.ts` and applied as CSS variables in the root layout.
+- Fonts are the system stacks: `font-sans` and `font-mono` are Tailwind's defaults, with no web fonts loaded.
 - `next.config.ts` sets `turbopack.root` to the monorepo root — path assumptions depend on this.
 
 ## Linting

@@ -20,7 +20,7 @@ import { PercentInput } from "./percent-input";
 const FIELD =
   "flex h-8 pointer-coarse:h-10 items-center gap-2 rounded-lg bg-popover-hovered px-2 has-[input:focus-visible]:outline-2 has-[input:focus-visible]:outline-popover-content has-[input:focus-visible]:outline-offset-0";
 const FIELD_INPUT =
-  "min-w-0 flex-1 bg-transparent font-paper-mono text-popover-content text-xs outline-none";
+  "min-w-0 flex-1 bg-transparent font-mono text-popover-content text-xs outline-none";
 
 export function ColorPickerRow({
   color,
