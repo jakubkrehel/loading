@@ -38,3 +38,14 @@ export function siteMarkdown(): string {
 
   return `${body}\n`;
 }
+
+export const SKILL_NAME = "loading-dev";
+
+export const SKILL_DESCRIPTION =
+  "Add loading spinners to a React 19+ app with the loading-dev package. Use when the user wants a spinner, loading indicator or busy state in React.";
+
+export const SKILL_PATH = `/.well-known/agent-skills/${SKILL_NAME}/SKILL.md`;
+
+export function skillMarkdown(): string {
+  return `---\nname: ${SKILL_NAME}\ndescription: ${SKILL_DESCRIPTION}\n---\n\n${siteMarkdown()}`;
+}
