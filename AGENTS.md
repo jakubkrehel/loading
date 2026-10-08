@@ -25,14 +25,15 @@ All commands run from the repo root (`pnpm@11.8.0` workspace):
 - `pnpm build` — builds the library with tsup; `pnpm build:web` builds the site, which builds `loading-dev` first (`pnpm --filter loading-dev build && next build`)
 - `pnpm lint` — Oxlint for JavaScript and TypeScript; `pnpm check` also enforces Biome formatting, assists and CSS/JSON rules.
 - `pnpm fix` — Oxlint safe fixes followed by Biome formatting and assists; `pnpm format` formats only.
-- `pnpm format` — Biome format
 - `pnpm typecheck` — checks library and test types, builds library declarations, then generates and checks site route types
 
 `pnpm test` runs the Vitest suite in `tests/`. It renders every spinner in `SPINNERS` to static markup and checks the motion contract, so it needs no browser.
 
 Domain vocabulary lives in `CONTEXT.md` — read it before naming anything.
 
-Lint warnings and unused Oxlint suppressions fail checks. Use narrow `oxlint-disable-next-line rule -- reason` comments when a rule cannot model valid code. Type-aware Oxlint remains disabled with TypeScript 5; `pnpm typecheck` checks types separately.
+Oxlint extends Ultracite core, React and Vitest presets, with Next rules scoped to the apps. Biome owns formatting, assists and CSS/JSON linting. Rule exceptions live in `oxlint.config.ts` and `biome.jsonc`.
+
+Lint warnings and unused Oxlint suppressions fail checks. Use narrow `oxlint-disable-next-line rule -- reason` comments when a rule cannot model valid code. Type-aware Oxlint is disabled; `pnpm typecheck` checks types separately.
 
 ## Architecture
 
@@ -49,13 +50,24 @@ Releases are cut with `gh release create vX.Y.Z --generate-notes` after bumping 
 
 ### Library conventions (root `src/`)
 
-Each spinner is one self-contained `.tsx` file:
+Each spinner is one self-contained `.tsx` file built from the shared helpers. Its CSS lives inline through React 19's style hoisting — no CSS files, no bundler CSS handling for consumers — and its class names are prefixed `ld-` (e.g. `ld-arc`). `motion.ts` owns the motion contract (see `CONTEXT.md`); `frame.tsx` is only the React frame.
 
-- CSS lives inline in the component via React 19's style hoisting — no CSS files, no bundler CSS handling for consumers. Use `SpinnerStyle` from `frame.tsx` rather than writing the `<style>` tag; it derives the stylesheet key from the spinner's `ld-` key.
-- Class names are prefixed `ld-` (e.g. `ld-arc`). `spinnerRoot()` in `frame.tsx` supplies the root element's shared attributes: `aria-hidden`, the merged class name, and the CSS properties the appearance props set. It resolves the `size` default too, and every spinner sizes its root from `SIZE` in its own CSS, so a spinner just forwards its props.
-- Every animation stops under `prefers-reduced-motion: reduce` without the spinner writing it: `SpinnerStyle` appends `animation: none` for the root and everything inside it. A spinner writes its own reduced-motion block only for the rest pose it should hold once stopped.
-- Never write a duration or the 20px default as a literal. `duration(name)`, `SIZE` and `DEFAULT_SIZE` all come from `motion.ts`, which owns the contract; `frame.tsx` is only the React frame — see `CONTEXT.md` on the motion contract. `animation(name, keyframes, timing)` from `motion.ts` is an animated element's whole `animation` shorthand, and it carries `animation-play-state` with it; the tests check that every shorthand in a spinner's stylesheet has its play state, so an element that animates goes through it.
-- All spinners take `SpinnerProps` from `types.ts`: `{ className?, color?, duration?, playState?, size? }`, and use `currentColor` so they inherit text color when `color` is omitted. Every prop but `className` writes a CSS property in `spinnerRoot` and only when passed — see `CONTEXT.md` on the motion contract for why omission matters. A spinner with a choice of its own extends `SpinnerProps` in its own file and exports the props type from the barrel; the default must be the behaviour the spinner had before the prop existed. The rotating spinners share `easing` through `easing.ts` — `rotationCss(name)` is their whole rotation stylesheet (a spinner whose lap is another additive property, such as a dash running round a path, passes its own keyframe body as the second argument) and `spinClass(name, easing)` names the element that turns, with `stacked` adding the linear and the eased turn together on that one element through `animation-composition` — so a new rotating spinner takes the prop by using those two rather than writing its own keyframes. Per-element custom properties go through `cssVars` from `frame.tsx`, the one place the `CSSProperties` cast lives. A run of elements that play the same keyframes in turn is a stagger: `stagger(name, count)` from `motion.ts` is their whole `animation-delay`, and each element gets `style={step(index)}` from `frame.tsx` — no generated `nth-child` rules, no per-spinner step property. A stagger that only fades opacity from 1 down to a floor is `fadeCss(name, element, count, { dim, rest })` from `fade.ts`, its whole stylesheet.
+Reach for the helper rather than writing what it writes:
+
+| Job | Helper |
+| --- | --- |
+| The `<style>` tag | `SpinnerStyle` (`frame.tsx`), keyed from the spinner's `ld-` key |
+| Root attributes: `aria-hidden`, the merged class name, the appearance properties, the `size` default | `spinnerRoot()` (`frame.tsx`) |
+| A duration, the size, the 20px default | `duration(name)`, `SIZE`, `DEFAULT_SIZE` (`motion.ts`), never a literal |
+| An animated element's `animation` shorthand | `animation(name, keyframes, timing)` (`motion.ts`). It carries `animation-play-state`, which the tests require on every shorthand |
+| Elements playing the same keyframes in turn | `stagger(name, count)` (`motion.ts`) for the delay and `style={step(index)}` (`frame.tsx`) on each element. No generated `nth-child` rules |
+| A stagger that only fades opacity from 1 down to a floor | `fadeCss(name, element, count, { dim, rest })` (`fade.ts`), the whole stylesheet |
+| A rotation that takes `easing` | `rotationCss(name)` for the stylesheet and `spinClass(name, easing)` for the element that turns (`easing.ts`). Pass a keyframe body as the second argument when the lap is another additive property, such as a dash running round a path |
+| Per-element custom properties | `cssVars` (`frame.tsx`), the one place the `CSSProperties` cast lives |
+
+- Every animation already stops under `prefers-reduced-motion: reduce`: `SpinnerStyle` appends `animation: none` for the root and everything inside it. A spinner writes its own reduced-motion block only for the rest pose it should hold once stopped.
+- All spinners take `SpinnerProps` from `types.ts` (`{ className?, color?, duration?, playState?, size? }`), forward them to `spinnerRoot` and paint with `currentColor`. Every prop but `className` writes a CSS property only when passed; `CONTEXT.md` explains why omission matters.
+- A spinner with a choice of its own extends `SpinnerProps` in its own file and exports the props type from the barrel. The default must be the behaviour the spinner had before the prop existed.
 - Export new spinners from `src/index.ts` (a barrel by design — package entry points intentionally re-export the public API).
 
 ### Adding a spinner (cross-package workflow)
@@ -75,7 +87,3 @@ Each spinner is one self-contained `.tsx` file:
 - Every code sample on the site is generated as a string from data in `src/lib/code.ts` and rendered by `CodeBlock`, which highlights it with Shiki through `highlight()` in `src/lib/highlight.ts`: a synchronous highlighter with the JavaScript regex engine, the `tsx` grammar and the two theme files in `src/lib/themes`, colouring each token with `light-dark()`. The same call runs on the server for demos and in the browser for the live snippet. No code sample is a fence: the MDX content has none, so there is no fence pipeline. `src/components/mdx/` follows the pattern shared with `~/Developer/jakub.kr` and `~/Developer/interfaces` — check those repos before adding web UI here.
 - Fonts are local woff2 files in `src/app/fonts/`, wired through `src/app/fonts.ts` and applied as CSS variables in the root layout.
 - `next.config.ts` sets `turbopack.root` to the monorepo root — path assumptions depend on this.
-
-## Linting
-
-Oxlint extends Ultracite core, React and Vitest presets, with Next rules scoped to the apps. Biome owns formatting, assists and CSS/JSON linting. Rule exceptions live in `oxlint.config.ts` and `biome.jsonc`.
