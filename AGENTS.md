@@ -21,8 +21,8 @@ Behavioural rules, not code conventions. They come from recurring corrections in
 
 All commands run from the repo root (`pnpm@11.8.0` workspace):
 
-- `pnpm dev` — runs `tsup --watch` for the library and `next dev` for the site in parallel (`dev:lib` and `dev:web` run each alone)
-- `pnpm build` — builds the library with tsup; `pnpm build:web` builds the site, which builds `loading-dev` first (`pnpm --filter loading-dev build && next build`)
+- `pnpm dev` — runs `tsdown --watch` for the library and `next dev` for the site in parallel (`dev:lib` and `dev:web` run each alone)
+- `pnpm build` — builds the library with tsdown; `pnpm build:web` builds the site, which builds `loading-dev` first (`pnpm --filter loading-dev build && next build`)
 - `pnpm lint` — Oxlint for JavaScript and TypeScript; `pnpm check` also enforces Biome formatting, assists and CSS/JSON rules.
 - `pnpm fix` — Oxlint safe fixes followed by Biome formatting and assists; `pnpm format` formats only.
 - `pnpm typecheck` — checks library and test types, builds library declarations, then generates and checks site route types
@@ -39,7 +39,7 @@ Lint warnings and unused Oxlint suppressions fail checks. Use narrow `oxlint-dis
 
 pnpm workspace with the library at the root and one app beside it:
 
-- **root** (`src/`, `tests/`) — the published npm package `loading-dev` ("Spinners. No more, no less."). React spinner components, ESM-only, built with tsup, React 19+ as a peer dependency. The root `package.json` is the package's manifest and also carries the workspace scripts and lint/test tooling; `files` limits the tarball to `dist`.
+- **root** (`src/`, `tests/`) — the published npm package `loading-dev` ("Spinners. No more, no less."). React spinner components, ESM-only, built with tsdown, React 19+ as a peer dependency. The root `package.json` is the package's manifest and also carries the workspace scripts and lint/test tooling; `files` limits the tarball to `dist`.
 - **`apps/web`** — Next.js 16 (App Router, Turbopack, React Compiler enabled) showcase/docs site that consumes `loading-dev` via `workspace:*`.
 
 Plus one directory that is **not** a workspace member:
@@ -85,5 +85,5 @@ Reach for the helper rather than writing what it writes:
 - React Compiler handles memoization — do not add `useCallback`/`useMemo` for that purpose (Oxlint leaves compiler-owned memoization to React).
 - Class merging uses `cn` from `src/lib/utils.ts`, built with the `cn` package's `createCn` so it knows the custom `semimedium` weight. `clsx` and `tailwind-merge` are not imported anywhere.
 - Every code sample on the site is generated as a string from data in `src/lib/code.ts` and rendered by `CodeBlock`, which highlights it with Shiki through `highlight()` in `src/lib/highlight.ts`: a synchronous highlighter with the JavaScript regex engine, the `tsx` grammar and the two theme files in `src/lib/themes`, colouring each token with `light-dark()`. The same call runs on the server for demos and in the browser for the live snippet. No code sample is a fence: the MDX content has none, so there is no fence pipeline. `src/components/mdx/` follows the pattern shared with `~/Developer/jakub.kr` and `~/Developer/interfaces` — check those repos before adding web UI here.
-- Fonts are local woff2 files in `src/app/fonts/`, wired through `src/app/fonts.ts` and applied as CSS variables in the root layout.
+- Fonts are the system stacks: `font-sans` and `font-mono` are Tailwind's defaults, with no web fonts loaded.
 - `next.config.ts` sets `turbopack.root` to the monorepo root — path assumptions depend on this.

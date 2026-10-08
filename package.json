@@ -28,16 +28,16 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsup",
+    "build": "tsdown",
     "build:web": "pnpm --filter web build",
     "check": "pnpm lint && biome check --error-on-warnings .",
     "dev": "pnpm run \"/^dev:/\"",
-    "dev:lib": "tsup --watch src",
+    "dev:lib": "tsdown --watch src",
     "dev:web": "pnpm --filter web dev",
     "fix": "oxlint --fix . && biome check --write .",
     "format": "biome format --write .",
     "lint": "oxlint --deny-warnings --report-unused-disable-directives-severity error .",
-    "prepublishOnly": "tsup",
+    "prepublishOnly": "tsdown",
     "test": "vitest run",
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit && pnpm build && pnpm --filter web typecheck"
@@ -50,8 +50,8 @@
     "oxlint": "1.86.0",
     "react": "19.3.0",
     "react-dom": "19.3.0",
-    "tsup": "^8.5.1",
-    "typescript": "^6.0.3",
+    "tsdown": "^0.23.0",
+    "typescript": "^7.0.2",
     "ultracite": "7.12.2",
     "vitest": "^5.0.3"
   },

@@ -21,7 +21,7 @@ export function CodeFrame({
         event={event}
         text={text}
       />
-      <pre className="tab-size-4 overflow-x-auto overscroll-x-contain px-4 py-3 font-paper-mono text-sm [scrollbar-color:var(--color-content-subtle)_transparent] scrollbar-thin **:font-paper-mono [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-content-subtle [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar]:h-1">
+      <pre className="tab-size-4 overflow-x-auto overscroll-x-contain px-4 py-3 font-mono text-sm [scrollbar-color:var(--color-content-subtle)_transparent] scrollbar-thin **:font-mono [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-content-subtle [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar]:h-1">
         <code className="grid">{children}</code>
       </pre>
     </figure>

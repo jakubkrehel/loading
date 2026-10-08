@@ -152,10 +152,6 @@
   --color-orange-subtle: var(--color-orange-subtle);
   --shadow-custom: var(--shadow-custom);
   --shadow-popover: var(--shadow-popover);
-  --font-sans: var(--font-inter);
-  --font-sans--font-feature-settings: "cv01", "ss03";
-  --font-paper-mono: var(--font-paper-mono);
-  --font-paper-mono--font-feature-settings: normal;
 }
 
 @theme {
