@@ -5,3 +5,12 @@ packages:
 allowBuilds:
   esbuild: true
   sharp: true
+
+minimumReleaseAgeExclude:
+  - "@interfere/build@0.2.1"
+  - "@interfere/constants@9.1.0"
+  - "@interfere/helpers@9.2.0"
+  - "@interfere/javascript@0.2.1"
+  - "@interfere/next@12.0.1"
+  - "@interfere/react@12.0.1"
+  - "@interfere/types@10.2.0"
