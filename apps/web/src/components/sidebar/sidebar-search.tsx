@@ -27,7 +27,7 @@ export function SidebarSearch() {
 
   return (
     <button
-      aria-keyshortcuts="Meta+K"
+      aria-keyshortcuts="Meta+K Control+K"
       className={cn(
         FIELD_BUTTON,
         "pr-1.5 pl-2 bg-surface hover-hover:hover:bg-background"
