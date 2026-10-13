@@ -57,7 +57,7 @@ export function Leap(props: SpinnerProps) {
   return (
     <>
       <SpinnerStyle name="leap">{css}</SpinnerStyle>
-      <div {...spinnerRoot("leap", props)}>
+      <div {...spinnerRoot("leap", props)} key={props.size}>
         {DOTS.map((index) => (
           <div className="ld-leap-wrapper" key={index} style={step(index)}>
             <div className="ld-leap-dot" />
