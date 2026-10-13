@@ -108,7 +108,6 @@ export function SpinnerPreview() {
             render={
               <IconButton
                 aria-label={playLabel}
-                aria-pressed={paused}
                 onClick={togglePaused}
                 size="sm"
                 type="button"
