@@ -117,6 +117,12 @@ const CATALOG = [
     speed: { max: 2000, min: 200 },
   }),
   entry({
+    description: "Four ticks turning a quarter turn at a time.",
+    name: "Compass",
+    slug: "compass",
+    speed: { max: 1500, min: 200 },
+  }),
+  entry({
     description: "Two arcs turning in opposite directions.",
     name: "Dual",
     options: [EASING_OPTION, CAP_OPTION],
@@ -177,6 +183,13 @@ const CATALOG = [
     name: "Pulse",
     slug: "pulse",
     speed: { max: 2400, min: 400 },
+  }),
+  entry({
+    description: "A fading beam sweeping around a faint dish.",
+    name: "Radar",
+    options: [EASING_OPTION],
+    slug: "radar",
+    speed: { max: 3000, min: 300 },
   }),
   entry({
     description: "An arc rotating in a faint circle.",
@@ -247,7 +260,7 @@ const CATALOG = [
   }),
 ];
 
-const UNLISTED = ["compass", "radar"] as const satisfies readonly SpinnerName[];
+const UNLISTED = [] as const satisfies readonly SpinnerName[];
 
 type Placed = (typeof CATALOG)[number]["slug"] | (typeof UNLISTED)[number];
 
