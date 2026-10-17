@@ -1,5 +1,5 @@
 import { SpinnerStyle, spinnerRoot, step } from "./frame";
-import { animation, SIZE, STEP_VAR, stagger } from "./motion";
+import { animation, STEP_VAR, stagger } from "./motion";
 import type { SpinnerProps } from "./types";
 
 const DOTS = [0, 1];
@@ -7,8 +7,6 @@ const DOTS = [0, 1];
 const css = `
 .ld-eclipse {
   position: relative;
-  width: ${SIZE};
-  height: ${SIZE};
 }
 
 .ld-eclipse-dot {

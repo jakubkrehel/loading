@@ -1,5 +1,6 @@
 import { type SpinnerParams, spinnerParams } from "@/lib/catalog";
 import { getSpinnerDocument } from "@/lib/spinner-markdown";
+import { textResponse } from "@/lib/text-response";
 
 export const generateStaticParams = spinnerParams;
 
@@ -14,9 +15,5 @@ export async function GET(
     return new Response("Not found", { status: 404 });
   }
 
-  return new Response(document.markdown, {
-    headers: {
-      "Content-Type": "text/markdown; charset=utf-8",
-    },
-  });
+  return textResponse(document.markdown, "markdown");
 }

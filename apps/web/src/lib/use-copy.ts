@@ -2,14 +2,13 @@
 
 import { useEffect, useRef, useState } from "react";
 
-export type CopyStatus = "copied" | "failed" | "idle";
+type CopyStatus = "copied" | "failed" | "idle";
 
 const RESET_DELAY_MS = 2000;
 
-export const COPY_FAILED_MESSAGE =
-  "Unable to copy. Select the text and copy it manually.";
+const FAILED_MESSAGE = "Unable to copy. Select the text and copy it manually.";
 
-export function useCopy() {
+export function useCopy(copiedMessage: string) {
   const [status, setStatus] = useState<CopyStatus>("idle");
   const timeoutRef = useRef<number | null>(null);
 
@@ -39,5 +38,11 @@ export function useCopy() {
     );
   }
 
-  return { copy, status };
+  const announcement = {
+    copied: copiedMessage,
+    failed: FAILED_MESSAGE,
+    idle: "",
+  }[status];
+
+  return { announcement, copy, status };
 }

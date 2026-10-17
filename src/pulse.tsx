@@ -1,13 +1,8 @@
 import { SpinnerStyle, spinnerRoot } from "./frame";
-import { animation, SIZE } from "./motion";
+import { animation } from "./motion";
 import type { SpinnerProps } from "./types";
 
 const css = `
-.ld-pulse {
-  width: ${SIZE};
-  height: ${SIZE};
-}
-
 .ld-pulse-ring {
   transform-origin: center;
   ${animation("pulse", "ld-pulse-ripple", "ease-out")}

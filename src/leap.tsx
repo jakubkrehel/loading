@@ -9,8 +9,6 @@ const css = `
   --ld-leap-dot: round(calc(${SIZE} * 0.22), 1px);
   --ld-leap-gap: round(down, calc((${SIZE} - var(--ld-leap-dot)) / 2), 1px);
   position: relative;
-  width: ${SIZE};
-  height: ${SIZE};
 }
 
 .ld-leap-wrapper {

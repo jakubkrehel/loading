@@ -1,8 +1,7 @@
 import GithubSlugger from "github-slugger";
 import { getSpinner } from "@/lib/catalog";
-import { componentName, snippetCode } from "@/lib/code";
-import { readContent } from "@/lib/content";
-import { customizationProps, initialCustomization } from "@/lib/customization";
+import { documentParts, readContent } from "@/lib/content";
+import { initialCustomization, snippet } from "@/lib/customization";
 import { demoCode } from "@/lib/demos";
 
 export interface DocumentHeading {
@@ -29,19 +28,14 @@ export async function getSpinnerDocument(
     return null;
   }
 
-  const sources = await Promise.all([
-    readContent("spinners", "_shared.mdx"),
-    ...(item.options ?? []).map((option) =>
-      readContent("options", `${option.prop}.mdx`)
-    ),
-  ]);
+  const sources = await Promise.all(documentParts(item).map(readContent));
 
   const slugger = new GithubSlugger();
   const headings: DocumentHeading[] = [];
   const sections = sources.map((source) =>
     source.replace(TOKEN, (match, label: string | undefined, demo: string) => {
       if (label === undefined) {
-        return fence(demoCode(item.slug, demo));
+        return fence(demoCode(item, demo));
       }
       const id = slugger.slug(label);
       if (headings.some((heading) => heading.id === id)) {
@@ -52,17 +46,13 @@ export async function getSpinnerDocument(
     })
   );
 
-  const snippet = fence(
-    snippetCode(
-      componentName(item.slug),
-      customizationProps(item, initialCustomization(item))
-    )
-  );
-
   return {
     headings,
-    markdown: [`# ${item.name}`, item.description, snippet, ...sections].join(
-      "\n\n"
-    ),
+    markdown: [
+      `# ${item.name}`,
+      item.description,
+      fence(snippet(item, initialCustomization(item))),
+      ...sections,
+    ].join("\n\n"),
   };
 }

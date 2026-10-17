@@ -1,6 +1,5 @@
 import { fadeCss } from "./fade";
 import { SpinnerStyle, spinnerRoot, step } from "./frame";
-import { SIZE } from "./motion";
 import type { SpinnerProps } from "./types";
 
 const BLOCK = "M0 0h1v1H0zM2 0h1v1H2zM0 2h1v1H0zM2 2h1v1H2z";
@@ -17,11 +16,6 @@ const SEGMENTS = [
 ];
 
 const css = `
-.ld-loading {
-  width: ${SIZE};
-  height: ${SIZE};
-}
-
 ${fadeCss("loading", "segment", SEGMENTS.length, { dim: 0.2, rest: 0.6 })}
 `;
 

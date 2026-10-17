@@ -18,11 +18,6 @@ const BLOCK = (100 - GAP) / 2;
 const PULL = `${(((GAP - GAP_IN) / 2 / BLOCK) * 100).toFixed(1)}%`;
 
 const css = `
-.ld-gather {
-  width: ${SIZE};
-  height: ${SIZE};
-}
-
 .ld-gather-group {
   display: grid;
   grid-template-columns: 1fr 1fr;

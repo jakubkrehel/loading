@@ -17,13 +17,8 @@ import { MarkdownIcon } from "@/icons/markdown-icon";
 import { OpenaiIcon } from "@/icons/openai-icon";
 import { markdownHref } from "@/lib/catalog";
 import { DOMAIN } from "@/lib/constants";
-import { COPY_FAILED_MESSAGE, useCopy } from "@/lib/use-copy";
+import { useCopy } from "@/lib/use-copy";
 import { cn } from "@/lib/utils";
-
-const messages = {
-  copied: "Page copied as Markdown",
-  failed: COPY_FAILED_MESSAGE,
-} as const;
 
 function assistantPrompt(markdownUrl: string) {
   return encodeURIComponent(
@@ -38,7 +33,7 @@ export function CopyPageButton({
   markdown: string;
   slug: string;
 }) {
-  const { copy, status } = useCopy();
+  const { announcement, copy, status } = useCopy("Page copied as Markdown");
   const markdownPath = markdownHref(slug);
   const markdownUrl = `${DOMAIN}${markdownPath}`;
 
@@ -119,10 +114,10 @@ export function CopyPageButton({
 
       {status === "failed" && (
         <Text as="p" className="px-2 text-content-subtle" size="sm">
-          {messages.failed}
+          {announcement}
         </Text>
       )}
-      <CopyAnnouncement messages={messages} status={status} />
+      <CopyAnnouncement>{announcement}</CopyAnnouncement>
     </div>
   );
 }

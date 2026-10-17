@@ -37,8 +37,6 @@ const css = `
   grid-template-columns: repeat(${SIDE}, 1fr);
   grid-template-rows: repeat(${SIDE}, 1fr);
   gap: calc(${SIZE} * 0.1);
-  width: ${SIZE};
-  height: ${SIZE};
 }
 
 .ld-blocks-cell {

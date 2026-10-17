@@ -9,8 +9,6 @@ const css = `
 .ld-comet {
   --ld-comet-stroke: calc(${SIZE} * 0.12);
   position: relative;
-  width: ${SIZE};
-  height: ${SIZE};
 }
 
 .ld-comet-spin {

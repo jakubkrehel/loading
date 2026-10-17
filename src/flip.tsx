@@ -4,8 +4,6 @@ import type { SpinnerProps } from "./types";
 
 const css = `
 .ld-flip {
-  width: ${SIZE};
-  height: ${SIZE};
   perspective: calc(${SIZE} * 3);
 }
 

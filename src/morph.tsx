@@ -3,11 +3,6 @@ import { animation, SIZE } from "./motion";
 import type { SpinnerProps } from "./types";
 
 const css = `
-.ld-morph {
-  width: ${SIZE};
-  height: ${SIZE};
-}
-
 .ld-morph-shape {
   width: 64%;
   height: 64%;

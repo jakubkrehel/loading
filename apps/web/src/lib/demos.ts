@@ -1,5 +1,5 @@
 import { SPINNER_MOTION, type SpinnerName } from "loading-dev";
-import { getSpinner } from "@/lib/catalog";
+import type { SpinnerItem } from "@/lib/catalog";
 import {
   componentName,
   type ElementProps,
@@ -17,14 +17,14 @@ const SHARED_DEMOS: Record<string, (slug: SpinnerName) => ElementProps[]> = {
   size: () => [{ size: 16 }, { size: 24 }, { size: 40 }],
 };
 
-export function demoElements(slug: SpinnerName, demo: string): ElementProps[] {
+export function demoElements(item: SpinnerItem, demo: string): ElementProps[] {
   const shared = SHARED_DEMOS[demo];
   if (shared) {
-    return shared(slug);
+    return shared(item.slug);
   }
-  const option = getSpinner(slug)?.options?.find(({ prop }) => prop === demo);
+  const option = item.options?.find(({ prop }) => prop === demo);
   if (!option) {
-    throw new Error(`Spinner "${slug}" has no demo named "${demo}"`);
+    throw new Error(`Spinner "${item.slug}" has no demo named "${demo}"`);
   }
   return option.values.map(({ value }) => ({
     [option.prop]: value,
@@ -32,10 +32,10 @@ export function demoElements(slug: SpinnerName, demo: string): ElementProps[] {
   }));
 }
 
-export function demoCode(slug: SpinnerName, demo: string): string {
+export function demoCode(item: SpinnerItem, demo: string): string {
   return exampleCode(
-    componentName(slug),
+    componentName(item.slug),
     pascalCase(demo),
-    demoElements(slug, demo)
+    demoElements(item, demo)
   );
 }

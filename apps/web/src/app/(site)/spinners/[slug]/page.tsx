@@ -8,7 +8,6 @@ import { PrevNext } from "@/components/spinner-detail/prev-next";
 import { CustomizationProvider } from "@/components/spinner-detail/spinner-customization";
 import { SpinnerPreview } from "@/components/spinner-detail/spinner-preview";
 import { PageHeader } from "@/components/ui/page-header";
-import Shared from "@/content/spinners/_shared.mdx";
 import {
   getAdjacentSpinners,
   getSpinner,
@@ -16,6 +15,7 @@ import {
   spinnerParams,
 } from "@/lib/catalog";
 import { PROSE_SECTION_ID, SITE_DESCRIPTION } from "@/lib/constants";
+import { documentParts } from "@/lib/content";
 import type { MDXModule } from "@/lib/mdx";
 
 export const generateStaticParams = spinnerParams;
@@ -47,14 +47,17 @@ export default async function SpinnerPage({
 
   const { next, previous } = getAdjacentSpinners(slug);
 
-  const options: MDXModule[] = await Promise.all(
-    (item.options ?? []).map(
-      (option) => import(`@/content/options/${option.prop}.mdx`)
-    )
+  const sections = await Promise.all(
+    documentParts(item).map(async (part) => {
+      const { default: Content }: MDXModule = await import(
+        `@/content/${part}.mdx`
+      );
+      return { Content, part };
+    })
   );
 
   const components = {
-    Demo: (props: { name: string }) => <Demo {...props} slug={item.slug} />,
+    Demo: (props: { name: string }) => <Demo {...props} item={item} />,
   };
 
   return (
@@ -73,9 +76,8 @@ export default async function SpinnerPage({
           </CustomizationProvider>
         </CodePanel>
         <div className="flex flex-col [&>figure]:mt-6" id={PROSE_SECTION_ID}>
-          <Shared components={components} />
-          {options.map(({ default: Option }, index) => (
-            <Option components={components} key={item.options?.[index].prop} />
+          {sections.map(({ Content, part }) => (
+            <Content components={components} key={part} />
           ))}
         </div>
       </div>

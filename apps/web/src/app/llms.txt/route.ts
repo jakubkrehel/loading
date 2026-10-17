@@ -1,11 +1,8 @@
 import { siteMarkdown } from "@/lib/llms";
+import { textResponse } from "@/lib/text-response";
 
 export const dynamic = "force-static";
 
 export function GET() {
-  return new Response(siteMarkdown(), {
-    headers: {
-      "Content-Type": "text/plain; charset=utf-8",
-    },
-  });
+  return textResponse(siteMarkdown(), "plain");
 }

@@ -1,6 +1,5 @@
 import { fadeCss } from "./fade";
 import { SpinnerStyle, spinnerRoot, step } from "./frame";
-import { SIZE } from "./motion";
 import type { SpinnerProps } from "./types";
 
 const TICKS = [
@@ -15,11 +14,6 @@ const TICKS = [
 ];
 
 const css = `
-.ld-classic-v2 {
-  width: ${SIZE};
-  height: ${SIZE};
-}
-
 ${fadeCss("classic-v2", "tick", TICKS.length, { dim: 0.4, rest: 0.5 })}
 `;
 

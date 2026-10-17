@@ -9,7 +9,7 @@ const css = `
   display: flex;
   align-items: center;
   gap: calc(${SIZE} * 0.2);
-  height: ${SIZE};
+  width: auto;
 }
 
 .ld-bouncing-dots-dot {

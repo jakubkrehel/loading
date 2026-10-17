@@ -1,13 +1,8 @@
 import { SpinnerStyle, spinnerRoot } from "./frame";
-import { animation, SIZE } from "./motion";
+import { animation } from "./motion";
 import type { SpinnerProps } from "./types";
 
 const css = `
-.ld-compass {
-  width: ${SIZE};
-  height: ${SIZE};
-}
-
 .ld-compass-ticks {
   transform-origin: center;
   ${animation("compass", "ld-compass-turn", "ease-in-out")}

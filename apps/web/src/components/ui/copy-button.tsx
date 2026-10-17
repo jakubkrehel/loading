@@ -5,14 +5,8 @@ import { track } from "@vercel/analytics";
 import { AnimatedIcon } from "@/components/ui/animated-icon";
 import { BUTTON_BASE } from "@/components/ui/button-styles";
 import { CopyAnnouncement } from "@/components/ui/copy-announcement";
-import { COPY_FAILED_MESSAGE, useCopy } from "@/lib/use-copy";
+import { useCopy } from "@/lib/use-copy";
 import { cn } from "@/lib/utils";
-
-const labels = {
-  copied: "Copied",
-  failed: COPY_FAILED_MESSAGE,
-  idle: "Copy to clipboard",
-} as const;
 
 export interface CopyEvent {
   name: string;
@@ -28,12 +22,12 @@ export function CopyButton({
   event?: CopyEvent;
   text: string;
 }) {
-  const { copy, status } = useCopy();
+  const { announcement, copy, status } = useCopy("Copied");
   const copied = status === "copied";
 
   return (
     <button
-      aria-label={labels[status]}
+      aria-label={announcement || "Copy to clipboard"}
       className={cn(
         BUTTON_BASE,
         "size-7 rounded-md hover-hover:hover:bg-background-hovered",
@@ -56,7 +50,7 @@ export function CopyButton({
           <CopyIcon className="size-4 text-content-subtle transition-colors duration-200 ease-out will-change-transform hover-hover:group-hover:text-content" />
         }
       />
-      <CopyAnnouncement messages={labels} status={status} />
+      <CopyAnnouncement>{announcement}</CopyAnnouncement>
     </button>
   );
 }

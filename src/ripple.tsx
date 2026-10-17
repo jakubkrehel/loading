@@ -15,8 +15,6 @@ const RINGS = Array.from({ length: 3 }, (_, index) => index);
 const css = `
 .ld-ripple {
   position: relative;
-  width: ${SIZE};
-  height: ${SIZE};
 }
 
 .ld-ripple-ring {

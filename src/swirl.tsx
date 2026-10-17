@@ -14,8 +14,6 @@ const css = `
   grid-template-rows: repeat(3, 1fr);
   gap: calc(${SIZE} * 0.15625);
   box-sizing: border-box;
-  width: ${SIZE};
-  height: ${SIZE};
   padding: calc(${SIZE} * 0.0625);
 }
 

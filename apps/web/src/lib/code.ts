@@ -95,14 +95,15 @@ function component(
 export function exampleCode(
   name: ComponentName,
   suffix: string,
-  elements: ElementProps[]
+  elements: ElementProps[],
+  wrapper?: string
 ): string {
   const [only, ...more] = elements;
   const body =
-    more.length === 0
+    more.length === 0 && wrapper === undefined
       ? returned(name, only)
       : returnedDiv(
-          attribute("className", DEMO_ROW),
+          wrapper ?? attribute("className", DEMO_ROW),
           elements.map((props) => element(name, props))
         );
   return component(name, suffix, body);
@@ -113,12 +114,10 @@ export function snippetCode(
   props: ElementProps,
   opacity = 100
 ): string {
-  if (opacity === 100) {
-    return exampleCode(name, "Demo", [props]);
-  }
-  return component(
+  return exampleCode(
     name,
     "Demo",
-    returnedDiv(`style={{ opacity: ${opacity / 100} }}`, [element(name, props)])
+    [props],
+    opacity === 100 ? undefined : `style={{ opacity: ${opacity / 100} }}`
   );
 }

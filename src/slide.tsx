@@ -1,5 +1,5 @@
 import { cssVars, SpinnerStyle, spinnerRoot, step } from "./frame";
-import { animation, SIZE, stagger } from "./motion";
+import { animation, stagger } from "./motion";
 import type { SpinnerProps } from "./types";
 
 const DOT = 34;
@@ -19,8 +19,6 @@ const RESTS = [
 const css = `
 .ld-slide {
   position: relative;
-  width: ${SIZE};
-  height: ${SIZE};
 }
 
 .ld-slide-dot {

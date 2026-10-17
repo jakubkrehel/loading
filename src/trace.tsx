@@ -1,7 +1,6 @@
 import { type CapProps, linecap } from "./cap";
 import { type EasingProps, rotationCss, spinClass } from "./easing";
 import { SpinnerStyle, spinnerRoot } from "./frame";
-import { SIZE } from "./motion";
 import type { SpinnerProps } from "./types";
 
 export interface TraceProps extends SpinnerProps, EasingProps, CapProps {}
@@ -25,11 +24,6 @@ const RECT = {
 };
 
 const css = `
-.ld-trace {
-  width: ${SIZE};
-  height: ${SIZE};
-}
-
 ${rotationCss(
   "trace",
   `to {

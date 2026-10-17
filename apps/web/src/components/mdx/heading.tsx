@@ -4,15 +4,10 @@ import type { ComponentPropsWithoutRef } from "react";
 import { AnchorLink } from "@/components/mdx/anchor-link";
 import { CopyAnnouncement } from "@/components/ui/copy-announcement";
 import { Heading } from "@/components/ui/heading";
-import { COPY_FAILED_MESSAGE, useCopy } from "@/lib/use-copy";
-
-const messages = {
-  copied: "Link copied",
-  failed: COPY_FAILED_MESSAGE,
-} as const;
+import { useCopy } from "@/lib/use-copy";
 
 export function MDXHeading({ children, id }: ComponentPropsWithoutRef<"h2">) {
-  const { copy, status } = useCopy();
+  const { announcement, copy, status } = useCopy("Link copied");
 
   return (
     <>
@@ -31,7 +26,7 @@ export function MDXHeading({ children, id }: ComponentPropsWithoutRef<"h2">) {
           children
         )}
       </Heading>
-      {id ? <CopyAnnouncement messages={messages} status={status} /> : null}
+      {id ? <CopyAnnouncement>{announcement}</CopyAnnouncement> : null}
     </>
   );
 }

@@ -16,8 +16,6 @@ const INNER_STROKE = `calc(${SIZE} * 0.045)`;
 const css = `
 .ld-atom {
   position: relative;
-  width: ${SIZE};
-  height: ${SIZE};
 }
 
 .ld-atom-shell {

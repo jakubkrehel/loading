@@ -3,7 +3,7 @@
 import { Dialog } from "@base-ui/react/dialog";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { IconButton } from "@/components/ui/icon-button";
 import { Logo } from "@/components/ui/logo";
 import { NavigationMobileIcon } from "@/components/ui/navigation-mobile-icon";
@@ -14,10 +14,11 @@ import { useBreakpointChange } from "@/lib/use-breakpoint-change";
 export function MobileNav() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
-
-  useEffect(() => {
+  const [openedAt, setOpenedAt] = useState(pathname);
+  if (pathname !== openedAt) {
+    setOpenedAt(pathname);
     setOpen(false);
-  }, [pathname]);
+  }
 
   useBreakpointChange(() => setOpen(false));
 

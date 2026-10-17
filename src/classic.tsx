@@ -6,11 +6,6 @@ import type { SpinnerProps } from "./types";
 const BARS = Array.from({ length: 12 }, (_, index) => index);
 
 const css = `
-.ld-classic {
-  width: ${SIZE};
-  height: ${SIZE};
-}
-
 .ld-classic-inner {
   position: relative;
   top: 50%;

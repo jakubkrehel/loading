@@ -17,8 +17,6 @@ const css = `
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: ${SIZE};
-  height: ${SIZE};
 }
 
 .ld-wave-bar {

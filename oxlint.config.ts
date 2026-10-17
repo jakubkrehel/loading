@@ -31,11 +31,6 @@ export default defineConfig({
   extends: [core, react, vitest],
   ignorePatterns: [...(core.ignorePatterns ?? [])],
   overrides: [
-    // Navigation changes close the external mobile dialog state.
-    {
-      files: ["apps/web/src/components/sidebar/mobile-nav.tsx"],
-      rules: { "react/set-state-in-effect": "off" },
-    },
     // Button primitives forward the caller’s type through their props.
     {
       files: [

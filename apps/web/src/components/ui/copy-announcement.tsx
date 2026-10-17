@@ -1,15 +1,7 @@
-import type { CopyStatus } from "@/lib/use-copy";
-
-export function CopyAnnouncement({
-  messages,
-  status,
-}: {
-  messages: Record<Exclude<CopyStatus, "idle">, string>;
-  status: CopyStatus;
-}) {
+export function CopyAnnouncement({ children }: { children: string }) {
   return (
     <span className="sr-only" role="status">
-      {status === "idle" ? "" : messages[status]}
+      {children}
     </span>
   );
 }

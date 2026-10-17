@@ -1,17 +1,11 @@
 import { useId } from "react";
 import { type EasingProps, rotationCss, spinClass } from "./easing";
 import { SpinnerStyle, spinnerRoot } from "./frame";
-import { SIZE } from "./motion";
 import type { SpinnerProps } from "./types";
 
 export interface RadarProps extends SpinnerProps, EasingProps {}
 
 const css = `
-.ld-radar {
-  width: ${SIZE};
-  height: ${SIZE};
-}
-
 ${rotationCss("radar")}
 `;
 

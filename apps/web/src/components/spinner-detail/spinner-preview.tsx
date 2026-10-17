@@ -2,7 +2,7 @@
 
 import { ChevronLeftIcon, PauseIcon, PlayIcon } from "@radix-ui/react-icons";
 import { SPINNER_MOTION, SPINNERS } from "loading-dev";
-import { type ReactNode, useEffect, useRef, useState } from "react";
+import { type ReactNode, useRef, useState } from "react";
 import { AnimatedIcon } from "@/components/ui/animated-icon";
 import { IconButton } from "@/components/ui/icon-button";
 import {
@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/tooltip";
 import { PREVIEW_SECTION_ID } from "@/lib/constants";
 import { customizationProps } from "@/lib/customization";
+import { usePlaybackRate } from "@/lib/use-playback-rate";
 import { cn } from "@/lib/utils";
 import { CustomizePanel } from "./customize-panel";
 import { useCustomization } from "./spinner-customization";
@@ -83,14 +84,7 @@ export function SpinnerPreview() {
     item,
     customization
   );
-  const rate = SPINNER_MOTION[item.slug] / customization.speedMs;
-
-  useEffect(() => {
-    for (const animation of stage.current?.getAnimations({ subtree: true }) ??
-      []) {
-      animation.updatePlaybackRate(rate);
-    }
-  });
+  usePlaybackRate(stage, SPINNER_MOTION[item.slug] / customization.speedMs);
 
   return (
     <section

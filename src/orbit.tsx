@@ -9,8 +9,6 @@ const css = `
 .ld-orbit {
   --ld-orbit-stroke: calc(${SIZE} * 0.0625);
   position: relative;
-  width: ${SIZE};
-  height: ${SIZE};
 }
 
 .ld-orbit-track {

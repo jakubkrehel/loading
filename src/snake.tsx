@@ -1,17 +1,12 @@
 import { type CapProps, linecap } from "./cap";
 import { type EasingProps, rotationCss, spinClass } from "./easing";
 import { SpinnerStyle, spinnerRoot } from "./frame";
-import { animation, SIZE } from "./motion";
+import { animation } from "./motion";
 import type { SpinnerProps } from "./types";
 
 export interface SnakeProps extends SpinnerProps, EasingProps, CapProps {}
 
 const css = `
-.ld-snake {
-  width: ${SIZE};
-  height: ${SIZE};
-}
-
 ${rotationCss("snake")}
 
 .ld-snake-dash {

@@ -9,7 +9,7 @@ const css = `
   display: flex;
   align-items: center;
   gap: calc(${SIZE} * 0.1875);
-  height: ${SIZE};
+  width: auto;
 }
 
 .ld-linear-dots-dot {

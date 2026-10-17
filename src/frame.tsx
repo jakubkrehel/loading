@@ -3,6 +3,7 @@ import {
   DEFAULT_SIZE,
   DURATION_VAR,
   PLAY_STATE_VAR,
+  SIZE,
   SIZE_VAR,
   type SpinnerName,
   STEP_VAR,
@@ -18,7 +19,12 @@ export function SpinnerStyle({
 }) {
   return (
     <style href={`ld-${name}`} precedence="loading-dev">
-      {`${children}
+      {`
+.ld-${name} {
+  width: ${SIZE};
+  height: ${SIZE};
+}
+${children}
 @media (prefers-reduced-motion: reduce) {
   .ld-${name},
   .ld-${name} * {

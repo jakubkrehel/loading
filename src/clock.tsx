@@ -1,16 +1,10 @@
 import { type EasingProps, rotationCss, spinClass } from "./easing";
 import { SpinnerStyle, spinnerRoot } from "./frame";
-import { SIZE } from "./motion";
 import type { SpinnerProps } from "./types";
 
 export interface ClockProps extends SpinnerProps, EasingProps {}
 
 const css = `
-.ld-clock {
-  width: ${SIZE};
-  height: ${SIZE};
-}
-
 ${rotationCss("clock")}
 `;
 

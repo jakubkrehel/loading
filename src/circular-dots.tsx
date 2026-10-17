@@ -1,6 +1,5 @@
 import { fadeCss } from "./fade";
 import { SpinnerStyle, spinnerRoot, step } from "./frame";
-import { SIZE } from "./motion";
 import type { SpinnerProps } from "./types";
 
 const DOTS = [
@@ -15,11 +14,6 @@ const DOTS = [
 ] as const;
 
 const css = `
-.ld-circular-dots {
-  width: ${SIZE};
-  height: ${SIZE};
-}
-
 ${fadeCss("circular-dots", "dot", DOTS.length, { dim: 0.2, rest: 0.6 })}
 `;
 
