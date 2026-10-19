@@ -8,7 +8,7 @@ export const interVariable = localFont({
     {
       path: "./fonts/InterVariable.woff2",
       style: "normal",
-      weight: "100 900",
+      weight: "400 600",
     },
   ],
   variable: "--font-inter",
