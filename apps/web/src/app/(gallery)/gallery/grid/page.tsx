@@ -32,7 +32,6 @@ export default function Grid() {
             <div className="flex h-28 w-40 items-center justify-center" key={name}>
               <Spinner
                 easing={EASED.has(name) ? "stacked" : undefined}
-                playState="paused"
                 size={name === "trace" ? 44 : 52}
               />
             </div>
