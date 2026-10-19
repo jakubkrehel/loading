@@ -8,20 +8,20 @@ import type { ComponentType } from "react";
 
 const PICKS: SpinnerName[] = [
   "arc",
-  "eclipse",
   "blocks",
   "trace",
   "cascade",
-  "circular-dots",
+  "eclipse",
+  "loading",
   "classic",
   "flip",
   "clock",
   "morph",
-  "loading",
+  "wave",
   "orbit",
 ];
 
-const EASED = new Set<SpinnerName>(["arc", "clock", "orbit", "trace"]);
+const EASED = new Set<SpinnerName>(["arc", "clock", "trace"]);
 
 export default function Grid() {
   return (
