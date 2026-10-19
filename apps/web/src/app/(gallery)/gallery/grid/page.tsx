@@ -1,13 +1,7 @@
-import {
-  type EasingProps,
-  SPINNERS,
-  type SpinnerName,
-  type SpinnerProps,
-} from "loading-dev";
-import type { ComponentType } from "react";
+import { SPINNERS, type SpinnerName } from "loading-dev";
 
 const PICKS: SpinnerName[] = [
-  "trace",
+  "gather",
   "cascade",
   "eclipse",
   "classic",
@@ -18,22 +12,18 @@ const PICKS: SpinnerName[] = [
   "orbit",
 ];
 
-const EASED = new Set<SpinnerName>(["trace"]);
-
 export default function Grid() {
   return (
-    <main className="flex min-h-dvh items-center justify-center bg-white">
+    <main className="flex min-h-dvh items-center justify-center bg-white dark:bg-transparent">
       <div className="grid grid-cols-3">
         {PICKS.map((name) => {
-          const Spinner = SPINNERS[name] as ComponentType<
-            SpinnerProps & EasingProps
-          >;
+          const Spinner = SPINNERS[name];
           return (
-            <div className="flex h-28 w-40 items-center justify-center" key={name}>
-              <Spinner
-                easing={EASED.has(name) ? "stacked" : undefined}
-                size={name === "trace" ? 44 : 52}
-              />
+            <div
+              className="flex h-28 w-40 items-center justify-center"
+              key={name}
+            >
+              <Spinner size={52} />
             </div>
           );
         })}
