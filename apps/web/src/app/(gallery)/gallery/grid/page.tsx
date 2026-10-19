@@ -1,15 +1,17 @@
 import { SPINNERS, type SpinnerName } from "loading-dev";
 
+const Clock = SPINNERS.clock;
+
 const PICKS: SpinnerName[] = [
-  "gather",
-  "cascade",
+  "leap",
+  "clock",
   "eclipse",
   "classic",
   "loading",
-  "flip",
-  "morph",
-  "wave",
   "orbit",
+  "morph",
+  "gather",
+  "flip",
 ];
 
 export default function Grid() {
@@ -23,7 +25,11 @@ export default function Grid() {
               className="flex h-28 w-40 items-center justify-center"
               key={name}
             >
-              <Spinner size={52} />
+              {name === "clock" ? (
+                <Clock easing="stacked" size={52} />
+              ) : (
+                <Spinner size={name === "gather" ? 46 : 52} />
+              )}
             </div>
           );
         })}
