@@ -22,7 +22,7 @@ const EASED = new Set<SpinnerName>(["trace"]);
 
 export default function Grid() {
   return (
-    <main className="flex min-h-dvh items-center justify-center">
+    <main className="flex min-h-dvh items-center justify-center bg-white">
       <div className="grid grid-cols-3">
         {PICKS.map((name) => {
           const Spinner = SPINNERS[name] as ComponentType<
@@ -32,6 +32,7 @@ export default function Grid() {
             <div className="flex h-28 w-40 items-center justify-center" key={name}>
               <Spinner
                 easing={EASED.has(name) ? "stacked" : undefined}
+                playState="paused"
                 size={name === "trace" ? 44 : 52}
               />
             </div>
