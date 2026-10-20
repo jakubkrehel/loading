@@ -14,6 +14,7 @@ import { Dual } from "./dual";
 import { Eclipse } from "./eclipse";
 import { Flip } from "./flip";
 import { Gather } from "./gather";
+import { Helix } from "./helix";
 import { Leap } from "./leap";
 import { LinearDots } from "./linear-dots";
 import { Loading } from "./loading";
@@ -47,6 +48,7 @@ export const SPINNERS = {
   eclipse: Eclipse,
   flip: Flip,
   gather: Gather,
+  helix: Helix,
   leap: Leap,
   "linear-dots": LinearDots,
   loading: Loading,

@@ -148,6 +148,12 @@ const CATALOG = [
     speed: { max: 3200, min: 400 },
   }),
   entry({
+    description: "Two strands of dots twisting around each other.",
+    name: "Helix",
+    slug: "helix",
+    speed: { max: 3600, min: 600 },
+  }),
+  entry({
     description: "Three dots in a row, the last one leaping to the front.",
     name: "Leap",
     slug: "leap",

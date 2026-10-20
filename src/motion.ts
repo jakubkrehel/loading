@@ -26,6 +26,7 @@ export const SPINNER_MOTION = {
   eclipse: 1200,
   flip: 1200,
   gather: 1600,
+  helix: 1800,
   leap: 1800,
   "linear-dots": 900,
   loading: 1000,

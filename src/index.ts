@@ -20,6 +20,7 @@ export { DEFAULT_EASING, type Easing, type EasingProps } from "./easing";
 export { Eclipse } from "./eclipse";
 export { Flip } from "./flip";
 export { Gather } from "./gather";
+export { Helix } from "./helix";
 export { Leap } from "./leap";
 export { LinearDots } from "./linear-dots";
 export { Loading } from "./loading";
