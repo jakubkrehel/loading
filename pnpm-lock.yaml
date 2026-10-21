@@ -206,8 +206,8 @@ importers:
         specifier: ^1.8.0
         version: 1.9.0(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       '@interfere/next':
-        specifier: ^12.0.1
-        version: 12.0.1(next@16.4.0(@opentelemetry/api@1.9.1)(@types/node@26.6.5)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(zone.js@0.16.3)
+        specifier: ^12.0.5
+        version: 12.0.5(next@16.4.0(@opentelemetry/api@1.9.1)(@types/node@26.6.5)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(zone.js@0.16.3)
       '@mdx-js/loader':
         specifier: ^3.1.1
         version: 3.1.1
@@ -743,11 +743,11 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@interfere/build@0.2.1':
-    resolution: {integrity: sha512-35Bj8JSwmrgLI4qWXNEVM9guGLW/uvhiOh/rbBcxv5EtJG3x5m0DNkbe1J4Xl8tG07zDL15emFG008rwJQi0rw==}
+  '@interfere/build@0.3.0':
+    resolution: {integrity: sha512-QRQFkHygsPyUQ/BEtUwkeP2pl+6neW/k5JictVV5TADKqg5e0MuU/jRxUpudYap6qqUn1l5cr7xBqYUIDFmaew==}
 
-  '@interfere/constants@9.1.0':
-    resolution: {integrity: sha512-/toU9QfFGp/YzfqPDhIrqBYKc2DDKV6onw75XrKlhHVWvxmZ+KcDS5ANlcT7ExZypCPqN6nzw0fwxehTjgbB7g==}
+  '@interfere/constants@9.2.0':
+    resolution: {integrity: sha512-bdGDm1wv63v3fmpouGiq9TShHe3dWeYH9SS34Uf+FhNMM504aQrxN+iS0C+0zx5BDQYtOfJ1Qsf3S0xVos9KLA==}
 
   '@interfere/helpers@9.2.0':
     resolution: {integrity: sha512-43NQvZ01cOuCkccVdM8SunEWzlLII714NB3i+j1JziP9hGOHVCd4C5DtmEN3Co4zNJwqgv8LEMKnaQCLomFjvQ==}
@@ -755,8 +755,8 @@ packages:
   '@interfere/javascript@0.2.1':
     resolution: {integrity: sha512-YNCgDawe//B219nBHmSNJKNKOjfQD9ino/qKA0E8wmGrlBwZXDqoPu7zDbawEwzD2d9fb0dkvB0ttbRTNoN7Gw==}
 
-  '@interfere/next@12.0.1':
-    resolution: {integrity: sha512-kQVJuFi2tG/bCHpYnhZtvhT1z900RN2FvyIeBn7txRh1Lst5qvsFDJZmbZNHQpt9FV1IkfJAMWi2+4Q+R1gt0g==}
+  '@interfere/next@12.0.5':
+    resolution: {integrity: sha512-wVko1xcpEPTYhbZUipGm5FXkg1mgmlMWSulAcMlVQ68jBi2qrM1ew3w/BWaDUP3qGTcnrisO7AdN20VODijeqA==}
     peerDependencies:
       next: ^15.3.0 || ^16.0.0
       react: ^19.0.0
@@ -769,8 +769,8 @@ packages:
       react-dom:
         optional: true
 
-  '@interfere/react@12.0.1':
-    resolution: {integrity: sha512-u7ou6eMKf087QSfunLZ+QRARAGBIrGsPDxEHsiycgAphqstsTUKZJr2h5Rj/0GtlnK/08mCaZiSNfRp5iUKpxg==}
+  '@interfere/react@12.0.5':
+    resolution: {integrity: sha512-/WqAdpddjQ/8P7zFYzzKRHRH2A1in68TUuiXkI6XESF4CthvKpud1gAtkcpa7xQIA5b7qPPZ5OoGz/dRN/aoxQ==}
     peerDependencies:
       react: ^19.0.0
       react-dom: ^19.0.0
@@ -780,8 +780,8 @@ packages:
       react-dom:
         optional: true
 
-  '@interfere/types@10.2.0':
-    resolution: {integrity: sha512-AgT04uMMGT8bCToK32yY71h0xmYgOBU7A4RgIGLboH96x/5KkSBm0k7Ng+ky2FgnWXMwYIx4veqJxqjJ8srtzw==}
+  '@interfere/types@10.2.2':
+    resolution: {integrity: sha512-BMPTYOBlpNehcZE4gOX0Cjz0KQGZxn4WCEsQpXyNF/ENDINAGhzftiEmEkHc7ag0ZM/2AnB9F38Grcy3/00trg==}
 
   '@jridgewell/gen-mapping@0.3.13':
     resolution: {integrity: sha512-2kkt/7niJ6MgEPxF0bYdQ6etZaA+fQvDcLKckhy1yIQOzaoKjBBjSj63/aLVjYE3qhRt5dvM+uUyfCg6UKCBbA==}
@@ -1037,30 +1037,35 @@ packages:
   '@opentelemetry/sdk-trace-base@2.11.0':
     resolution: {integrity: sha512-H19x/TX/LZdqiYOjM7fqtSxwlplC5pgelavqbQdHbhdq0q/AI/TGkM2dfGuuynTXmJPeF2HoZVoPDu+TGoW78A==}
     engines: {node: ^18.19.0 || >=20.6.0}
+    deprecated: Use @opentelemetry/sdk-trace package
     peerDependencies:
       '@opentelemetry/api': '>=1.3.0 <1.10.0'
 
   '@opentelemetry/sdk-trace-base@2.12.0':
     resolution: {integrity: sha512-JOERgZCxRM06FEJ5kEWxlSRChah6MmXDx3KwCruqEv/iEyLkTokCSemf2y1w8oIHtfrr8EVTpzebq/31vn2Cpg==}
     engines: {node: ^18.19.0 || >=20.6.0}
+    deprecated: Use @opentelemetry/sdk-trace package
     peerDependencies:
       '@opentelemetry/api': '>=1.3.0 <1.10.0'
 
   '@opentelemetry/sdk-trace-node@2.12.0':
     resolution: {integrity: sha512-9DufH1IlmQMoKAfot5y/FhTP1RnmhLb5K6eKmJO/bvzPjYwPAazoiAUbTZFdPbqxOXN0FEbhZx/e6SB1Og4jmg==}
     engines: {node: ^18.19.0 || >=20.6.0}
+    deprecated: Use @opentelemetry/sdk-trace package
     peerDependencies:
       '@opentelemetry/api': '>=1.0.0 <1.10.0'
 
   '@opentelemetry/sdk-trace-web@2.11.0':
     resolution: {integrity: sha512-8hgLI437x8VRKzgUr+WRcHFp9AeaHmveKRsPIMNele9tethgCKprakRRqZCWyt41ilALHATfspUMl1An0OTMUQ==}
     engines: {node: ^18.19.0 || >=20.6.0}
+    deprecated: Use @opentelemetry/sdk-trace package
     peerDependencies:
       '@opentelemetry/api': '>=1.0.0 <1.10.0'
 
   '@opentelemetry/sdk-trace-web@2.12.0':
     resolution: {integrity: sha512-y0hCzbnBHScmioF0drJOyaPk1sQf2wwbIuy3rWlM0Fcx8mLfPDvFsQ7tJ+zMm8yAqI06rSlFKkL7ZpcrFOqAdQ==}
     engines: {node: ^18.19.0 || >=20.6.0}
+    deprecated: Use @opentelemetry/sdk-trace package
     peerDependencies:
       '@opentelemetry/api': '>=1.0.0 <1.10.0'
 
@@ -1824,6 +1829,18 @@ packages:
         optional: true
       vue-router:
         optional: true
+
+  '@vercel/otel@2.1.3':
+    resolution: {integrity: sha512-Ofvzs9qhftRD1YMLuPnhbXjQZG6IKrJ9AmEKmRHRGfoWlV89ed2gAOkvddkFiZDFZJm2rrFNdeZKRVxoCdnWiw==}
+    engines: {node: ^18.19.0 || >=20.6.0}
+    peerDependencies:
+      '@opentelemetry/api': '>=1.9.0 <2.0.0'
+      '@opentelemetry/api-logs': '>=0.200.0 <0.300.0'
+      '@opentelemetry/instrumentation': '>=0.200.0 <0.300.0'
+      '@opentelemetry/resources': '>=2.0.0 <3.0.0'
+      '@opentelemetry/sdk-logs': '>=0.200.0 <0.300.0'
+      '@opentelemetry/sdk-metrics': '>=2.0.0 <3.0.0'
+      '@opentelemetry/sdk-trace-base': '>=2.0.0 <3.0.0'
 
   '@vitest/mocker@5.0.3':
     resolution: {integrity: sha512-T8sWAIbkSyAjkwTcaEc3Iu0o9A27X1/kdXrizhZkGuSKScRQtRzclfAMpOTcGdXCsqxeWlpGy3XjqaW8CpLORg==}
@@ -3635,12 +3652,12 @@ snapshots:
   '@img/sharp-win32-x64@0.35.5':
     optional: true
 
-  '@interfere/build@0.2.1':
+  '@interfere/build@0.3.0':
     dependencies:
       '@interfere/javascript': 0.2.1
-      '@interfere/types': 10.2.0
+      '@interfere/types': 10.2.2
 
-  '@interfere/constants@9.1.0':
+  '@interfere/constants@9.2.0':
     dependencies:
       better-status-codes: 2.2.0
 
@@ -3648,14 +3665,14 @@ snapshots:
 
   '@interfere/javascript@0.2.1': {}
 
-  '@interfere/next@12.0.1(next@16.4.0(@opentelemetry/api@1.9.1)(@types/node@26.6.5)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(zone.js@0.16.3)':
+  '@interfere/next@12.0.5(next@16.4.0(@opentelemetry/api@1.9.1)(@types/node@26.6.5)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(zone.js@0.16.3)':
     dependencies:
-      '@interfere/build': 0.2.1
-      '@interfere/constants': 9.1.0
+      '@interfere/build': 0.3.0
+      '@interfere/constants': 9.2.0
       '@interfere/helpers': 9.2.0
       '@interfere/javascript': 0.2.1
-      '@interfere/react': 12.0.1(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(zone.js@0.16.3)
-      '@interfere/types': 10.2.0
+      '@interfere/react': 12.0.5(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(zone.js@0.16.3)
+      '@interfere/types': 10.2.2
       '@opentelemetry/api': 1.9.1
       '@opentelemetry/api-logs': 0.222.0
       '@opentelemetry/baggage-span-processor': 0.5.0(@opentelemetry/api@1.9.1)
@@ -3668,8 +3685,10 @@ snapshots:
       '@opentelemetry/otlp-transformer': 0.222.0(@opentelemetry/api@1.9.1)
       '@opentelemetry/resources': 2.12.0(@opentelemetry/api@1.9.1)
       '@opentelemetry/sdk-logs': 0.222.0(@opentelemetry/api@1.9.1)
+      '@opentelemetry/sdk-metrics': 2.12.0(@opentelemetry/api@1.9.1)
       '@opentelemetry/sdk-trace-base': 2.12.0(@opentelemetry/api@1.9.1)
       '@opentelemetry/sdk-trace-node': 2.12.0(@opentelemetry/api@1.9.1)
+      '@vercel/otel': 2.1.3(@opentelemetry/api-logs@0.222.0)(@opentelemetry/api@1.9.1)(@opentelemetry/instrumentation@0.222.0(@opentelemetry/api@1.9.1))(@opentelemetry/resources@2.12.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-logs@0.222.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-metrics@2.12.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.12.0(@opentelemetry/api@1.9.1))
       chalk: 6.0.1
       zod: 4.6.5
     optionalDependencies:
@@ -3680,13 +3699,13 @@ snapshots:
       - supports-color
       - zone.js
 
-  '@interfere/react@12.0.1(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(zone.js@0.16.3)':
+  '@interfere/react@12.0.5(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(zone.js@0.16.3)':
     dependencies:
       '@fingerprintjs/fingerprintjs': 5.3.0
-      '@interfere/constants': 9.1.0
+      '@interfere/constants': 9.2.0
       '@interfere/helpers': 9.2.0
       '@interfere/javascript': 0.2.1
-      '@interfere/types': 10.2.0
+      '@interfere/types': 10.2.2
       '@opentelemetry/api': 1.9.1
       '@opentelemetry/api-logs': 0.222.0
       '@opentelemetry/context-zone': 2.12.0(@opentelemetry/api@1.9.1)
@@ -3720,7 +3739,7 @@ snapshots:
       - supports-color
       - zone.js
 
-  '@interfere/types@10.2.0':
+  '@interfere/types@10.2.2':
     dependencies:
       zod: 4.6.5
 
@@ -4547,6 +4566,16 @@ snapshots:
     optionalDependencies:
       next: 16.4.0(@opentelemetry/api@1.9.1)(@types/node@26.6.5)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       react: 19.3.0
+
+  '@vercel/otel@2.1.3(@opentelemetry/api-logs@0.222.0)(@opentelemetry/api@1.9.1)(@opentelemetry/instrumentation@0.222.0(@opentelemetry/api@1.9.1))(@opentelemetry/resources@2.12.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-logs@0.222.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-metrics@2.12.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.12.0(@opentelemetry/api@1.9.1))':
+    dependencies:
+      '@opentelemetry/api': 1.9.1
+      '@opentelemetry/api-logs': 0.222.0
+      '@opentelemetry/instrumentation': 0.222.0(@opentelemetry/api@1.9.1)
+      '@opentelemetry/resources': 2.12.0(@opentelemetry/api@1.9.1)
+      '@opentelemetry/sdk-logs': 0.222.0(@opentelemetry/api@1.9.1)
+      '@opentelemetry/sdk-metrics': 2.12.0(@opentelemetry/api@1.9.1)
+      '@opentelemetry/sdk-trace-base': 2.12.0(@opentelemetry/api@1.9.1)
 
   '@vitest/mocker@5.0.3(vite@8.3.0(@types/node@26.6.5)(esbuild@0.27.7)(jiti@2.7.0)(yaml@2.9.1))':
     dependencies:
