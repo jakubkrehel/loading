@@ -4,6 +4,7 @@ import { Dialog } from "@base-ui/react/dialog";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { InterfacesCard } from "@/components/sidebar/interfaces-card";
 import { IconButton } from "@/components/ui/icon-button";
 import { Logo } from "@/components/ui/logo";
 import { NavigationMobileIcon } from "@/components/ui/navigation-mobile-icon";
@@ -60,7 +61,7 @@ export function MobileNav() {
             />
           </div>
 
-          <div className="flex min-h-0 flex-1 flex-col overflow-y-auto overscroll-contain">
+          <div className="-mx-1 flex min-h-0 flex-1 flex-col overflow-y-auto overscroll-contain px-1 pb-1">
             <nav className="pb-4">
               <ul className="flex flex-col">
                 {NAV_ITEMS.map((item) => (
@@ -106,6 +107,7 @@ export function MobileNav() {
                   </li>
                 ))}
               </ul>
+              <InterfacesCard className="mt-4" />
             </div>
           </div>
         </Dialog.Popup>

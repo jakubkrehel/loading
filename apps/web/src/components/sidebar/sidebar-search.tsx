@@ -30,7 +30,7 @@ export function SidebarSearch() {
       aria-keyshortcuts="Meta+K Control+K"
       className={cn(
         FIELD_BUTTON,
-        "pr-1.5 pl-2 bg-surface hover-hover:hover:bg-background"
+        "border-transparent bg-surface pr-1.5 pl-2 shadow-custom hover-hover:hover:bg-background"
       )}
       onClick={openSearch}
       type="button"

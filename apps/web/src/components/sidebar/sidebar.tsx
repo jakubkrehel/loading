@@ -1,5 +1,6 @@
 import { ScrollArea } from "@base-ui/react/scroll-area";
 import { Credits } from "@/components/sidebar/credits";
+import { InterfacesCard } from "@/components/sidebar/interfaces-card";
 import { NavSections } from "@/components/sidebar/nav-sections";
 import { SidebarSearch } from "@/components/sidebar/sidebar-search";
 import { SocialLinks } from "@/components/sidebar/social-links";
@@ -22,6 +23,7 @@ export function Sidebar() {
         <ScrollAreaScrollbar />
       </ScrollArea.Root>
       <div className="flex flex-col">
+        <InterfacesCard className="mx-4 mb-4" />
         <SocialLinks />
         <Credits />
       </div>
