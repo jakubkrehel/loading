@@ -40,7 +40,10 @@ export function InterfacesCard({ className }: { className?: string }) {
         target="_blank"
       >
         Start reading
-        <ChevronRightIcon aria-hidden="true" className="size-4 text-content-subtle" />
+        <ChevronRightIcon
+          aria-hidden="true"
+          className="size-4 text-content-subtle"
+        />
       </a>
     </div>
   );
