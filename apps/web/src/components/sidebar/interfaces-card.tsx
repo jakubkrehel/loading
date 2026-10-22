@@ -33,14 +33,14 @@ export function InterfacesCard({ className }: { className?: string }) {
         className={cn(
           BUTTON_BASE,
           buttonVariants.secondary,
-          "h-8 w-full gap-1.5 rounded-md pr-1.5 pl-2.5 font-medium text-content-subtle text-sm"
+          "h-8 w-full gap-1.5 rounded-md pr-1.5 pl-2.5 font-medium text-sm"
         )}
         href={INTERFACES_URL}
         rel="noreferrer"
         target="_blank"
       >
         Start reading
-        <ChevronRightIcon aria-hidden="true" className="size-4" />
+        <ChevronRightIcon aria-hidden="true" className="size-4 text-content-subtle" />
       </a>
     </div>
   );
