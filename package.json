@@ -50,7 +50,7 @@
     "oxlint": "1.89.0",
     "react": "19.3.1",
     "react-dom": "19.3.1",
-    "tsdown": "^0.23.0",
+    "tsdown": "^0.23.3",
     "typescript": "^7.0.2",
     "ultracite": "8.1.0",
     "vitest": "^5.0.3"
