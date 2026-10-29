@@ -1,3 +1,9 @@
+<a href="https://interfaces.dev/?utm_source=loading.dev">
+  <img width="320" height="168" alt="interfaces.dev" src="https://ho1jr3x2dcwdu3t5.public.blob.vercel-storage.com/interfaces-og-image.png" />
+</a>
+
+Read more in [Interfaces](https://interfaces.dev/?utm_source=loading.dev), the first design engineering magazine.
+
 # loading-dev
 
 [![npm downloads](https://img.shields.io/npm/dt/loading-dev)](https://www.npmjs.com/package/loading-dev)
