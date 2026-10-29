@@ -5,9 +5,14 @@
     // Oxlint owns JavaScript and TypeScript; Biome still formats and organizes them.
     "includes": ["**", "!**/*.{js,jsx,mjs,cjs,ts,tsx,mts,cts}"],
     "rules": {
-      "nursery": {
-        "noDuplicateSelectors": "error",
-        "noEmptyObjectKeys": "error"
+      "suspicious": {
+        "useBaseline": {
+          "level": "error",
+          "options": {
+            "allowProperties": ["mask-image"],
+            "allowSelectors": ["selection"]
+          }
+        }
       }
     }
   }
