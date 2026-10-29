@@ -1,5 +1,7 @@
 # loading-dev
 
+[![npm downloads](https://img.shields.io/npm/dt/loading-dev)](https://www.npmjs.com/package/loading-dev)
+
 Beautiful loading indicators for React.
 
 ```sh
