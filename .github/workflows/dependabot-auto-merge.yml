@@ -3,8 +3,8 @@ name: Dependabot auto-merge
 on:
   # Write access is needed to enable auto-merge; this workflow never checks out PR code.
   pull_request_target:
-    branches: [main]
-    types: [opened, synchronize, reopened, ready_for_review]
+    branches: [ main ]
+    types: [ opened, synchronize, reopened, ready_for_review ]
 
 permissions: {}
 
