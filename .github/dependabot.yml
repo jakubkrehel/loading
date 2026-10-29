@@ -6,6 +6,10 @@ updates:
     schedule:
       interval: weekly
     groups:
+      security:
+        applies-to: security-updates
+        patterns:
+          - "*"
       npm:
         patterns:
           - "*"
@@ -18,7 +22,27 @@ updates:
     schedule:
       interval: weekly
     groups:
+      security:
+        applies-to: security-updates
+        patterns:
+          - "*"
       github-actions:
+        patterns:
+          - "*"
+        update-types:
+          - minor
+          - patch
+
+  - package-ecosystem: npm
+    directory: /examples/consumer
+    schedule:
+      interval: weekly
+    groups:
+      security:
+        applies-to: security-updates
+        patterns:
+          - "*"
+      npm:
         patterns:
           - "*"
         update-types:
