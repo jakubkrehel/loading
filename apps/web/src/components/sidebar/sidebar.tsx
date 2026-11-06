@@ -23,8 +23,8 @@ export function Sidebar() {
         <ScrollAreaScrollbar />
       </ScrollArea.Root>
       <div className="flex flex-col">
-        <InterfacesCard className="mx-4 mb-4" />
         <SocialLinks />
+        <InterfacesCard className="mx-4 mb-4" />
         <Credits />
       </div>
     </aside>
