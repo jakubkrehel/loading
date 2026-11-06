@@ -1,6 +1,6 @@
 {
   "name": "loading-dev",
-  "version": "0.3.6",
+  "version": "0.3.7",
   "description": "A lightweight library full of beautiful loading indicators for React.",
   "keywords": [
     "react",
