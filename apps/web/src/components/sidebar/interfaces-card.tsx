@@ -10,41 +10,43 @@ export function InterfacesCard({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "flex flex-col gap-2 rounded-xl bg-surface p-1.5 shadow-custom",
+        "rounded-2xl border border-border bg-background p-1",
         className
       )}
     >
-      <div className="flex flex-col gap-2 px-2 pt-2 pb-1.5">
-        <Text
-          as="span"
-          className="flex items-center gap-2 text-content"
-          size="sm"
-          weight="medium"
+      <div className="flex flex-col gap-2 rounded-xl bg-surface p-1.5 shadow-custom">
+        <div className="flex flex-col gap-2 px-2 pt-2 pb-1.5">
+          <Text
+            as="span"
+            className="flex items-center gap-2 text-content"
+            size="sm"
+            weight="medium"
+          >
+            <InterfacesLogo className="size-5 shrink-0" />
+            Interfaces
+          </Text>
+          <Text as="span" className="text-content-subtle" size="sm">
+            Interested in learning more about design engineering? Check out
+            Interfaces, the first design engineering magazine.
+          </Text>
+        </div>
+        <a
+          className={cn(
+            BUTTON_BASE,
+            buttonVariants.secondary,
+            "h-8 w-full gap-1.5 rounded-md pr-1.5 pl-2.5 font-medium text-sm"
+          )}
+          href={INTERFACES_URL}
+          rel="noreferrer"
+          target="_blank"
         >
-          <InterfacesLogo className="size-5 shrink-0" />
-          Interfaces
-        </Text>
-        <Text as="span" className="text-content-subtle" size="sm">
-          Interested in learning more about design engineering? Check out my
-          magazine, Interfaces.
-        </Text>
+          Start reading
+          <ChevronRightIcon
+            aria-hidden="true"
+            className="size-4 text-content-subtle"
+          />
+        </a>
       </div>
-      <a
-        className={cn(
-          BUTTON_BASE,
-          buttonVariants.secondary,
-          "h-8 w-full gap-1.5 rounded-md pr-1.5 pl-2.5 font-medium text-sm"
-        )}
-        href={INTERFACES_URL}
-        rel="noreferrer"
-        target="_blank"
-      >
-        Start reading
-        <ChevronRightIcon
-          aria-hidden="true"
-          className="size-4 text-content-subtle"
-        />
-      </a>
     </div>
   );
 }
