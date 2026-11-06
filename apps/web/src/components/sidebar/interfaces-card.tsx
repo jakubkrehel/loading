@@ -26,8 +26,8 @@ export function InterfacesCard({ className }: { className?: string }) {
             Interfaces
           </Text>
           <Text as="span" className="text-content-subtle" size="sm">
-            Interested in learning more about design engineering? Check out
-            Interfaces, the first design engineering magazine.
+            Interested in learning more about design engineering? Check out my
+            magazine, Interfaces.
           </Text>
         </div>
         <a
