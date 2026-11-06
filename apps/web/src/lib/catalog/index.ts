@@ -85,6 +85,12 @@ const CATALOG = [
     speed: { max: 3000, min: 400 },
   }),
   entry({
+    description: "Three chevrons lighting up in turn, pointing forward.",
+    name: "Chevrons",
+    slug: "chevrons",
+    speed: { max: 2400, min: 300 },
+  }),
+  entry({
     description: "Eight dots in a ring, the brightest hopping around.",
     name: "Circular dots",
     slug: "circular-dots",
@@ -136,6 +142,12 @@ const CATALOG = [
     speed: { max: 2400, min: 300 },
   }),
   entry({
+    description: "A circle filling clockwise like a pie, then emptying.",
+    name: "Fill",
+    slug: "fill",
+    speed: { max: 3200, min: 400 },
+  }),
+  entry({
     description: "A square flipping over on one axis, then the other.",
     name: "Flip",
     slug: "flip",
@@ -166,6 +178,13 @@ const CATALOG = [
     speed: { max: 2400, min: 300 },
   }),
   entry({
+    description: "A dash running along a figure-eight.",
+    name: "Loop",
+    options: [EASING_OPTION, CAP_OPTION],
+    slug: "loop",
+    speed: { max: 3200, min: 400 },
+  }),
+  entry({
     description: "A square rounding into a circle and back as it turns.",
     name: "Morph",
     slug: "morph",
@@ -177,6 +196,12 @@ const CATALOG = [
     options: [EASING_OPTION],
     slug: "orbit",
     speed: { max: 2000, min: 200 },
+  }),
+  entry({
+    description: "A moon moving through its phases.",
+    name: "Phases",
+    slug: "phases",
+    speed: { max: 6000, min: 800 },
   }),
   entry({
     description: "A ring rippling outward from a dot.",
@@ -216,6 +241,12 @@ const CATALOG = [
     speed: { max: 2400, min: 400 },
   }),
   entry({
+    description: "A line sweeping down a page and back up.",
+    name: "Scan",
+    slug: "scan",
+    speed: { max: 3600, min: 600 },
+  }),
+  entry({
     description: "Three dots sliding into the empty corner of a square.",
     name: "Slide",
     slug: "slide",
@@ -227,6 +258,18 @@ const CATALOG = [
     options: [EASING_OPTION, CAP_OPTION],
     slug: "snake",
     speed: { max: 2800, min: 400 },
+  }),
+  entry({
+    description: "A dot splitting in two and merging back.",
+    name: "Split",
+    slug: "split",
+    speed: { max: 2800, min: 500 },
+  }),
+  entry({
+    description: "Four segments lighting up in turn, then clearing in turn.",
+    name: "Steps",
+    slug: "steps",
+    speed: { max: 3200, min: 500 },
   }),
   entry({
     description: "A bright cell chasing its trail around a square.",
