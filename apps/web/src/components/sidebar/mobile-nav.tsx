@@ -89,6 +89,7 @@ export function MobileNav() {
             </nav>
 
             <div className="mt-auto border-border border-t pt-4">
+              <InterfacesCard className="mb-4" />
               <ul className="flex flex-col">
                 {SOCIAL_LINKS.map(({ href, icon: Icon, label }) => (
                   <li key={label}>
@@ -107,7 +108,6 @@ export function MobileNav() {
                   </li>
                 ))}
               </ul>
-              <InterfacesCard className="mt-4" />
             </div>
           </div>
         </Dialog.Popup>
