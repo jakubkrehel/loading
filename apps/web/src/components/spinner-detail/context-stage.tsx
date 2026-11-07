@@ -1,21 +1,10 @@
-"use client";
+import type { ReactNode } from "react";
 
-import type { ComponentType } from "react";
-import type { ElementProps } from "@/lib/code";
-
-interface ContextStageProps {
-  opacity: number;
-  props: ElementProps;
-  Spinner: ComponentType<ElementProps>;
-}
-
-export function ContextStage({ opacity, props, Spinner }: ContextStageProps) {
-  const spinner = (size: number) => (
-    <span className="flex shrink-0" style={{ opacity: `${opacity}%` }}>
-      <Spinner {...props} size={size} />
-    </span>
-  );
-
+export function ContextStage({
+  spinner,
+}: {
+  spinner: (size: number) => ReactNode;
+}) {
   return (
     <div className="flex w-full max-w-64 select-none flex-col items-stretch gap-3 text-sm">
       <div className="flex gap-2">
@@ -29,7 +18,7 @@ export function ContextStage({ opacity, props, Spinner }: ContextStageProps) {
         </span>
       </div>
       <span className="flex h-9 items-center justify-between gap-2 rounded-lg border border-border bg-background-subtle px-3 text-content-subtle">
-        Searching spinners
+        Searching spinners…
         {spinner(16)}
       </span>
       <span className="flex items-center gap-2 px-1 text-content-subtle">

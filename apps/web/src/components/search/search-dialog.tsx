@@ -6,7 +6,7 @@ import { CrossCircledIcon, MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import { Command, useCommandState } from "cmdk";
 import { SPINNERS } from "loading-dev";
 import { usePathname, useRouter } from "next/navigation";
-import { type RefObject, useRef, useState } from "react";
+import { type ReactNode, type RefObject, useRef, useState } from "react";
 import { Kbd } from "@/components/ui/kbd";
 import { LogoMark } from "@/components/ui/logo";
 import { ScrollAreaScrollbar } from "@/components/ui/scroll-area";
@@ -133,13 +133,23 @@ export function SearchDialog({
 
                 <Command.Group className={GROUP_CLASSNAME}>
                   {TOP_LEVEL_NAV.map((row) => (
-                    <NavRow key={row.href} onNavigate={navigateTo} row={row} />
+                    <NavRow
+                      icon={<LogoMark className="size-3.5" />}
+                      key={row.href}
+                      onNavigate={navigateTo}
+                      row={row}
+                    />
                   ))}
                 </Command.Group>
                 <Command.Separator className="h-px w-full bg-border" />
                 <Command.Group className={GROUP_CLASSNAME} heading="Components">
                   {SPINNER_NAV.map((row) => (
-                    <NavRow key={row.href} onNavigate={navigateTo} row={row} />
+                    <NavRow
+                      icon={<RowSpinner name={row.spinner} />}
+                      key={row.href}
+                      onNavigate={navigateTo}
+                      row={row}
+                    />
                   ))}
                 </Command.Group>
               </ScrollArea.Viewport>
@@ -155,9 +165,11 @@ export function SearchDialog({
 }
 
 function NavRow({
+  icon,
   onNavigate,
   row,
 }: {
+  icon: ReactNode;
   onNavigate: (href: string) => void;
   row: NavLink;
 }) {
@@ -169,11 +181,7 @@ function NavRow({
       value={row.label}
     >
       <span className="flex size-5 flex-none items-center justify-center text-content-subtle transition-colors duration-200 ease-out group-data-[selected=true]:text-content">
-        {row.spinner ? (
-          <RowSpinner name={row.spinner} />
-        ) : (
-          <LogoMark className="size-3.5" />
-        )}
+        {icon}
       </span>
       <span className="min-w-0 flex-1 truncate px-1 font-semimedium">
         {row.label}

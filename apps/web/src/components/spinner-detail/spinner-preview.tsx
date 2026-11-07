@@ -15,6 +15,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import type { ElementProps } from "@/lib/code";
 import { PREVIEW_SECTION_ID } from "@/lib/constants";
 import { customizationProps } from "@/lib/customization";
 import { usePlaybackRate } from "@/lib/use-playback-rate";
@@ -82,14 +83,8 @@ function CustomizeDrawer({
 
 export function SpinnerPreview() {
   const [customizeOpen, setCustomizeOpen] = useState(true);
-  const {
-    customization,
-    inContext,
-    item,
-    paused,
-    toggleContext,
-    togglePaused,
-  } = useCustomization();
+  const [inContext, setInContext] = useState(false);
+  const { customization, item, paused, togglePaused } = useCustomization();
   const Spinner = SPINNERS[item.slug];
   const playLabel = paused ? "Play animation" : "Pause animation";
   const contextLabel = inContext ? "Show on its own" : "Show in context";
@@ -98,10 +93,18 @@ export function SpinnerPreview() {
     item,
     customization
   );
-  const props = {
+  const props: ElementProps = {
     ...customized,
-    playState: paused ? ("paused" as const) : undefined,
+    playState: paused ? "paused" : undefined,
   };
+  const spinner = (size: number) => (
+    <span
+      className="flex shrink-0"
+      style={{ opacity: `${customization.opacity}%` }}
+    >
+      <Spinner {...props} size={size} />
+    </span>
+  );
   usePlaybackRate(stage, SPINNER_MOTION[item.slug] / customization.speedMs);
 
   return (
@@ -115,15 +118,9 @@ export function SpinnerPreview() {
           ref={stage}
         >
           {inContext ? (
-            <ContextStage
-              opacity={customization.opacity}
-              props={props}
-              Spinner={Spinner}
-            />
+            <ContextStage spinner={spinner} />
           ) : (
-            <div style={{ opacity: `${customization.opacity}%` }}>
-              <Spinner {...props} />
-            </div>
+            spinner(customization.size)
           )}
         </div>
         <div className="flex items-center gap-1">
@@ -155,10 +152,9 @@ export function SpinnerPreview() {
             <TooltipTrigger
               render={
                 <IconButton
-                  aria-label="Show in context"
-                  aria-pressed={inContext}
+                  aria-label={contextLabel}
                   className={cn(inContext && "bg-background text-content")}
-                  onClick={toggleContext}
+                  onClick={() => setInContext((value) => !value)}
                   size="sm"
                   type="button"
                   variant="ghost"
@@ -176,7 +172,7 @@ export function SpinnerPreview() {
         open={customizeOpen}
       />
       <CustomizeDrawer open={customizeOpen}>
-        <CustomizePanel className="max-sm:mt-1" />
+        <CustomizePanel className="max-sm:mt-1" sizeDisabled={inContext} />
       </CustomizeDrawer>
     </section>
   );

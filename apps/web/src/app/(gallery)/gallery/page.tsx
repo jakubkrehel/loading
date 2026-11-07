@@ -1,7 +1,8 @@
 "use client";
 
 import { SPINNERS } from "loading-dev";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useArrowStep } from "@/lib/keyboard";
 
 const ENTRIES = Object.entries(SPINNERS);
 
@@ -15,19 +16,7 @@ export default function Gallery() {
   const step = (delta: number) =>
     setIndex((current) => (current + delta + ENTRIES.length) % ENTRIES.length);
 
-  useEffect(() => {
-    const onKeyDown = (event: KeyboardEvent) => {
-      const delta = { ArrowLeft: -1, ArrowRight: 1 }[event.key];
-      if (delta && !event.repeat) {
-        event.preventDefault();
-        setIndex(
-          (current) => (current + delta + ENTRIES.length) % ENTRIES.length
-        );
-      }
-    };
-    document.addEventListener("keydown", onKeyDown);
-    return () => document.removeEventListener("keydown", onKeyDown);
-  }, []);
+  useArrowStep(step);
 
   return (
     <main className="flex min-h-dvh flex-col px-6 py-10">

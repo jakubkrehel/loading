@@ -11,27 +11,43 @@ const INDICATOR_TRANSITION = {
   type: "spring",
 } as const;
 
+const SIZES = {
+  md: {
+    group: cn(CONTROL_SURFACE, "w-full"),
+    indicator: "rounded-lg",
+    option: "h-8 pointer-coarse:h-10 min-w-0 flex-1 rounded-lg text-sm",
+  },
+  sm: {
+    group: "gap-0.5",
+    indicator: "rounded-md",
+    option: "h-7 rounded-md px-2 text-xs",
+  },
+};
+
 export function SegmentedControl<Value extends string | number>({
   disabled = false,
   label,
   onValueChange,
   options,
+  size = "md",
   value,
 }: {
   disabled?: boolean;
   label: string;
   onValueChange: (value: Value) => void;
   options: readonly { label: string; value: Value }[];
+  size?: keyof typeof SIZES;
   value: Value;
 }) {
   const groupId = useId();
+  const sizing = SIZES[size];
 
   return (
     <fieldset
       aria-label={label}
       className={cn(
-        CONTROL_SURFACE,
-        "flex w-full items-center transition-opacity duration-200 ease-out disabled:pointer-events-none disabled:opacity-50"
+        sizing.group,
+        "flex items-center transition-opacity duration-200 ease-out disabled:pointer-events-none disabled:opacity-50"
       )}
       disabled={disabled}
     >
@@ -41,7 +57,8 @@ export function SegmentedControl<Value extends string | number>({
         return (
           <label
             className={cn(
-              "relative flex h-8 pointer-coarse:h-10 min-w-0 flex-1 cursor-pointer items-center justify-center rounded-lg font-medium text-sm transition-colors duration-200 ease-out",
+              "relative flex cursor-pointer items-center justify-center font-medium transition-colors duration-200 ease-out",
+              sizing.option,
               "has-focus-visible:outline-2 has-focus-visible:outline-content has-focus-visible:outline-offset-2",
               isActive
                 ? "text-content"
@@ -59,7 +76,10 @@ export function SegmentedControl<Value extends string | number>({
             />
             {isActive && (
               <m.span
-                className="pointer-events-none absolute inset-0 rounded-lg border border-border bg-background"
+                className={cn(
+                  "pointer-events-none absolute inset-0 border border-border bg-background",
+                  sizing.indicator
+                )}
                 layoutId={`segmented-control-${groupId}`}
                 transition={INDICATOR_TRANSITION}
               />

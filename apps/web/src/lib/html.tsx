@@ -1,3 +1,8 @@
+import { SPINNERS } from "loading-dev";
+import { renderToStaticMarkup } from "react-dom/server";
+import type { SpinnerItem } from "@/lib/catalog";
+import { type Customization, customizationProps } from "@/lib/customization";
+
 const INDENT = "  ";
 
 function openingTag(element: Element): string {
@@ -33,11 +38,17 @@ function stylesheet(css: string): string[] {
   ];
 }
 
-export function spinnerHtml(
-  spinner: Element,
-  css: string,
-  opacity: number
+export function htmlSnippet(
+  item: SpinnerItem,
+  customization: Customization
 ): string {
+  const Spinner = SPINNERS[item.slug];
+  const template = document.createElement("template");
+  template.innerHTML = renderToStaticMarkup(
+    <Spinner {...customizationProps(item, customization)} />
+  );
+  const [style, spinner] = template.content.children;
+  const { opacity } = customization;
   const markup =
     opacity === 100
       ? serialize(spinner, 0)
@@ -46,14 +57,5 @@ export function spinnerHtml(
           ...serialize(spinner, 1),
           "</div>",
         ];
-  return [...stylesheet(css), "", ...markup].join("\n");
-}
-
-const ROOT_RULE = /(?=^\.ld-[\w-]+ \{\n {2}width: var\(--ld-size)/m;
-
-export function spinnerCss(slug: string): string | undefined {
-  const root = `.ld-${slug} {`;
-  return [...document.querySelectorAll(`style[data-href~="ld-${slug}"]`)]
-    .flatMap((style) => (style.textContent ?? "").split(ROOT_RULE))
-    .find((chunk) => chunk.startsWith(root));
+  return [...stylesheet(style.textContent ?? ""), "", ...markup].join("\n");
 }

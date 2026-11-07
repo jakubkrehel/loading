@@ -12,7 +12,10 @@ export interface NavLink {
   keywords?: string[];
   label: string;
   shortcut?: string;
-  spinner?: SpinnerName;
+}
+
+export interface SpinnerNavLink extends NavLink {
+  spinner: SpinnerName;
 }
 
 export interface SocialLink {
@@ -25,7 +28,7 @@ export const TOP_LEVEL_NAV: NavLink[] = [
   { href: "/", label: "Overview", shortcut: "O" },
 ];
 
-export const SPINNER_NAV: NavLink[] = SPINNER_ITEMS.map((item) => ({
+export const SPINNER_NAV: SpinnerNavLink[] = SPINNER_ITEMS.map((item) => ({
   href: item.href,
   keywords: [item.slug],
   label: item.name,

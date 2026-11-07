@@ -2,14 +2,10 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import { isTyping } from "@/lib/keyboard";
 import { GO_TO_KEY, TOP_LEVEL_NAV } from "@/lib/navigation";
 
 const SEQUENCE_TIMEOUT_MS = 1000;
-
-export const isTyping = (target: EventTarget | null) =>
-  target instanceof HTMLElement &&
-  (target.isContentEditable ||
-    ["INPUT", "SELECT", "TEXTAREA"].includes(target.tagName));
 
 export function useGoToShortcut(enabled: boolean) {
   const router = useRouter();

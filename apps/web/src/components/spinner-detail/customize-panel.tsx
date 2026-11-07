@@ -9,9 +9,14 @@ import { cn } from "@/lib/utils";
 import { ColorPickerRow } from "./color-picker-row";
 import { useCustomization } from "./spinner-customization";
 
-export function CustomizePanel({ className }: { className?: string }) {
-  const { customization, inContext, item, reset, setOption, update } =
-    useCustomization();
+export function CustomizePanel({
+  className,
+  sizeDisabled,
+}: {
+  className?: string;
+  sizeDisabled: boolean;
+}) {
+  const { customization, item, reset, setOption, update } = useCustomization();
 
   return (
     <div
@@ -21,7 +26,7 @@ export function CustomizePanel({ className }: { className?: string }) {
       )}
     >
       <SegmentedControl
-        disabled={inContext}
+        disabled={sizeDisabled}
         label="Size"
         onValueChange={(size) => update({ size })}
         options={SIZES}

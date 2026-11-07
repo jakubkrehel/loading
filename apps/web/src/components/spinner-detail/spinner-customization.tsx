@@ -6,7 +6,6 @@ import { type Customization, initialCustomization } from "@/lib/customization";
 
 interface CustomizationContextValue {
   customization: Customization;
-  inContext: boolean;
   item: SpinnerItem;
   paused: boolean;
   reset: () => void;
@@ -14,7 +13,6 @@ interface CustomizationContextValue {
     prop: K,
     value: NonNullable<SpinnerOptions[K]>
   ) => void;
-  toggleContext: () => void;
   togglePaused: () => void;
   update: (patch: Partial<Customization>) => void;
 }
@@ -34,11 +32,9 @@ export function CustomizationProvider({
     initialCustomization(item)
   );
   const [paused, setPaused] = useState(false);
-  const [inContext, setInContext] = useState(false);
 
   const value: CustomizationContextValue = {
     customization,
-    inContext,
     item,
     paused,
     reset: () => setCustomization(initialCustomization(item)),
@@ -47,7 +43,6 @@ export function CustomizationProvider({
         ...previous,
         options: { ...previous.options, [prop]: option },
       })),
-    toggleContext: () => setInContext((previous) => !previous),
     togglePaused: () => setPaused((previous) => !previous),
     update: (patch) =>
       setCustomization((previous) => ({ ...previous, ...patch })),
