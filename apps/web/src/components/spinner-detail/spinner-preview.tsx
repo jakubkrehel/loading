@@ -1,6 +1,11 @@
 "use client";
 
-import { ChevronLeftIcon, PauseIcon, PlayIcon } from "@radix-ui/react-icons";
+import {
+  ButtonIcon,
+  ChevronLeftIcon,
+  PauseIcon,
+  PlayIcon,
+} from "@radix-ui/react-icons";
 import { SPINNER_MOTION, SPINNERS } from "loading-dev";
 import { type ReactNode, useRef, useState } from "react";
 import { AnimatedIcon } from "@/components/ui/animated-icon";
@@ -14,6 +19,7 @@ import { PREVIEW_SECTION_ID } from "@/lib/constants";
 import { customizationProps } from "@/lib/customization";
 import { usePlaybackRate } from "@/lib/use-playback-rate";
 import { cn } from "@/lib/utils";
+import { ContextStage } from "./context-stage";
 import { CustomizePanel } from "./customize-panel";
 import { useCustomization } from "./spinner-customization";
 
@@ -76,14 +82,26 @@ function CustomizeDrawer({
 
 export function SpinnerPreview() {
   const [customizeOpen, setCustomizeOpen] = useState(true);
-  const { customization, item, paused, togglePaused } = useCustomization();
+  const {
+    customization,
+    inContext,
+    item,
+    paused,
+    toggleContext,
+    togglePaused,
+  } = useCustomization();
   const Spinner = SPINNERS[item.slug];
   const playLabel = paused ? "Play animation" : "Pause animation";
+  const contextLabel = inContext ? "Show on its own" : "Show in context";
   const stage = useRef<HTMLDivElement>(null);
-  const { duration: _duration, ...props } = customizationProps(
+  const { duration: _duration, ...customized } = customizationProps(
     item,
     customization
   );
+  const props = {
+    ...customized,
+    playState: paused ? ("paused" as const) : undefined,
+  };
   usePlaybackRate(stage, SPINNER_MOTION[item.slug] / customization.speedMs);
 
   return (
@@ -92,35 +110,66 @@ export function SpinnerPreview() {
       id={PREVIEW_SECTION_ID}
     >
       <div className="flex min-h-64 min-w-0 flex-1 flex-col items-center px-4 pt-13 pb-2">
-        <div className="flex min-h-0 w-full flex-1 items-center justify-center">
-          <div ref={stage} style={{ opacity: `${customization.opacity}%` }}>
-            <Spinner {...props} playState={paused ? "paused" : undefined} />
-          </div>
+        <div
+          className="flex min-h-0 w-full flex-1 items-center justify-center"
+          ref={stage}
+        >
+          {inContext ? (
+            <ContextStage
+              opacity={customization.opacity}
+              props={props}
+              Spinner={Spinner}
+            />
+          ) : (
+            <div style={{ opacity: `${customization.opacity}%` }}>
+              <Spinner {...props} />
+            </div>
+          )}
         </div>
-        <Tooltip>
-          <TooltipTrigger
-            render={
-              <IconButton
-                aria-label={playLabel}
-                onClick={togglePaused}
-                size="sm"
-                type="button"
-                variant="ghost"
-              >
-                <AnimatedIcon
-                  active={paused}
-                  activeIcon={
-                    <PlayIcon className="size-4.5 will-change-transform" />
-                  }
-                  idleIcon={
-                    <PauseIcon className="size-4.5 will-change-transform" />
-                  }
-                />
-              </IconButton>
-            }
-          />
-          <TooltipContent>{playLabel}</TooltipContent>
-        </Tooltip>
+        <div className="flex items-center gap-1">
+          <Tooltip>
+            <TooltipTrigger
+              render={
+                <IconButton
+                  aria-label={playLabel}
+                  onClick={togglePaused}
+                  size="sm"
+                  type="button"
+                  variant="ghost"
+                >
+                  <AnimatedIcon
+                    active={paused}
+                    activeIcon={
+                      <PlayIcon className="size-4.5 will-change-transform" />
+                    }
+                    idleIcon={
+                      <PauseIcon className="size-4.5 will-change-transform" />
+                    }
+                  />
+                </IconButton>
+              }
+            />
+            <TooltipContent>{playLabel}</TooltipContent>
+          </Tooltip>
+          <Tooltip>
+            <TooltipTrigger
+              render={
+                <IconButton
+                  aria-label="Show in context"
+                  aria-pressed={inContext}
+                  className={cn(inContext && "bg-background text-content")}
+                  onClick={toggleContext}
+                  size="sm"
+                  type="button"
+                  variant="ghost"
+                >
+                  <ButtonIcon className="size-4.5" />
+                </IconButton>
+              }
+            />
+            <TooltipContent>{contextLabel}</TooltipContent>
+          </Tooltip>
+        </div>
       </div>
       <DrawerHandle
         onToggle={() => setCustomizeOpen((value) => !value)}

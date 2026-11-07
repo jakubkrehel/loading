@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Text } from "@/components/ui/text";
 import type { SpinnerItem } from "@/lib/catalog";
 import { cn } from "@/lib/utils";
+import { PrevNextShortcut } from "./prev-next-shortcut";
 
 const directions = {
   next: {
@@ -68,6 +69,7 @@ export function PrevNext({
 }) {
   return (
     <nav aria-label="More spinners" className="flex w-full gap-8">
+      <PrevNextShortcut next={next?.href} previous={previous?.href} />
       {previous ? (
         <PrevNextLink direction="previous" item={previous} />
       ) : (

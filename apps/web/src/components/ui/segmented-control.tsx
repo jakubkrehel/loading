@@ -12,11 +12,13 @@ const INDICATOR_TRANSITION = {
 } as const;
 
 export function SegmentedControl<Value extends string | number>({
+  disabled = false,
   label,
   onValueChange,
   options,
   value,
 }: {
+  disabled?: boolean;
   label: string;
   onValueChange: (value: Value) => void;
   options: readonly { label: string; value: Value }[];
@@ -27,7 +29,11 @@ export function SegmentedControl<Value extends string | number>({
   return (
     <fieldset
       aria-label={label}
-      className={cn(CONTROL_SURFACE, "flex w-full items-center")}
+      className={cn(
+        CONTROL_SURFACE,
+        "flex w-full items-center transition-opacity duration-200 ease-out disabled:pointer-events-none disabled:opacity-50"
+      )}
+      disabled={disabled}
     >
       {options.map((option) => {
         const isActive = option.value === value;

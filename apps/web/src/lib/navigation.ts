@@ -1,4 +1,5 @@
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
+import type { SpinnerName } from "loading-dev";
 import type { ComponentType } from "react";
 import { MarkdownIcon } from "@/icons/markdown-icon";
 import { NpmIcon } from "@/icons/npm-icon";
@@ -11,6 +12,7 @@ export interface NavLink {
   keywords?: string[];
   label: string;
   shortcut?: string;
+  spinner?: SpinnerName;
 }
 
 export interface SocialLink {
@@ -27,6 +29,7 @@ export const SPINNER_NAV: NavLink[] = SPINNER_ITEMS.map((item) => ({
   href: item.href,
   keywords: [item.slug],
   label: item.name,
+  spinner: item.slug,
 }));
 
 export const NAV_ITEMS: NavLink[] = [...TOP_LEVEL_NAV, ...SPINNER_NAV];

@@ -6,7 +6,7 @@ import { GO_TO_KEY, TOP_LEVEL_NAV } from "@/lib/navigation";
 
 const SEQUENCE_TIMEOUT_MS = 1000;
 
-const isTyping = (target: EventTarget | null) =>
+export const isTyping = (target: EventTarget | null) =>
   target instanceof HTMLElement &&
   (target.isContentEditable ||
     ["INPUT", "SELECT", "TEXTAREA"].includes(target.tagName));

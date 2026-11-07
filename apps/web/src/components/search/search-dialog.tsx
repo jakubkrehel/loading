@@ -4,9 +4,11 @@ import { Dialog } from "@base-ui/react/dialog";
 import { ScrollArea } from "@base-ui/react/scroll-area";
 import { CrossCircledIcon, MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import { Command, useCommandState } from "cmdk";
+import { SPINNERS } from "loading-dev";
 import { usePathname, useRouter } from "next/navigation";
 import { type RefObject, useRef, useState } from "react";
 import { Kbd } from "@/components/ui/kbd";
+import { LogoMark } from "@/components/ui/logo";
 import { ScrollAreaScrollbar } from "@/components/ui/scroll-area";
 import {
   GO_TO_KEY,
@@ -166,6 +168,13 @@ function NavRow({
       onSelect={() => onNavigate(row.href)}
       value={row.label}
     >
+      <span className="flex size-5 flex-none items-center justify-center text-content-subtle transition-colors duration-200 ease-out group-data-[selected=true]:text-content">
+        {row.spinner ? (
+          <RowSpinner name={row.spinner} />
+        ) : (
+          <LogoMark className="size-3.5" />
+        )}
+      </span>
       <span className="min-w-0 flex-1 truncate px-1 font-semimedium">
         {row.label}
       </span>
@@ -177,6 +186,16 @@ function NavRow({
         </span>
       )}
     </Command.Item>
+  );
+}
+
+function RowSpinner({ name }: { name: keyof typeof SPINNERS }) {
+  const Spinner = SPINNERS[name];
+
+  return (
+    <span className="contents [--ld-play-state:paused] group-data-[selected=true]:[--ld-play-state:running]">
+      <Spinner size={16} />
+    </span>
   );
 }
 
