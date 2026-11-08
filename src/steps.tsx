@@ -2,7 +2,20 @@ import { SpinnerStyle, spinnerRoot, step } from "./frame";
 import { animation, STEP_VAR, stagger } from "./motion";
 import type { SpinnerProps } from "./types";
 
+export type StepsRows = "double" | "single";
+
+export const DEFAULT_STEPS_ROWS: StepsRows = "single";
+
+export interface StepsProps extends SpinnerProps {
+  rows?: StepsRows;
+}
+
 const SEGMENTS = [1, 7, 13, 19];
+
+const ROWS: Record<StepsRows, number[]> = {
+  double: [5, 13],
+  single: [9],
+};
 
 const SLOTS = SEGMENTS.length * 2;
 
@@ -30,28 +43,30 @@ const css = `
 }
 `;
 
-export function Steps(props: SpinnerProps) {
+export function Steps({ rows = DEFAULT_STEPS_ROWS, ...rest }: StepsProps) {
   return (
     <>
       <SpinnerStyle name="steps">{css}</SpinnerStyle>
       <svg
-        {...spinnerRoot("steps", props)}
+        {...spinnerRoot("steps", rest)}
         fill="currentColor"
         role="presentation"
         viewBox="0 0 24 24"
       >
-        {SEGMENTS.map((x, index) => (
-          <rect
-            className="ld-steps-segment"
-            height="6"
-            key={x}
-            rx="1.25"
-            style={step(index)}
-            width="4"
-            x={x}
-            y="9"
-          />
-        ))}
+        {ROWS[rows].map((y) =>
+          SEGMENTS.map((x, index) => (
+            <rect
+              className="ld-steps-segment"
+              height="6"
+              key={`${x}-${y}`}
+              rx="1.25"
+              style={step(index)}
+              width="4"
+              x={x}
+              y={y}
+            />
+          ))
+        )}
       </svg>
     </>
   );

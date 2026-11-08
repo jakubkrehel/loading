@@ -49,7 +49,12 @@ export { Slide } from "./slide";
 export { Snake, type SnakeProps } from "./snake";
 export { SPINNERS } from "./spinners";
 export { Split } from "./split";
-export { Steps } from "./steps";
+export {
+  DEFAULT_STEPS_ROWS,
+  Steps,
+  type StepsProps,
+  type StepsRows,
+} from "./steps";
 export { Swirl } from "./swirl";
 export { Trace, type TraceProps } from "./trace";
 export type { SpinnerProps } from "./types";
