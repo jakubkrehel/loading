@@ -4,6 +4,7 @@ import {
   DEFAULT_CAP,
   DEFAULT_EASING,
   DEFAULT_RIPPLE_DIRECTION,
+  DEFAULT_STEPS_ROWS,
   DEFAULT_WAVE_ORIGIN,
   type EasingProps,
   type SpinnerName,
@@ -268,6 +269,17 @@ const CATALOG = [
   entry({
     description: "Four segments lighting up in turn, then clearing in turn.",
     name: "Steps",
+    options: [
+      {
+        defaultValue: DEFAULT_STEPS_ROWS,
+        label: "Rows",
+        prop: "rows",
+        values: [
+          { label: "Single", value: "single" },
+          { label: "Double", value: "double" },
+        ],
+      },
+    ],
     slug: "steps",
     speed: { max: 3200, min: 500 },
   }),
