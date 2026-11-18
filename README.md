@@ -1,5 +1,5 @@
 <a href="https://interfaces.dev/?utm_source=loading.dev">
-  <img width="320" height="168" alt="interfaces.dev" src="https://ho1jr3x2dcwdu3t5.public.blob.vercel-storage.com/og-image.png" />
+  <img width="320" height="168" alt="interfaces.dev" src="https://ho1jr3x2dcwdu3t5.public.blob.vercel-storage.com/og-readme.png" />
 </a>
 
 Read more in [Interfaces](https://interfaces.dev/?utm_source=loading.dev), the first design engineering magazine.
