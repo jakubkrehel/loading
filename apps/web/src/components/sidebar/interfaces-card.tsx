@@ -1,6 +1,5 @@
 import { ChevronRightIcon } from "@radix-ui/react-icons";
 import { useId } from "react";
-import { BUTTON_BASE, buttonVariants } from "@/components/ui/button-styles";
 import { Text } from "@/components/ui/text";
 import { cn } from "@/lib/utils";
 
@@ -8,46 +7,35 @@ const INTERFACES_URL = "https://interfaces.dev/?utm_source=loading.dev";
 
 export function InterfacesCard({ className }: { className?: string }) {
   return (
-    <div
+    <a
       className={cn(
-        "rounded-2xl border border-border bg-background p-1",
+        "group block rounded-xl bg-background p-1 shadow-custom",
         className
       )}
+      href={INTERFACES_URL}
+      rel="noreferrer"
+      target="_blank"
     >
-      <div className="flex flex-col gap-2 rounded-xl bg-surface p-1.5 shadow-custom">
-        <div className="flex flex-col gap-2 px-2 pt-2 pb-1.5">
-          <Text
-            as="span"
-            className="flex items-center gap-2 text-content"
-            size="sm"
-            weight="medium"
-          >
-            <InterfacesLogo className="size-5 shrink-0" />
-            Interfaces
-          </Text>
-          <Text as="span" className="text-content-subtle" size="sm">
-            Interested in learning more about design engineering? Check out my
-            magazine, Interfaces.
-          </Text>
-        </div>
-        <a
-          className={cn(
-            BUTTON_BASE,
-            buttonVariants.secondary,
-            "h-8 w-full gap-1.5 rounded-md pr-1.5 pl-2.5 font-medium text-sm"
-          )}
-          href={INTERFACES_URL}
-          rel="noreferrer"
-          target="_blank"
-        >
-          Start reading
-          <ChevronRightIcon
+      <span className="flex items-center gap-2 rounded-lg bg-surface p-2 shadow-custom">
+        <InterfacesLogo className="size-5 shrink-0" />
+        <Text as="span" className="text-content" size="sm" weight="medium">
+          Interfaces
+          <span
             aria-hidden="true"
-            className="size-4 text-content-subtle"
-          />
-        </a>
-      </div>
-    </div>
+            className="inline-flex w-0 -translate-x-0.5 scale-75 items-center align-[-0.2em] text-content-subtle opacity-0 transition-[opacity,translate,scale] duration-200 ease-out group-hover:translate-x-0 group-hover:scale-100 group-hover:opacity-100"
+          >
+            <ChevronRightIcon className="ml-0.5 size-4 shrink-0" />
+          </span>
+        </Text>
+      </span>
+      <Text
+        as="span"
+        className="block px-2 pt-2 pb-1 text-content-subtle"
+        size="sm"
+      >
+        A Design Engineering Magazine
+      </Text>
+    </a>
   );
 }
 
