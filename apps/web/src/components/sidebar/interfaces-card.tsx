@@ -18,11 +18,16 @@ export function InterfacesCard({ className }: { className?: string }) {
     >
       <span className="flex items-center gap-2 rounded-lg bg-surface p-2 shadow-custom">
         <InterfacesLogo className="size-5 shrink-0" />
-        <Text as="span" className="text-content" size="sm" weight="medium">
+        <Text
+          as="span"
+          className="flex items-center text-content"
+          size="sm"
+          weight="medium"
+        >
           Interfaces
           <span
             aria-hidden="true"
-            className="inline-flex w-0 -translate-x-0.5 scale-75 items-center align-[-0.2em] text-content-subtle opacity-0 transition-[opacity,translate,scale] duration-200 ease-out group-hover:translate-x-0 group-hover:scale-100 group-hover:opacity-100"
+            className="inline-flex w-0 -translate-x-0.5 scale-75 text-content-subtle opacity-0 transition-[opacity,translate,scale] duration-200 ease-out group-hover:translate-x-0 group-hover:scale-100 group-hover:opacity-100"
           >
             <ChevronRightIcon className="ml-0.5 size-4 shrink-0" />
           </span>
