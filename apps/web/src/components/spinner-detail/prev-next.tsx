@@ -41,14 +41,16 @@ function PrevNextLink({
       <span className={cn("flex min-w-0 flex-col", text)}>
         <Text
           as="span"
-          className="text-content-subtle transition-colors duration-200 ease-out hover-hover:group-hover:text-content"
+          className="transition-colors duration-200 ease-out hover-hover:group-hover:text-content"
+          color="content-subtle"
           size="sm"
         >
           {label}
         </Text>
         <Text
           as="span"
-          className="w-full text-content"
+          className="w-full"
+          color="content"
           size="sm"
           truncate
           weight="semimedium"

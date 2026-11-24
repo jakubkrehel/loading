@@ -1,0 +1,25 @@
+{
+  "layout-only-classname": {
+    "apps/web/src/app/(site)/page.tsx": 1,
+    "apps/web/src/app/(site)/spinners/[slug]/page.tsx": 1,
+    "apps/web/src/components/home/install-command.tsx": 3,
+    "apps/web/src/components/mdx/heading.tsx": 1,
+    "apps/web/src/components/mdx/paragraph.tsx": 1,
+    "apps/web/src/components/search/search-footer.tsx": 2,
+    "apps/web/src/components/sidebar/credits.tsx": 1,
+    "apps/web/src/components/sidebar/interfaces-card.tsx": 1,
+    "apps/web/src/components/sidebar/sidebar-search.tsx": 1,
+    "apps/web/src/components/spinner-detail/color-picker-row.tsx": 3,
+    "apps/web/src/components/spinner-detail/copy-page-button.tsx": 2,
+    "apps/web/src/components/spinner-detail/prev-next.tsx": 1,
+    "apps/web/src/components/spinner-detail/spinner-preview.tsx": 1,
+    "apps/web/src/components/spinner-detail/toc.tsx": 1,
+    "apps/web/src/components/ui/nav-item.tsx": 1,
+    "apps/web/src/components/ui/page-header.tsx": 1,
+    "apps/web/src/components/ui/slider-row.tsx": 1
+  },
+  "no-raw-values": {
+    "apps/web/src/components/search/search-dialog.tsx": 1,
+    "apps/web/src/components/sidebar/sidebar-search.tsx": 1
+  }
+}

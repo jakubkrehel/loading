@@ -5,10 +5,11 @@ import { cn } from "@/lib/utils";
 export function MDXParagraph({
   className,
   ...rest
-}: ComponentPropsWithoutRef<"p">) {
+}: Omit<ComponentPropsWithoutRef<"p">, "color">) {
   return (
     <Text
-      className={cn("text-content-subtle sm:px-4", className)}
+      className={cn("sm:px-4", className)}
+      color="content-subtle"
       size="base"
       {...rest}
     />

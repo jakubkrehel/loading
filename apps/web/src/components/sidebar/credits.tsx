@@ -36,7 +36,7 @@ export function Credits({ className }: { className?: string }) {
   return (
     <div className={cn("flex flex-col gap-6 px-4 pb-4", className)}>
       <Separator className="h-px bg-border" />
-      <Text className="text-content-subtle leading-relaxed" size="sm">
+      <Text className="leading-relaxed" color="content-subtle" size="sm">
         Made with care by{" "}
         <Nametag
           avatar={`${BLOB_BASE}/jakub.png?v=2`}
