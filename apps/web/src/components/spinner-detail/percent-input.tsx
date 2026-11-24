@@ -49,7 +49,7 @@ export function PercentInput({
         type="text"
         value={draft ?? String(value)}
       />
-      <Text as="span" className="text-popover-content-subtle" size="sm">
+      <Text as="span" color="popover-content-subtle" size="sm">
         %
       </Text>
     </>

@@ -20,7 +20,8 @@ export function InterfacesCard({ className }: { className?: string }) {
         <InterfacesLogo className="size-5 shrink-0" />
         <Text
           as="span"
-          className="flex items-center text-content"
+          className="flex items-center"
+          color="content"
           size="sm"
           weight="medium"
         >
@@ -35,7 +36,8 @@ export function InterfacesCard({ className }: { className?: string }) {
       </span>
       <Text
         as="span"
-        className="block px-2 pt-2 pb-1 text-content-subtle"
+        className="block px-2 pt-2 pb-1"
+        color="content-subtle"
         size="sm"
       >
         A Design Engineering Magazine

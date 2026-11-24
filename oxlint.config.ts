@@ -171,6 +171,13 @@ export default defineConfig({
       "error",
       {
         baseline: designSystemBaseline["layout-only-classname"],
+        allow: [
+          "^(?:inline-)?flex$",
+          "^flex-(?:row|col)",
+          "^gap-",
+          "^items-",
+          "^justify-",
+        ],
         primitives: ["@/components/ui/"],
       },
     ],

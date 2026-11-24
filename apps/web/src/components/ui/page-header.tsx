@@ -23,7 +23,11 @@ export function PageHeader({
         {title}
       </Heading>
       {description && (
-        <Text className="max-w-lg text-pretty text-content-subtle" size="base">
+        <Text
+          className="max-w-lg text-pretty"
+          color="content-subtle"
+          size="base"
+        >
           {description}
         </Text>
       )}

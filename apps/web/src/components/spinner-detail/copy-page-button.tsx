@@ -48,7 +48,8 @@ export function CopyPageButton({
         >
           <Text
             as="span"
-            className="flex-1 text-left text-content"
+            className="flex-1"
+            color="content"
             size="sm"
             weight="medium"
           >
@@ -113,7 +114,7 @@ export function CopyPageButton({
       </DropdownMenu>
 
       {status === "failed" && (
-        <Text as="p" className="px-2 text-content-subtle" size="sm">
+        <Text as="p" className="px-2" color="content-subtle" size="sm">
           {announcement}
         </Text>
       )}

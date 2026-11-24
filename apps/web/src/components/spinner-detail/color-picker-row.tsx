@@ -69,7 +69,7 @@ export function ColorPickerRow({
           />
           <div className="flex w-50 gap-2">
             <div className={cn(FIELD, "min-w-0 flex-1")}>
-              <Text as="span" className="text-popover-content-subtle" size="sm">
+              <Text as="span" color="popover-content-subtle" size="sm">
                 #
               </Text>
               <HexColorInput

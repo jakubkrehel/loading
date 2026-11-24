@@ -19,11 +19,19 @@ export const fontWeightClasses = {
   semimedium: "font-semimedium",
 } as const;
 
+const textColorClasses = {
+  content: "text-content",
+  "content-subtle": "text-content-subtle",
+  "popover-content-subtle": "text-popover-content-subtle",
+} as const;
+
 type TextSize = keyof typeof textSizeClasses;
+type TextColor = keyof typeof textColorClasses;
 export type FontWeight = keyof typeof fontWeightClasses;
 
 interface TextOwnProps {
   className?: string;
+  color?: TextColor;
   size?: TextSize;
   truncate?: boolean;
   weight?: FontWeight;
@@ -38,6 +46,7 @@ export function Text<E extends ElementType = "p">({
   size = "base",
   weight = "regular",
   truncate,
+  color,
   className,
   ...rest
 }: TextProps<E>): ReactElement {
@@ -49,6 +58,7 @@ export function Text<E extends ElementType = "p">({
         textSizeClasses[size],
         fontWeightClasses[weight],
         truncate && "truncate",
+        color && textColorClasses[color],
         className
       )}
       data-text=""

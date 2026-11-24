@@ -13,12 +13,7 @@ export function SpinnerCard({ item }: { item: SpinnerItem }) {
           <Spinner size={24} />
         </div>
         <div className="w-full px-2 py-1.5 text-center">
-          <Text
-            as="span"
-            className="text-content-subtle"
-            size="sm"
-            weight="semimedium"
-          >
+          <Text as="span" color="content-subtle" size="sm" weight="semimedium">
             {item.name}
           </Text>
         </div>
