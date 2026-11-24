@@ -178,6 +178,9 @@ importers:
       '@types/react-dom':
         specifier: ^19.3.0
         version: 19.3.0(@types/react@19.3.0)
+      outtrue:
+        specifier: 0.1.0
+        version: 0.1.0(oxlint@1.93.0)
       oxlint:
         specifier: 1.93.0
         version: 1.93.0
@@ -2678,6 +2681,13 @@ packages:
 
   oniguruma-to-es@4.3.6:
     resolution: {integrity: sha512-csuQ9x3Yr0cEIs/Zgx/OEt9iBw9vqIunAPQkx19R/fiMq2oGVTgcMqO/V3Ybqefr1TBvosI6jU539ksaBULJyA==}
+
+  outtrue@0.1.0:
+    resolution: {integrity: sha512-yxxYmcDkO9D4ua0eRjT8GyHh+0aAXUebuRqB919Kn/3vUpDVMK2p5NbG+NqXm0OB7lKD7BiQ2hRd1ZlGUyvSYQ==}
+    engines: {node: '>=22.18.0'}
+    hasBin: true
+    peerDependencies:
+      oxlint: '>=1.92.0'
 
   oxlint@1.93.0:
     resolution: {integrity: sha512-19JMsQFX+YvEbcUTFQxjTwhvs0Ibg0D6CFneSLgpwnACWcY/6LjhpGpkPodh0T5aIT1pjMTLlYaeBFzaVgugTA==}
@@ -5484,6 +5494,10 @@ snapshots:
       oniguruma-parser: 0.12.2
       regex: 6.1.0
       regex-recursion: 6.0.2
+
+  outtrue@0.1.0(oxlint@1.93.0):
+    dependencies:
+      oxlint: 1.93.0
 
   oxlint@1.93.0:
     optionalDependencies:

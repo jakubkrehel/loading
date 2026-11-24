@@ -36,6 +36,8 @@ Oxlint extends Ultracite core, React and Vitest presets, with Next rules scoped 
 
 Lint warnings and unused Oxlint suppressions fail checks. Use narrow `oxlint-disable-next-line rule -- reason` comments when a rule cannot model valid code. Type-aware Oxlint is disabled; `pnpm typecheck` checks types separately.
 
+The design system lint rules come from the `outtrue` package, loaded through `jsPlugins` in the Oxlint config as `design-system/*`. `lint/design-system-baseline.json` holds the violations each file is still allowed. A file over its count fails and so does a file under it, so lower the count when you fix one.
+
 ## Architecture
 
 pnpm workspace with the library at the root and one app beside it:

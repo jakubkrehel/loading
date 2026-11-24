@@ -3,6 +3,9 @@ import core from "ultracite/oxlint/core";
 import next from "ultracite/oxlint/next";
 import react from "ultracite/oxlint/react";
 import vitest from "ultracite/oxlint/vitest";
+import designSystemBaseline from "./lint/design-system-baseline.json" with {
+  type: "json",
+};
 
 const restrictedImports = {
   paths: [
@@ -29,8 +32,26 @@ const restrictedImports = {
 
 export default defineConfig({
   extends: [core, react, vitest],
+  jsPlugins: [{ name: "design-system", specifier: "outtrue" }],
   ignorePatterns: [...(core.ignorePatterns ?? [])],
   overrides: [
+    {
+      files: ["src/**", "tests/**", "examples/**"],
+      rules: {
+        "design-system/classname-passthrough": "off",
+        "design-system/closed-variants": "off",
+        "design-system/icon-button-label": "off",
+        "design-system/known-tokens": "off",
+        "design-system/layout-only-classname": "off",
+        "design-system/no-important": "off",
+        "design-system/no-inline-style": "off",
+        "design-system/no-raw-values": "off",
+        "design-system/no-reach-in-selectors": "off",
+        "design-system/one-way-imports": "off",
+        "design-system/prefer-shorthand": "off",
+        "design-system/primitive-naming": "off",
+      },
+    },
     // Button primitives forward the caller’s type through their props.
     {
       files: [
@@ -130,6 +151,55 @@ export default defineConfig({
   ],
   // Preserve established syntax; new style preferences do not rewrite published demos.
   rules: {
+    "design-system/classname-passthrough": [
+      "error",
+      { primitives: ["apps/web/src/components/ui"] },
+    ],
+    "design-system/closed-variants": [
+      "error",
+      { primitives: ["apps/web/src/components/ui"] },
+    ],
+    "design-system/icon-button-label": [
+      "error",
+      { components: ["Button", "IconButton"] },
+    ],
+    "design-system/known-tokens": [
+      "error",
+      { theme: ["apps/web/src/styles/globals.css"] },
+    ],
+    "design-system/layout-only-classname": [
+      "error",
+      {
+        baseline: designSystemBaseline["layout-only-classname"],
+        primitives: ["@/components/ui/"],
+      },
+    ],
+    "design-system/no-important": "error",
+    "design-system/no-inline-style": "error",
+    "design-system/no-raw-values": [
+      "error",
+      { baseline: designSystemBaseline["no-raw-values"] },
+    ],
+    "design-system/no-reach-in-selectors": [
+      "error",
+      { primitives: ["@/components/ui/"] },
+    ],
+    "design-system/one-way-imports": [
+      "error",
+      {
+        alias: { "@/": "apps/web/src/" },
+        layers: [
+          "apps/web/src/components/ui",
+          "apps/web/src/components",
+          "apps/web/src/app",
+        ],
+      },
+    ],
+    "design-system/prefer-shorthand": "error",
+    "design-system/primitive-naming": [
+      "error",
+      { primitives: ["apps/web/src/components/ui"] },
+    ],
     // Count a switch once so explicit state cases do not inflate the limit.
     complexity: ["error", { max: 20, variant: "modified" }],
     eqeqeq: ["error", "always", { null: "ignore" }],
