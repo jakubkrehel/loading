@@ -1,5 +1,8 @@
 import { createCn } from "cn/config";
 
 export const cn = createCn({
-  extend: { theme: { "font-weight": ["semimedium"] } },
+  extend: {
+    classGroups: { "font-size": [{ text: ["16"] }] },
+    theme: { "font-weight": ["semimedium"] },
+  },
 });

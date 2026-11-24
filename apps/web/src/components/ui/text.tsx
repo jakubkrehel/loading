@@ -25,13 +25,19 @@ const textColorClasses = {
   "popover-content-subtle": "text-popover-content-subtle",
 } as const;
 
+const fontFamilyClasses = {
+  mono: "font-paper-mono",
+} as const;
+
 type TextSize = keyof typeof textSizeClasses;
 type TextColor = keyof typeof textColorClasses;
+type TextFont = keyof typeof fontFamilyClasses;
 export type FontWeight = keyof typeof fontWeightClasses;
 
 interface TextOwnProps {
   className?: string;
   color?: TextColor;
+  font?: TextFont;
   size?: TextSize;
   truncate?: boolean;
   weight?: FontWeight;
@@ -47,6 +53,7 @@ export function Text<E extends ElementType = "p">({
   weight = "regular",
   truncate,
   color,
+  font,
   className,
   ...rest
 }: TextProps<E>): ReactElement {
@@ -59,6 +66,7 @@ export function Text<E extends ElementType = "p">({
         fontWeightClasses[weight],
         truncate && "truncate",
         color && textColorClasses[color],
+        font && fontFamilyClasses[font],
         className
       )}
       data-text=""

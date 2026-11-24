@@ -107,7 +107,7 @@ export function SearchDialog({
                 <MagnifyingGlassIcon className="size-4 shrink-0 text-content-subtle" />
                 <div className="h-full min-w-0 flex-1">
                   <Command.Input
-                    className="h-full w-[calc(100%/0.8125)] origin-left scale-[0.8125] bg-transparent text-[16px] text-content leading-[calc(1.125/0.8125)] outline-none placeholder:text-content-subtle placeholder:opacity-50 sm:w-full sm:scale-100 sm:text-sm"
+                    className="h-full w-[calc(100%/0.8125)] origin-left scale-[0.8125] bg-transparent text-16 text-content leading-[calc(1.125/0.8125)] outline-none placeholder:text-content-subtle placeholder:opacity-50 sm:w-full sm:scale-100 sm:text-sm"
                     onValueChange={setQuery}
                     placeholder="Search"
                     ref={inputRef}

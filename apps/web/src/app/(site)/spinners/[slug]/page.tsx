@@ -63,7 +63,6 @@ export default async function SpinnerPage({
   return (
     <div className="flex flex-col gap-8">
       <PageHeader
-        className="sm:px-4"
         description={item.description}
         eyebrow="Component/"
         title={item.name}
