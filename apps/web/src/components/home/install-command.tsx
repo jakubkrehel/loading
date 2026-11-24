@@ -6,18 +6,14 @@ export function InstallCommand({ command }: { command: string }) {
 
   return (
     <div className="flex h-12 w-full items-center gap-2 rounded-2xl border border-border bg-background-subtle pr-1 pl-4">
-      <Text
-        as="span"
-        className="font-paper-mono"
-        color="content-subtle"
-        size="sm"
-      >
+      <Text as="span" color="content-subtle" font="mono" size="sm">
         $
       </Text>
       <Text
         as="span"
-        className="min-w-px flex-1 font-paper-mono"
+        className="min-w-px flex-1"
         color="content-subtle"
+        font="mono"
         size="sm"
       >
         {manager} {action}{" "}

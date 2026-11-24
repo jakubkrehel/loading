@@ -177,6 +177,8 @@ export default defineConfig({
           "^gap-",
           "^items-",
           "^justify-",
+          "^-?translate-",
+          "^scroll-m",
         ],
         primitives: ["@/components/ui/"],
       },
