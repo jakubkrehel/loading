@@ -57,16 +57,16 @@ Each spinner is one self-contained `.tsx` file built from the shared helpers. It
 
 Reach for the helper rather than writing what it writes:
 
-| Job | Helper |
-| --- | --- |
-| The `<style>` tag | `SpinnerStyle` (`frame.tsx`), keyed from the spinner's `ld-` key |
-| Root attributes: `aria-hidden`, the merged class name, the appearance properties, the `size` default | `spinnerRoot()` (`frame.tsx`) |
-| A duration, the size, the 20px default | `duration(name)`, `SIZE`, `DEFAULT_SIZE` (`motion.ts`), never a literal |
-| An animated element's `animation` shorthand | `animation(name, keyframes, timing)` (`motion.ts`). It carries `animation-play-state`, which the tests require on every shorthand |
-| Elements playing the same keyframes in turn | `stagger(name, count)` (`motion.ts`) for the delay and `style={step(index)}` (`frame.tsx`) on each element. No generated `nth-child` rules |
-| A stagger that only fades opacity from 1 down to a floor | `fadeCss(name, element, count, { dim, rest })` (`fade.ts`), the whole stylesheet |
-| A rotation that takes `easing` | `rotationCss(name)` for the stylesheet and `spinClass(name, easing)` for the element that turns (`easing.ts`). Pass a keyframe body as the second argument when the lap is another additive property, such as a dash running round a path |
-| Per-element custom properties | `cssVars` (`frame.tsx`), the one place the `CSSProperties` cast lives |
+| Job                                                                                                  | Helper                                                                                                                                                                                                                                    |
+| ---------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| The `<style>` tag                                                                                    | `SpinnerStyle` (`frame.tsx`), keyed from the spinner's `ld-` key                                                                                                                                                                          |
+| Root attributes: `aria-hidden`, the merged class name, the appearance properties, the `size` default | `spinnerRoot()` (`frame.tsx`)                                                                                                                                                                                                             |
+| A duration, the size, the 20px default                                                               | `duration(name)`, `SIZE`, `DEFAULT_SIZE` (`motion.ts`), never a literal                                                                                                                                                                   |
+| An animated element's `animation` shorthand                                                          | `animation(name, keyframes, timing)` (`motion.ts`). It carries `animation-play-state`, which the tests require on every shorthand                                                                                                         |
+| Elements playing the same keyframes in turn                                                          | `stagger(name, count)` (`motion.ts`) for the delay and `style={step(index)}` (`frame.tsx`) on each element. No generated `nth-child` rules                                                                                                |
+| A stagger that only fades opacity from 1 down to a floor                                             | `fadeCss(name, element, count, { dim, rest })` (`fade.ts`), the whole stylesheet                                                                                                                                                          |
+| A rotation that takes `easing`                                                                       | `rotationCss(name)` for the stylesheet and `spinClass(name, easing)` for the element that turns (`easing.ts`). Pass a keyframe body as the second argument when the lap is another additive property, such as a dash running round a path |
+| Per-element custom properties                                                                        | `cssVars` (`frame.tsx`), the one place the `CSSProperties` cast lives                                                                                                                                                                     |
 
 - Every animation already stops under `prefers-reduced-motion: reduce`: `SpinnerStyle` appends `animation: none` for the root and everything inside it. A spinner writes its own reduced-motion block only for the rest pose it should hold once stopped.
 - All spinners take `SpinnerProps` from `types.ts` (`{ className?, color?, duration?, playState?, size? }`), forward them to `spinnerRoot` and paint with `currentColor`. Every prop but `className` writes a CSS property only when passed; `CONTEXT.md` explains why omission matters.
