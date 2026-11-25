@@ -5,7 +5,3 @@ packages:
 allowBuilds:
   esbuild: true
   sharp: true
-minimumReleaseAgeExclude:
-  - "outtrue@0.1.0"
-  - "@interfere/next@13.0.4"
-  - "@interfere/react@13.0.4"
