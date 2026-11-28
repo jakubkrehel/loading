@@ -41,7 +41,7 @@ export interface SpinnerItem {
   speed: SpeedRange;
 }
 
-export function spinnerHref(slug: string): string {
+function spinnerHref(slug: string): string {
   return `/spinners/${slug}`;
 }
 

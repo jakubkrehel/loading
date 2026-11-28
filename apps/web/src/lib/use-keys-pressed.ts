@@ -14,18 +14,18 @@ export function useKeysPressed<const K extends readonly string[]>(
   const isEnabled = useEffectEvent(() => enabled);
 
   useEffect(() => {
-    const watched = new Set<string>(keys);
+    const watched = new Set<K[number]>(keys);
     const downAt: Record<string, number> = {};
     const timers: Record<string, number> = {};
 
-    const setKey = (key: string, value: boolean) =>
+    const setKey = (key: K[number], value: boolean) =>
       setPressed((current) =>
-        (current[key as K[number]] ?? false) === value
+        (current[key] ?? false) === value
           ? current
           : { ...current, [key]: value }
       );
 
-    const release = (key: string) => {
+    const release = (key: K[number]) => {
       const remaining = MIN_PRESS_MS - (performance.now() - (downAt[key] ?? 0));
       window.clearTimeout(timers[key]);
       if (remaining <= 0) {
@@ -43,7 +43,7 @@ export function useKeysPressed<const K extends readonly string[]>(
 
     const watchedKey = (event: KeyboardEvent) => {
       const key = event.key?.toLowerCase();
-      return key && watched.has(key) ? key : null;
+      return key ? (keys.find((candidate) => candidate === key) ?? null) : null;
     };
 
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -60,7 +60,7 @@ export function useKeysPressed<const K extends readonly string[]>(
     };
 
     const handleKeyUp = (event: KeyboardEvent) => {
-      if (event.key === "Meta" && watched.has("meta")) {
+      if (event.key === "Meta" && keys.some((key) => key === "meta")) {
         releaseAll();
         return;
       }

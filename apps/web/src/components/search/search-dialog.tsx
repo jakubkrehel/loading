@@ -103,10 +103,11 @@ export function SearchDialog({
 
           <Command label="Search spinners">
             <div className="flex items-center p-2">
-              <div className="flex h-8 min-w-0 flex-1 items-center gap-2 rounded-lg px-2">
+              <div className="flex h-8 min-w-0 flex-1 items-center gap-2 rounded-lg px-2 has-[input:focus-visible]:outline-2 has-[input:focus-visible]:outline-content has-[input:focus-visible]:outline-offset-0">
                 <MagnifyingGlassIcon className="size-4 shrink-0 text-content-subtle" />
                 <div className="h-full min-w-0 flex-1">
                   <Command.Input
+                    aria-label="Search spinners"
                     className="h-full w-[calc(100%/0.8125)] origin-left scale-[0.8125] bg-transparent text-16 text-content leading-[calc(1.125/0.8125)] outline-none placeholder:text-content-subtle placeholder:opacity-50 sm:w-full sm:scale-100 sm:text-sm"
                     onValueChange={setQuery}
                     placeholder="Search"
