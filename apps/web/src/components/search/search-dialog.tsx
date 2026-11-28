@@ -103,7 +103,7 @@ export function SearchDialog({
 
           <Command label="Search spinners">
             <div className="flex items-center p-2">
-              <div className="flex h-8 min-w-0 flex-1 items-center gap-2 rounded-lg px-2 has-[input:focus-visible]:outline-2 has-[input:focus-visible]:outline-content has-[input:focus-visible]:outline-offset-0">
+              <div className="flex h-8 min-w-0 flex-1 items-center gap-2 rounded-lg px-2">
                 <MagnifyingGlassIcon className="size-4 shrink-0 text-content-subtle" />
                 <div className="h-full min-w-0 flex-1">
                   <Command.Input
